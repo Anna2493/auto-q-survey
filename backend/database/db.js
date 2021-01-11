@@ -26,6 +26,8 @@ const sequelize = new Sequelize('auto_q_survey_db', 'root', 'password', {
 //   }
 // })
 
+
+
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 

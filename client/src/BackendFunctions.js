@@ -1,17 +1,37 @@
 import axios from 'axios';
 
+// export const register = newAdmin => {
+//     return axios
+//         .post('admins/register', {
+//             first_name: newAdmin.first_name,
+//             surname: newAdmin.surname,
+//             email: newAdmin.email,
+//             password: newAdmin.password,
+//         })
+//         .then(response => {
+//         console.log(response)
+        
+//     })
+// }
+
 export const register = newAdmin => {
-    return axios
-        .post('admins/register', {
+    fetch('admins/register', {
+
+        // method: 'POST',
+        // headers: {
+            
+        //     'Content-Type': 'application/json'
+        // },
+        // body: ({
             first_name: newAdmin.first_name,
             surname: newAdmin.surname,
             email: newAdmin.email,
             password: newAdmin.password,
-        })
-        .then(response => {
-        console.log(response)
-        
+        //})
     })
+        .then(response => {
+            console.log(response)
+        })
 }
 
 export const login = admin => {

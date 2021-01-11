@@ -10,7 +10,7 @@ admins.use(cors())
 process.env.SECRET_KEY = 'secret'
 
 //REGISTER
-admins.post('/register', (req, res) => {
+admins.post('/api/register', (req, res) => {
     
     const adminData = {
         first_name: req.body.first_name,

@@ -23,18 +23,46 @@ export default class Registration extends React.Component {
     onSubmit(e) {
         e.preventDefault();
 
-        const newAdmin = {
-            first_name: this.state.first_name,
-            surname: this.state.surname,
-            email: this.state.email,
-            password: this.state.password
-        };
+        fetch("http://localhost:5000/api/register", {
 
-        register(newAdmin)
-            .then(response => {
-               // this.props.history.push(`/`)
-                console.log(response)
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                first_name: this.state.first_name,
+                surname: this.state.surname,
+                email: this.state.email,
+                password: this.state.password,
             })
+        })
+        .then(response => {
+            console.log(response)
+        });
+        
+    // fetch('admins/register', {
+
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({
+    //         first_name: this.state.first_name,
+    //         surname: this.state.surname,
+    //         email: this.state.email,
+    //         password: this.state.password,
+    //     })
+    //     })
+    //     .then(response => {
+    //         console.log(response)
+    //     })
+
+
+        // register(newAdmin)
+        //     .then(response => {
+        //        // this.props.history.push(`/`)
+        //         console.log(response)
+        //     })
         
     };
 
