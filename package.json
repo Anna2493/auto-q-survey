@@ -22,4 +22,5 @@
     "mysql2": "^2.2.5",
     "sequelize": "^6.3.5"
   }
+  ,"proxy": "http://localhost:5000"
 }
