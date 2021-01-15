@@ -24,7 +24,7 @@ export default class Registration extends React.Component {
     onSubmit(e) {
         e.preventDefault();
 
-        fetch("https://auto-q-survey-web.herokuapp.com/register", {
+        fetch("https://auto-q-survey-web.herokuapp.com/api/register", {
 
             method: 'POST',
             headers: {
