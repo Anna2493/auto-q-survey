@@ -28,6 +28,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const Admins = require('./backend/routes/Admins')
 app.use('/', Admins)
 
+app.get('/', (req, res) => {
+  res.send("hello")
+})
 // if (process.env.NODE_ENV === 'production') {
 //   // Serve any static files
 //   app.use(express.static(path.join(__dirname, 'client/build')));
