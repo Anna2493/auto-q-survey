@@ -23,22 +23,22 @@ export default class Registration extends React.Component {
     onSubmit(e) {
         e.preventDefault();
 
-        fetch("http://localhost:5000/api/register", {
+        // fetch("http://localhost:5000/api/register", {
 
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                first_name: this.state.first_name,
-                surname: this.state.surname,
-                email: this.state.email,
-                password: this.state.password,
-            })
-        })
-        .then(response => {
-            console.log(response)
-        });
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         first_name: this.state.first_name,
+        //         surname: this.state.surname,
+        //         email: this.state.email,
+        //         password: this.state.password,
+        //     })
+        // })
+        // .then(response => {
+        //     console.log(response)
+        // });
         
     // fetch('admins/register', {
 
