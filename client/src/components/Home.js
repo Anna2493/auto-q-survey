@@ -6,7 +6,7 @@ import { login } from '../BackendFunctions';
 import Navbar from './Navbar/Navbar';
 
 
-export default class HomeGrid2 extends React.Component {
+export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
