@@ -1,9 +1,9 @@
-const express = require('express')
-const cors = require('cors') //Dont use cors on production
-const bodyParser = require('body-parser') //Handles JSON. Extracts
+var express = require('express')
+var cors = require('cors') //Dont use cors on production
+var bodyParser = require('body-parser') //Handles JSON. Extracts
 // the data send from client side 
-const app = express() //instantiate express
-const port = process.env.PORT || 5000 //3000
+var app = express() //instantiate express
+var port = process.env.PORT || 5000 //3000
 
 // const whitelist = ['http://localhost:3000', 'http://localhost:8080', 'https://auto-q-survey-web.herokuapp.com/']
 // const corsOptions = {
@@ -25,12 +25,12 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const Admins = require('./backend/routes/Admins')
+var Admins = require('./backend/routes/Admins')
 app.use('/', Admins)
 
-app.get('/', (req, res) => {
-  res.send("hello")
-})
+// app.get('/', (req, res) => {
+//   res.send("hello")
+// })
 // if (process.env.NODE_ENV === 'production') {
 //   // Serve any static files
 //   app.use(express.static(path.join(__dirname, 'client/build')));
