@@ -1,5 +1,6 @@
 import React from 'react';
 import { register } from '../BackendFunctions';
+import { Link, Redirect } from 'react-router-dom';
 
 export default class Registration extends React.Component {
     constructor() {
@@ -23,22 +24,25 @@ export default class Registration extends React.Component {
     onSubmit(e) {
         e.preventDefault();
 
-        // fetch("http://localhost:5000/api/register", {
+        fetch("https://auto-q-survey-web.herokuapp.com/register", {
 
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         first_name: this.state.first_name,
-        //         surname: this.state.surname,
-        //         email: this.state.email,
-        //         password: this.state.password,
-        //     })
-        // })
-        // .then(response => {
-        //     console.log(response)
-        // });
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                first_name: this.state.first_name,
+                surname: this.state.surname,
+                email: this.state.email,
+                password: this.state.password,
+            })
+        })
+        .then(response => {
+            console.log(response)
+            if (response.ok == true) {
+                this.setState({ Redirect: true });
+            }
+        });
         
     // fetch('admins/register', {
 
@@ -67,6 +71,13 @@ export default class Registration extends React.Component {
     };
 
     render() {
+         if (this.state.Redirect) {
+            return (
+                <Redirect to={{
+                pathname: '/',
+                }}/>
+            )
+        };
         return (
             <div>
                 <div className='container'>
