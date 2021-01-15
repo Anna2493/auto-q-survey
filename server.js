@@ -1,5 +1,6 @@
 var express = require('express')
 var cors = require('cors') //Dont use cors on production
+var path = require('path');
 var bodyParser = require('body-parser') //Handles JSON. Extracts
 // the data send from client side 
 var app = express() //instantiate express
