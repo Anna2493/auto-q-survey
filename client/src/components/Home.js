@@ -12,6 +12,7 @@ export default class Home extends React.Component {
     this.state = {
       email: "",
       password: "",
+      adminToken: '',
     };
 
       this.onChange = this.onChange.bind(this);
@@ -38,37 +39,18 @@ export default class Home extends React.Component {
           password: this.state.password,
         })
       })
-        // .then((response) => {
-        //   return response;
-        // })
-        // .then((data) => {
-        //   console.log(data);
-        // });
-        .then(response => {
-          console.log(response)
-          if (response.ok == true) {
-            // this.setState({ Redirect: true });
-            //localStorage.setItem('adminToken', response)
-          }
+        .then(res => {
+          return res.json()
         })
         .then((data) => {
-          console.log(data)
-        });
-
-        // const admin = {
-        //     email: this.state.email,
-        //     password: this.state.password
-        // }
-
-        // login(admin).then(response => {
-        //   if (response) {
-        //       console.log(response)
-        //        // this.props.history.push(`/profile`)
-        //       this.setState({ Redirect: true });
-        //         //TODO apply redirect to profile if no errors
-                
-        //     }
-        // })
+          this.setState({ adminToken: data });
+          console.log(this.state.adminToken);
+          if (this.state.adminToken != null) {
+            localStorage.setItem('adminToken', data);
+            this.setState({ Redirect: true });
+          };
+        })
+        .catch(error => console.log(error));
     }
 
   render() {
