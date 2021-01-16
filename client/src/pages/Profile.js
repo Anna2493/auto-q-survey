@@ -16,6 +16,7 @@ export default class Profile extends React.Component {
         return (
             <div>
                 <h1>Profile page</h1>
+                <h2>Something is wrong</h2>
             </div>
         )
     }
