@@ -1,7 +1,9 @@
 import React from "react";
 import jwt_decode from "jwt-decode";
 import { Link, Redirect } from 'react-router-dom';
+import Navbar from '../components/Navbar/Navbar';
 
+//TODO change token expiration
 export default class Profile extends React.Component {
     constructor() {
         super();
@@ -28,25 +30,41 @@ export default class Profile extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>Profile page</h1>
-                <table>
-            <tbody>
-              <tr>
-                <td>First Name</td>
-                <td>{this.state.firstName}</td>
-              </tr>
-              <tr>
-                <td>Email</td>
-                <td>{this.state.email}</td>
-              </tr>
-              <tr>
-                <td>Id</td>
-                <td>{this.state.id}</td>
-              </tr>
-            </tbody>
-          </table>
+          <div>
+
+            <div className='grid-container'>
+              <div className="item1 sub-header-container">
+                <h1 className="sub-heading">
+                  Dashboard
+                </h1>
+              </div>
+              <div className=' item6 navbar-container'>
+                <Navbar/>
+              </div>
             </div>
+
+            <div className='dashboard-grid-container'>
+            <div><h1 className='item7 container-heading'>Profile</h1></div>  
+
+              <div className='item8 profile-content-container'>
+                <div className='profile-container'>
+                <div><h2 className='name-text'>{this.state.firstName}</h2></div> 
+                <div><button className='profile-btn'>New Survey</button></div>   
+                <div><button className='profile-btn'>Change Password</button></div> 
+                <div><button className='profile-btn'>Edit Avatar</button></div> 
+                <div><button className='profile-btn'>Delete Account</button></div> 
+                </div>
+              </div>
+
+              <div><h1 className='item7 container-heading'>Surveys</h1></div>
+              <div className='item10 profile-content-container'>
+                <div className='profile-container'>
+                  <h2>{this.state.firstName}</h2>
+                </div>
+              </div>
+            </div>
+
+        </div>
         )
     }
 }

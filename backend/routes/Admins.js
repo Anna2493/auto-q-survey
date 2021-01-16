@@ -58,7 +58,7 @@ admins.post('/api/login', (req, res) => {
             if (admin) {
                 if (bcrypt.compareSync(req.body.password, admin.password)) {
                     let token = jwt.sign(admin.dataValues, process.env.SECRET_KEY, {
-                        expiresIn: 1440
+                        
                     });
                     //res.send({ token : token })
                     //console.log(token)
