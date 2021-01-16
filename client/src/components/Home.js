@@ -29,21 +29,30 @@ export default class Home extends React.Component {
 
       fetch("https://auto-q-survey-web.herokuapp.com/api/login", {
 
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: this.state.email,
-                password: this.state.password,
-            })
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: this.state.email,
+          password: this.state.password,
         })
+      })
+        // .then((response) => {
+        //   return response;
+        // })
+        // .then((data) => {
+        //   console.log(data);
+        // });
         .then(response => {
-            console.log(response)
-            if (response.ok == true) {
-              this.setState({ Redirect: true });
-              localStorage.setItem('adminToken', response.data)
-            }
+          console.log(response)
+          if (response.ok == true) {
+            // this.setState({ Redirect: true });
+            //localStorage.setItem('adminToken', response)
+          }
+        })
+        .then((data) => {
+          console.log(data)
         });
 
         // const admin = {

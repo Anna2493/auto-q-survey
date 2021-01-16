@@ -1,5 +1,5 @@
 var express = require('express')
-var cors = require('cors') //Dont use cors on production
+var cors = require('cors')
 var path = require('path');
 var bodyParser = require('body-parser') //Handles JSON. Extracts
 // the data send from client side 
@@ -28,6 +28,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 var Admins = require('./backend/routes/Admins')
 app.use('/', Admins)
+
+// const jwt = require("jsonwebtoken")
+// process.env.SECRET_KEY = 'secret'
+// app.post('/api/login', (req, res) => {
+//   // Mock user
+//   const user = {
+//     id: 1, 
+//     username: 'brad',
+//     email: 'brad@gmail.com'
+//   }
+
+//   jwt.sign({user}, process.env.SECRET_KEY, { expiresIn: '30s' }, (err, token) => {
+//     res.json({
+//       token
+//     });
+//   });
+// });
 
 // app.get('/', (req, res) => {
 //   res.send("hello")
