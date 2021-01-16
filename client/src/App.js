@@ -5,6 +5,7 @@ import { MyProvider } from './Context';
 
 import Home from './pages/HomePage';
 import Registration from './pages/Registration';
+import Profile from './pages/Profile';
 
 export default class App extends React.Component {
   render() {
@@ -14,7 +15,8 @@ export default class App extends React.Component {
           <div>
             <Switch>
               <Route path="/" exact component={HomePage} />
-               <Route path="/register" component={Registration} />
+              <Route path="/register" component={Registration} />
+              <Route path="/profile" component={Profile} />
             </Switch>
           </div>
         </Router>
