@@ -11,4 +11,12 @@ export default class Profile extends React.Component {
             id: '',
         }
     }
+
+    render() {
+        return (
+            <div>
+                <h1>Profile</h1>
+            </div>
+        )
+    }
 }
