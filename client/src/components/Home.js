@@ -43,8 +43,8 @@ export default class Home extends React.Component {
           return res.json()
         })
         .then((data) => {
-          this.setState({ adminToken: data });
-          console.log(this.state.adminToken);
+          this.setState({ adminToken: data.token });
+          //console.log(this.state.adminToken);
           if (this.state.adminToken != null) {
             localStorage.setItem('adminToken', this.state.adminToken);
             this.setState({ Redirect: true });

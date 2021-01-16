@@ -62,7 +62,7 @@ admins.post('/api/login', (req, res) => {
                     });
                     //res.send({ token : token })
                     //console.log(token)
-                    res.json({  token: token });
+                    res.json({ token: token });
                     //localStorage.setItem('adminToken', token)
             }
             }

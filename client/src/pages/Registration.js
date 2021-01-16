@@ -1,6 +1,6 @@
 import React from 'react';
-import { register } from '../BackendFunctions';
 import { Link, Redirect } from 'react-router-dom';
+import Navbar from '../components/Navbar/Navbar';
 
 export default class Registration extends React.Component {
     constructor() {
@@ -24,50 +24,40 @@ export default class Registration extends React.Component {
     onSubmit(e) {
         e.preventDefault();
 
-        fetch("https://auto-q-survey-web.herokuapp.com/api/register", {
+        if (this.state.password != this.state.confirmPassword) {
+            alert("Password don't match");
+        }
+        else if (!this.state.email.includes('@')) {
+            alert("Email address must contain @ symbol");
+        }
+        else if (this.state.first_name == '' ||
+            this.state.surname == '' ||
+            this.state.email == '' ||
+            this.state.password == '') {
+            
+            alert("Please fill in every field");
+        }
+        else {
+            fetch("https://auto-q-survey-web.herokuapp.com/api/register", {
 
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                first_name: this.state.first_name,
-                surname: this.state.surname,
-                email: this.state.email,
-                password: this.state.password,
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    first_name: this.state.first_name,
+                    surname: this.state.surname,
+                    email: this.state.email,
+                    password: this.state.password,
+                })
             })
-        })
-        .then(response => {
-            console.log(response)
-            if (response.ok == true) {
-                this.setState({ Redirect: true });
-            }
-        });
-        
-    // fetch('admins/register', {
-
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({
-    //         first_name: this.state.first_name,
-    //         surname: this.state.surname,
-    //         email: this.state.email,
-    //         password: this.state.password,
-    //     })
-    //     })
-    //     .then(response => {
-    //         console.log(response)
-    //     })
-
-
-        // register(newAdmin)
-        //     .then(response => {
-        //        // this.props.history.push(`/`)
-        //         console.log(response)
-        //     })
-        
+                .then(response => {
+                    console.log(response)
+                    if (response.ok == true) {
+                        this.setState({ Redirect: true });
+                    }
+                });
+        }
     };
 
     render() {
@@ -80,75 +70,85 @@ export default class Registration extends React.Component {
         };
         return (
             <div>
-                <div className='container'>
-                    <h1 className='heading-white'>Create account</h1>
-
-                    <form className='center'>
-                        <div>
-                            <div>
-                                <label className='label'>First Name</label>
-                                <input
-                                    className='center name-input'
-                                    type='text'
-                                    name='first_name'
-                                    value={this.state.first_name}
-                                    onChange={this.handleChange}
-                                />
-
-                            </div>
-
-                            <div>
-                                <label className='label'>Surname</label>
-                                <input
-                                    className='center name-input'
-                                    type='text'
-                                    name='surname'
-                                    value={this.state.surname}
-                                    onChange={this.handleChange}
-                                />
-
-                            </div>
-
-                            <div>
-                                <label className='label'>Email</label>
-                                <input
-                                    className='center name-input'
-                                    type='email'
-                                    name='email'
-                                    value={this.state.email}
-                                    onChange={this.handleChange}
-                                />
-
-                            </div>
-
-                            <div>
-                                <label className='label'>Password</label>
-                                <input
-                                    className='center name-input'
-                                    type='password'
-                                    name='password'
-                                    value={this.state.password}
-                                    onChange={this.handleChange}
-                                />
-
-                            </div>
-
-                            <div>
-                                <label className='label'>Confirm Password</label>
-                                <input
-                                    className='center name-input'
-                                />
-
-                            </div>
-
-                            <div>
-                                <button className='register-btn'
-                                    onClick={this.onSubmit}>
-                                REGISTER
-                                </button>
-                            </div>
+                <div className='grid-container'>
+                    <div className="item1 sub-header-container">
+                        <h1 className="sub-heading">
+                            Create an Account
+                        </h1>
+                    </div>
+                    <div className=' item6 navbar-container'>
+                    <Navbar/>
+                    </div>
+                </div>
+                
+           
+                <div className='content-container'>
+                    <div className='form-container'>
+                        <form> 
+                            
+                        <div className='label-container'>
+                            <label className='label'>Name</label>
                         </div>
-                    </form>
+                        <input
+                            className='form-input'
+                            type='text'
+                            name='first_name'
+                            value={this.state.first_name}
+                            onChange={this.handleChange}
+                            />
+
+                        <div className='label-container'>
+                            <label className='label'>Surname</label>
+                        </div>
+                        <input
+                            className='form-input'
+                            type='text'
+                            name='surname'
+                            value={this.state.surname}
+                            onChange={this.handleChange}
+                            />
+                            
+                        <div className='label-container'>
+                            <label className='label'>Email</label>
+                        </div>
+                            <input
+                                className='form-input'
+                                type='email'
+                                name='email'
+                                value={this.state.email}
+                                onChange={this.handleChange}
+                            />
+
+                        <div className='label-container'>
+                            <label className='label'>Password</label>
+                        </div>
+                            <input
+                                className='form-input'
+                                type='password'
+                                name='password'
+                                value={this.state.password}
+                                onChange={this.handleChange}
+                            />
+                            
+                        <div className='label-container'>
+                            <label className='label'>Confirm Password</label>
+                        </div>
+                            <input
+                                className='form-input'
+                                type='password'
+                                name='confirmPassword'
+                                value={this.state.confirmPassword}
+                                onChange={this.handleChange}
+                            />
+
+                        <button className='register-btn'
+                            onClick={this.onSubmit}>
+                            REGISTER
+                        </button>
+                                
+
+                        </form>
+                    </div>
                 </div>
             </div>
         )
