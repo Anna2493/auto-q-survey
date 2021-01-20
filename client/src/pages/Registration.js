@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import Navbar from '../components/Navbar/Navbar';
+import { register } from '../BackendFunctions';
 
 export default class Registration extends React.Component {
     constructor() {
@@ -10,10 +11,12 @@ export default class Registration extends React.Component {
             surname: '',
             email: '',
             password: '',
-            confirmPassword:'',
+            confirmPassword: '',
         }
         this.handleChange = this.handleChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+        //this.onSubmit = this.onSubmit.bind(this);
+        this.validateUser = this.validateUser.bind(this);
+        this.postNewAdmin = this.postNewAdmin.bind(this);
     }
     handleChange = event => {
         this.setState({
@@ -21,44 +24,83 @@ export default class Registration extends React.Component {
         });
     };
 
-    onSubmit(e) {
+    validateUser(e) {
         e.preventDefault();
-
         if (this.state.password != this.state.confirmPassword) {
             alert("Password don't match");
         }
         else if (!this.state.email.includes('@')) {
             alert("Email address must contain @ symbol");
         }
-        else if (this.state.first_name == '' ||
-            this.state.surname == '' ||
-            this.state.email == '' ||
-            this.state.password == '') {
+        else if (this.state.first_name === '' ||
+            this.state.surname === '' ||
+            this.state.email === '' ||
+            this.state.password === '') {
             
             alert("Please fill in every field");
         }
         else {
-            fetch("https://auto-q-survey-web.herokuapp.com/api/register", {
+            this.postNewAdmin();
+        };
+    }
 
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    first_name: this.state.first_name,
-                    surname: this.state.surname,
-                    email: this.state.email,
-                    password: this.state.password,
-                })
-            })
+    postNewAdmin() {
+
+       const newAdmin = {
+            first_name: this.state.first_name,
+            surname: this.state.surname,
+            email: this.state.email,
+            password: this.state.password
+            };
+
+            register(newAdmin)
                 .then(response => {
-                    console.log(response)
+                    console.log(response);
                     if (response.ok == true) {
                         this.setState({ Redirect: true });
-                    }
-                });
-        }
-    };
+                    };
+            });
+    }
+
+
+    // onSubmit(e) {
+    //     e.preventDefault();
+
+    //     if (this.state.password != this.state.confirmPassword) {
+    //         alert("Password don't match");
+    //     }
+    //     else if (!this.state.email.includes('@')) {
+    //         alert("Email address must contain @ symbol");
+    //     }
+    //     else if (this.state.first_name == '' ||
+    //         this.state.surname == '' ||
+    //         this.state.email == '' ||
+    //         this.state.password == '') {
+            
+    //         alert("Please fill in every field");
+    //     }
+    //     else {
+    //         fetch("https://auto-q-survey-web.herokuapp.com/api/register", {
+
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify({
+    //                 first_name: this.state.first_name,
+    //                 surname: this.state.surname,
+    //                 email: this.state.email,
+    //                 password: this.state.password,
+    //             })
+    //         })
+    //             .then(response => {
+    //                 console.log(response)
+    //                 if (response.ok == true) {
+    //                     this.setState({ Redirect: true });
+    //                 }
+    //             });
+    //     }
+    // };
 
     render() {
          if (this.state.Redirect) {
@@ -142,7 +184,7 @@ export default class Registration extends React.Component {
                             />
 
                         <button className='register-btn'
-                            onClick={this.onSubmit}>
+                            onClick={this.validateUser}>
                             REGISTER
                         </button>
                                 

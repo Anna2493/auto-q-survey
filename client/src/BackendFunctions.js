@@ -1,5 +1,49 @@
 import axios from 'axios';
 
+export const register = newAdmin => {
+    return fetch("https://auto-q-survey-web.herokuapp.com/api/register", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            first_name: newAdmin.first_name,
+            surname: newAdmin.surname,
+            email: newAdmin.email,
+            password: newAdmin.password,
+        })
+    })
+    .then(response => {
+        console.log(response)
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+export const createSurvey = newSurvey => {
+    return fetch("https://auto-q-survey-web.herokuapp.com/api/survey", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            admin_id: newSurvey.adminID,
+            survey_name: newSurvey.surveyName,
+            survey_description: newSurvey.surveyDescription,
+            category1: newSurvey.category1,
+            category2: newSurvey.category2,
+            category3: newSurvey.category3,
+            privacy_statement: newSurvey.privacyStatement,
+            survey_code: newSurvey.surveyCode
+        })
+    })
+    .then(response => {
+        console.log(response)
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
 // export const register = newAdmin => {
 //     return axios
 //         .post('admins/register', {
@@ -14,25 +58,25 @@ import axios from 'axios';
 //     })
 // }
 
-export const register = newAdmin => {
-    fetch('admins/register', {
+// export const register = newAdmin => {
+//     fetch('admins/register', {
 
-        // method: 'POST',
-        // headers: {
+//         // method: 'POST',
+//         // headers: {
             
-        //     'Content-Type': 'application/json'
-        // },
-        // body: ({
-            first_name: newAdmin.first_name,
-            surname: newAdmin.surname,
-            email: newAdmin.email,
-            password: newAdmin.password,
-        //})
-    })
-        .then(response => {
-            console.log(response)
-        })
-}
+//         //     'Content-Type': 'application/json'
+//         // },
+//         // body: ({
+//             first_name: newAdmin.first_name,
+//             surname: newAdmin.surname,
+//             email: newAdmin.email,
+//             password: newAdmin.password,
+//         //})
+//     })
+//         .then(response => {
+//             console.log(response)
+//         })
+// }
 
 export const login = admin => {
     return axios

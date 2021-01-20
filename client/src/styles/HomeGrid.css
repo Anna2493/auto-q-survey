@@ -132,9 +132,7 @@
     background-color: #121636;
     width: 100%;
     height: 100vh;
-    align-items: center;
-    
-    
+    align-items: center;   
 }
 
 .form-container {
@@ -268,6 +266,43 @@
     color: #fff;
     transition: all 0.2s ease-in-out;
 }
+
+/*--------------CREATE SURVEY STEP 1 PAGE--------------*/
+.survey-content-container {
+    
+    background-color: #121636;
+    width: 100%;
+    height: 100vh;
+    display: flex;      
+    justify-content: center;
+}
+.survey-form-container {
+    align-items: center;
+    justify-content: center; 
+    display: inline-block;
+    width: 500px;
+    height: 680px;
+    padding: 50px;
+    margin-top: 100px;
+    border: 2px dotted  #37224d;;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #37224d;
+}
+.label-container{
+    display:block;
+	float: left;
+}
+
+.label {
+    float: left;
+    width: 10em;
+    margin-right: 1em;
+    color: #fff;
+    font-size: 25px;
+    font-family: 'Raleway', sans-serif;
+    padding-bottom: 10px;
+    padding-top: 10px;
+} 
 
 /*_____________________________________________________________________________*/
 

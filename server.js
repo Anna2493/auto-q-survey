@@ -27,7 +27,9 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 var Admins = require('./backend/routes/Admins')
+var Surveys = require('./backend/routes/Surveys')
 app.use('/', Admins)
+app.use('/', Surveys)
 
 // const jwt = require("jsonwebtoken")
 // process.env.SECRET_KEY = 'secret'

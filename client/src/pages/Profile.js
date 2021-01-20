@@ -49,7 +49,11 @@ export default class Profile extends React.Component {
               <div className='item8 profile-content-container'>
                 <div className='profile-container'>
                 <div><h2 className='name-text'>{this.state.firstName}</h2></div> 
-                <div><button className='profile-btn'>New Survey</button></div>   
+                  <div>
+                    <Link to={"/CreateSurvey_Step1"}>
+                      <button className="profile-btn">New Survey</button>
+                    </Link>
+                  </div>   
                 <div><button className='profile-btn'>Change Password</button></div> 
                 <div><button className='profile-btn'>Edit Avatar</button></div> 
                 <div><button className='profile-btn'>Delete Account</button></div> 

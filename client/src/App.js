@@ -6,6 +6,7 @@ import { MyProvider } from './Context';
 import Home from './pages/HomePage';
 import Registration from './pages/Registration';
 import Profile from './pages/Profile';
+import CreateSurvey_Step1 from './pages/CreateSurvey_Step1';
 
 export default class App extends React.Component {
   render() {
@@ -17,6 +18,7 @@ export default class App extends React.Component {
               <Route path="/" exact component={HomePage} />
               <Route path="/register" component={Registration} />
               <Route path="/profile" component={Profile} />
+              <Route path="/CreateSurvey_Step1" component={CreateSurvey_Step1} />
             </Switch>
           </div>
         </Router>
