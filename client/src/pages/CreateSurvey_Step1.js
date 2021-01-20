@@ -28,15 +28,17 @@ export default class CreateSurvey_Step1 extends React.Component {
     postSurvey(e) {
         e.preventDefault();
        const newSurvey = {
-            admin_id: this.state.adminID,
-            survey_name: this.state.surveyName,
-            survey_description: this.state.surveyDescription,
+            adminID: this.state.adminID,
+            surveyName: this.state.surveyName,
+            surveyDescription: this.state.surveyDescription,
             category1: this.state.category1,
             category2: this.state.category2,
             category3: this.state.category3,
-            privacy_statement: this.state.privacyStatement,
-            survey_code: this.state.surveyCode
-            };
+            privacyStatement: this.state.privacyStatement,
+            surveyCode: this.state.surveyCode
+        };
+        
+        //console.log(newSurvey)
 
             createSurvey(newSurvey)
                 .then(response => {
@@ -94,8 +96,8 @@ export default class CreateSurvey_Step1 extends React.Component {
                         <input
                             className='form-input'
                             type='text'
-                            name='description'
-                            value={this.state.description}
+                            name='surveyDescription'
+                            value={this.state.surveyDescription}
                             onChange={this.handleChange}
                             />
                             

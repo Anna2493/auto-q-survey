@@ -24,6 +24,8 @@ surveys.post('/api/survey', (req, res) => {
         
     }
 
+    //console.log(surveyData)
+
     Survey.findOne({
         where: {
             survey_name: req.body.surveyName

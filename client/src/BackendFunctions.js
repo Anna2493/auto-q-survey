@@ -27,14 +27,14 @@ export const createSurvey = newSurvey => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            admin_id: newSurvey.adminID,
-            survey_name: newSurvey.surveyName,
-            survey_description: newSurvey.surveyDescription,
+            adminID: newSurvey.adminID,
+            surveyName: newSurvey.surveyName,
+            surveyDescription: newSurvey.surveyDescription,
             category1: newSurvey.category1,
             category2: newSurvey.category2,
             category3: newSurvey.category3,
-            privacy_statement: newSurvey.privacyStatement,
-            survey_code: newSurvey.surveyCode
+            privacyStatement: newSurvey.privacyStatement,
+            surveyCode: newSurvey.surveyCode
         })
     })
     .then(response => {
