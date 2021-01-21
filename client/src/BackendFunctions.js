@@ -34,6 +34,20 @@ export const createSurvey = newSurvey => {
     });
 }
 
+export const createAnchor = newAnchor => {
+    return fetch("https://auto-q-survey-web.herokuapp.com/api/anchor", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            anchor: newAnchor.anchor,
+            slots: newAnchor.slots,
+            surveyID: newAnchor.surveyID
+        })
+    });
+}
+
 export const createBoard = newBoard => {
     return fetch("https://auto-q-survey-web.herokuapp.com/api/board", {
         method: 'POST',
@@ -50,19 +64,7 @@ export const createBoard = newBoard => {
     });
 }
 
-export const createAnchor = newAnchor => {
-    return fetch("https://auto-q-survey-web.herokuapp.com/api/anchor", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            anchor2: newAnchor.anchor,
-            slots2: newAnchor.slots,
-            surveyID2: newAnchor.surveyID
-        })
-    });
-}
+
 // export const register = newAdmin => {
 //     return axios
 //         .post('admins/register', {
