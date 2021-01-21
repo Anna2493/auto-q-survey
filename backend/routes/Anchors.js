@@ -20,11 +20,11 @@ anchors.post('/api/anchor', (req, res) => {
 
     //console.log(surveyData)
 
-    // Anchor.findOne({
-    //     // where: {
-    //     //     anchor: req.body.anchor
-    //     // }
-    // })
+    Anchor.findOne({
+        where: {
+            anchor: req.body.anchor
+        }
+    })
     .then(anchor => {
         if(!anchor) {
            // bcrypt.hash(req.body.password, 10, (err, hash) => {
