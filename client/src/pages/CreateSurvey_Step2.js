@@ -174,9 +174,9 @@ export default class CreateSurvey_Step2 extends React.Component {
         e.preventDefault();
 
          const newAnchor = {
-            anchor: this.state.anchorsList,
+            anchor: 0,
             slots: 0,
-            survey_id: 5
+            surveyId: 5
         };
 
             createAnchor(newAnchor)
