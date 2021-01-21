@@ -28,8 +28,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 var Admins = require('./backend/routes/Admins')
 var Surveys = require('./backend/routes/Surveys')
+var Boards = require('./backend/routes/Boards')
 app.use('/', Admins)
 app.use('/', Surveys)
+app.use('/', Boards)
 
 // const jwt = require("jsonwebtoken")
 // process.env.SECRET_KEY = 'secret'

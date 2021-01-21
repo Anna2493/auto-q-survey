@@ -12,11 +12,6 @@ export const register = newAdmin => {
             email: newAdmin.email,
             password: newAdmin.password,
         })
-    })
-    .then(response => {
-        console.log(response)
-    }).catch(function (error) {
-        console.log(error);
     });
 }
 
@@ -36,11 +31,23 @@ export const createSurvey = newSurvey => {
             privacyStatement: newSurvey.privacyStatement,
             surveyCode: newSurvey.surveyCode
         })
-    })
-    .then(response => {
-        console.log(response)
-    }).catch(function (error) {
-        console.log(error);
+    });
+}
+
+export const createBoard = newBoard => {
+    return fetch("https://auto-q-survey-web.herokuapp.com/api/board", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            surveyID: newBoard.surveyID,
+            adminID: newBoard.adminID,
+            negativeAnchors: newBoard.negativeAnchors,
+            neutralAnchors: newBoard.neutralAnchors,
+            positiveAnchors: newBoard.positiveAnchors,
+            totalSlots: newBoard.totalSlots
+        })
     });
 }
 

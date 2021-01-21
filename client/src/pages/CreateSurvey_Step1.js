@@ -44,12 +44,10 @@ export default class CreateSurvey_Step1 extends React.Component {
             surveyCode: this.state.surveyCode
         };
         
-        //console.log(newSurvey)
-
             createSurvey(newSurvey)
-                .then(response => {
-                    console.log(response);
-                    if (response.ok == true) {
+                .then(res => {
+                    console.log(res);
+                    if (res.ok == true) {
                         this.setState({ Redirect: true });
                         console.log('survey added')
                     };
