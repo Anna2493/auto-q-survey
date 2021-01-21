@@ -17,35 +17,35 @@ anchors.post('/api/anchor', (req, res) => {
         slots: req.body.slots,
         survey_id: req.body.surveyID,
     }
-
+    Anchor.create(anchorData)
     //console.log(surveyData)
 
-    Anchor.findOne({
-        where: {
-            anchor: req.body.anchor
-        }
-    })
-    .then(anchor => {
-        if(!anchor) {
-           // bcrypt.hash(req.body.password, 10, (err, hash) => {
-             //   adminData.password = hash
+    // Anchor.findOne({
+    //     where: {
+    //         anchor: req.body.anchor
+    //     }
+    // })
+    // .then(anchor => {
+    //     if(!anchor) {
+    //        // bcrypt.hash(req.body.password, 10, (err, hash) => {
+    //          //   adminData.password = hash
                 
-                Anchor.create(anchorData)
-                .then(anchor => {
-                    res.json('anchors added to database')
-                })
-                .catch(err => {
-                    res.send('error ' + err)
-                })
-           // })
-        }
-        else{
-            res.json({error: "Survey with this name already exist"})
-        }
-    })
-    .catch(err => {
-        res.send('error: ' + err)
-    })
+    //             Anchor.create(anchorData)
+    //             .then(anchor => {
+    //                 res.json('anchors added to database')
+    //             })
+    //             .catch(err => {
+    //                 res.send('error ' + err)
+    //             })
+    //        // })
+    //     }
+    //     else{
+    //         res.json({error: "Survey with this name already exist"})
+    //     }
+    // })
+    // .catch(err => {
+    //     res.send('error: ' + err)
+    // })
 })
 //LOGIN
 // admins.post('/api/login', (req, res) => {
