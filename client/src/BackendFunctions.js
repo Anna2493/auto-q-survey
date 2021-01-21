@@ -57,9 +57,9 @@ export const createAnchor = newAnchor => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            anchor: newAnchor.anchor,
-            slots: newAnchor.slots,
-            surveyID: newAnchor.surveyID
+            anchor2: newAnchor.anchor,
+            slots2: newAnchor.slots,
+            surveyID2: newAnchor.surveyID
         })
     });
 }

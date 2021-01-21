@@ -174,17 +174,18 @@ export default class CreateSurvey_Step2 extends React.Component {
         e.preventDefault();
 
          const newAnchor = {
-            anchor: 0,
-            slots: 0,
-            surveyId: 5
+            anchor: '0',
+            slots: '0',
+            surveyID: '5'
         };
 
             createAnchor(newAnchor)
                 .then(response => {
                     console.log(response);
-                    // if (response.ok == true) {
-                    //     this.setState({ Redirect: true });
-                    // };
+                    if (response.ok == true) {
+                        console.log("Anchors added")
+                       // this.setState({ Redirect: true });
+                    };
             });
     }
 
