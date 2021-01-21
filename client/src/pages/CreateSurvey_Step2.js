@@ -7,7 +7,7 @@ export default class CreateSurvey_Step2 extends React.Component {
     constructor() {
         super();
         this.state = {
-            positiveBoard: [],  
+            positiveBoard: [],
             neutralBoard: [
                 {
                     neutral: 0,
@@ -24,7 +24,7 @@ export default class CreateSurvey_Step2 extends React.Component {
             positive: 0,
             negative: 0,
             totalSlots: 1,
-            anchorsList: [{anchor:0, slot: [{}]}],
+            anchorsList: [{ anchor: 0, slot: 1 }, { anchor: 1, slot: 2 }, { anchor: -1, slot: 2 }],
         }
 
         this.postNewBoard = this.postNewBoard.bind(this);
@@ -106,7 +106,7 @@ export default class CreateSurvey_Step2 extends React.Component {
         //console.log(this.state.positiveBoard)
         this.setState({
             positiveBoard: this.state.positiveBoard,
-            anchorsList : this.state.anchorsList
+            //anchorsList : this.state.anchorsList
         })
         
         this.state.totalSlots = this.state.totalSlots + 1;
@@ -176,10 +176,9 @@ export default class CreateSurvey_Step2 extends React.Component {
          const newBoard = {
             surveyID: '1234',
             adminID: 'ABCD',
-            negativeAnchors: this.state.reversedBoard,
-            neutralAnchors: this.state.neutralBoard,
-            positiveAnchors: this.state.positiveBoard,
-            totalSlots: this.state.totalSlots
+            anchor: this.state.anchorsList.anchor,
+            slots: 0,
+            totalSlots: 5
         };
 
             createBoard(newBoard)

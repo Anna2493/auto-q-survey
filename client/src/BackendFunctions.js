@@ -46,6 +46,7 @@ export const createBoard = newBoard => {
             negativeAnchors: newBoard.negativeAnchors,
             neutralAnchors: newBoard.neutralAnchors,
             positiveAnchors: newBoard.positiveAnchors,
+            slots: newBoard.slots,
             totalSlots: newBoard.totalSlots
         })
     });

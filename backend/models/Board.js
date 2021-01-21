@@ -9,26 +9,20 @@ module.exports = db.sequelize.define( //relfect database fileds
       primaryKey: true,
       autoIncrement: true
     },
-    survey_id: {
-      type: Sequelize.INTEGER,
-    },
     admin_id: {
       type: Sequelize.INTEGER
     },
-    negative_anchor: {
-      type: Sequelize.STRING
+    survey_id: {
+      type: Sequelize.INTEGER,
     },
-    positive_anchor: {
-      type: Sequelize.STRING
+    anchor: {
+      type: Sequelize.INTEGER
     },
-    neutral_anchor: {
-      type: Sequelize.STRING
-      },
     slots: {
-      type: Sequelize.STRING
+      type: Sequelize.INTEGER
       },
     total_slots: {
-      type: Sequelize.STRING
+      type: Sequelize.INTEGER
       },
    
   },

@@ -15,20 +15,18 @@ boards.post('/api/board', (req, res) => {
     const boardData = {
         survey_id: req.body.surveyID,
         admin_id: req.body.adminID,
-        negative_anchor: req.body.negativeAnchors,
-        positive_anchor: req.body.positiveAnchors,
-        neutral_anchor: req.body.neutralAnchor,
-        slots: req.body.negativeAnchor.slot,
+        anchor: req.body.anchor,
+        slots: req.body.slots,
         total_slots: req.body.totalSlots,
     }
 
     //console.log(surveyData)
 
-    // Survey.findOne({
-    //     where: {
-    //         survey_name: req.body.surveyName
-    //     }
-    // })
+    Board.findOne({
+        where: {
+            survey_id: req.body.surveyID
+        }
+    })
     .then(board => {
         if(!board) {
            // bcrypt.hash(req.body.password, 10, (err, hash) => {
