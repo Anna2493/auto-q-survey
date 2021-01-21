@@ -14,7 +14,7 @@ export default class Profile extends React.Component {
         }
     }
 
-    componentDidMount() {
+  componentDidMount() {
     const token = localStorage.getItem('adminToken');
     const decoded = jwt_decode(token);
     this.setState({
@@ -24,9 +24,9 @@ export default class Profile extends React.Component {
       
     });
 
-    //localStorage.setItem('adminID', decoded.id)
+    localStorage.setItem('adminID', decoded.id)
 
-  }
+  };
 
     render() {
         return (

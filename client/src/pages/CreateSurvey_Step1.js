@@ -13,12 +13,18 @@ export default class CreateSurvey_Step1 extends React.Component {
             category2: '',
             category3: '',
             privacyStatement: '',
-            adminID: 1,
+            adminID: '',
             surveyCode: 'ABC123',
         }
         this.handleChange = this.handleChange.bind(this);
         this.postSurvey = this.postSurvey.bind(this);
     }
+
+    componentDidMount() {
+        const id = localStorage.getItem('adminID');
+        this.setState({ adminID: id });
+    };
+
     handleChange = event => {
         this.setState({
             [event.target.name]: event.target.value
@@ -43,9 +49,10 @@ export default class CreateSurvey_Step1 extends React.Component {
             createSurvey(newSurvey)
                 .then(response => {
                     console.log(response);
-                    // if (response.ok == true) {
-                    //     this.setState({ Redirect: true });
-                    // };
+                    if (response.ok == true) {
+                        this.setState({ Redirect: true });
+                        console.log('survey added')
+                    };
             });
     }
 
@@ -54,7 +61,7 @@ export default class CreateSurvey_Step1 extends React.Component {
          if (this.state.Redirect) {
             return (
                 <Redirect to={{
-                pathname: '/',
+                pathname: '/CreateSurvey_Step2',
                 }}/>
             )
         };

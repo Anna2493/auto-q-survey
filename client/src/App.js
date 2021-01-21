@@ -7,6 +7,7 @@ import Home from './pages/HomePage';
 import Registration from './pages/Registration';
 import Profile from './pages/Profile';
 import CreateSurvey_Step1 from './pages/CreateSurvey_Step1';
+import CreateSurvey_Step2 from './pages/CreateSurvey_Step2';
 
 export default class App extends React.Component {
   render() {
@@ -19,6 +20,7 @@ export default class App extends React.Component {
               <Route path="/register" component={Registration} />
               <Route path="/profile" component={Profile} />
               <Route path="/CreateSurvey_Step1" component={CreateSurvey_Step1} />
+              <Route path="/CreateSurvey_Step2" component={CreateSurvey_Step2} />
             </Switch>
           </div>
         </Router>
