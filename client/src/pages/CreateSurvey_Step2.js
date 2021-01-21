@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import Navbar from '../components/Navbar/Navbar';
-import { createBoard } from '../BackendFunctions';
+import { createAnchor } from '../BackendFunctions';
 
 export default class CreateSurvey_Step2 extends React.Component {
     constructor() {
@@ -173,15 +173,13 @@ export default class CreateSurvey_Step2 extends React.Component {
     postNewBoard(e) {
         e.preventDefault();
 
-         const newBoard = {
-            surveyID: '1234',
-            adminID: 'ABCD',
-            anchor: this.state.anchorsList.anchor,
+         const newAnchor = {
+            anchor: this.state.anchorsList,
             slots: 0,
-            totalSlots: 5
+            survey_id: 5
         };
 
-            createBoard(newBoard)
+            createAnchor(newAnchor)
                 .then(response => {
                     console.log(response);
                     // if (response.ok == true) {

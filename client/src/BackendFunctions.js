@@ -43,15 +43,26 @@ export const createBoard = newBoard => {
         body: JSON.stringify({
             surveyID: newBoard.surveyID,
             adminID: newBoard.adminID,
-            negativeAnchors: newBoard.negativeAnchors,
-            neutralAnchors: newBoard.neutralAnchors,
-            positiveAnchors: newBoard.positiveAnchors,
+            anchor: newBoard.anchorsList.anchor,
             slots: newBoard.slots,
             totalSlots: newBoard.totalSlots
         })
     });
 }
 
+export const createAnchor = newAnchor => {
+    return fetch("https://auto-q-survey-web.herokuapp.com/api/anchor", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            anchor: newAnchor.anchor,
+            slots: newAnchor.slots,
+            surveyID: newAnchor.surveyID
+        })
+    });
+}
 // export const register = newAdmin => {
 //     return axios
 //         .post('admins/register', {
