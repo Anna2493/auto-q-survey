@@ -18,6 +18,7 @@ anchors.post('/api/anchor', (req, res) => {
         survey_id: req.body.surveyID,
     }
     Anchor.create(anchorData)
+    
     //console.log(surveyData)
 
     // Anchor.findOne({

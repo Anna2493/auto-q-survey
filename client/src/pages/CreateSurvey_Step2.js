@@ -24,7 +24,9 @@ export default class CreateSurvey_Step2 extends React.Component {
             positive: 0,
             negative: 0,
             totalSlots: 1,
-            anchorsList: [{ anchor: 0, slot: 1 }, { anchor: 1, slot: 2 }, { anchor: -1, slot: 2 }],
+            anchorsList: [{ anchor: 0, slots: 1, surveyID: 9 },
+                { anchor: 1, slots: 2, surveyID: 9 },
+                { anchor: -1, slots: 2, surveyID: 9 }],
         }
 
         this.postNewBoard = this.postNewBoard.bind(this);
@@ -173,12 +175,18 @@ export default class CreateSurvey_Step2 extends React.Component {
     postNewBoard(e) {
         e.preventDefault();
 
-         const newAnchor = {
-            anchor: 10,
-            slots: 9,
-            surveyID: 9
-        };
+        //  const newAnchor = {
+        //     // anchor: 1,
+        //     // slots: 9,
+        //     // surveyID: 9
+            
+        // };
 
+        const newAnchor = this.state.anchorsList
+        console.log(newAnchor)
+        var i;
+
+        for (i = 0; i < newAnchor.length; i++){
             createAnchor(newAnchor)
                 .then(response => {
                     console.log(response);
@@ -187,6 +195,15 @@ export default class CreateSurvey_Step2 extends React.Component {
                        // this.setState({ Redirect: true });
                     };
             });
+        }
+            // createAnchor(newAnchor)
+            //     .then(response => {
+            //         console.log(response);
+            //         if (response.ok == true) {
+            //             console.log("Anchors added")
+            //            // this.setState({ Redirect: true });
+            //         };
+            // });
     }
 
 
