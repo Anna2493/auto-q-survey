@@ -48,14 +48,14 @@ export const createAnchor = newAnchor => {
     });
 }
 
-export const getSurveys = surveys => {
+export const getSurveys = requestSurveys => {
     return fetch("https://auto-q-survey-web.herokuapp.com/api/getSurveys", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            adminID: surveys.adminID,
+            adminID: requestSurveys.adminID,
         })
     });
 }

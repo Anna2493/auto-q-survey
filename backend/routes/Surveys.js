@@ -20,8 +20,7 @@ surveys.post('/api/survey', (req, res) => {
         category2: req.body.category2,
         category3: req.body.category3,
         privacy_statement: req.body.privacyStatement,
-        survey_code: req.body.surveyCode,
-        
+        survey_code: req.body.surveyCode,    
     }
 
     //console.log(surveyData)
@@ -53,32 +52,24 @@ surveys.post('/api/survey', (req, res) => {
         res.send('error: ' + err)
     })
 })
-//LOGIN
-// admins.post('/api/login', (req, res) => {
-//     Admin.findOne({
-//         where: {
-//             email: req.body.email
-//         }
-//     })
-//         .then(admin => {
-//             if (admin) {
-//                 if (bcrypt.compareSync(req.body.password, admin.password)) {
-//                     let token = jwt.sign(admin.dataValues, process.env.SECRET_KEY, {
-                        
-//                     });
-//                     //res.send({ token : token })
-//                     //console.log(token)
-//                     res.json({ token: token });
-//                     //localStorage.setItem('adminToken', token)
-//             }
-//             }
-//             else {
-//                 res.status(400).json({error: 'Admin do not exist'})
-//             }
-//         })
-//         .catch(err => {
-//         res.status(400).json({ error: err })
-//     })
-// })
+//GET SURVEYS
+surveys.post('/api/getSurveys', (req, res) => {
+    Survey.findOne({
+        where: {
+            admin_id: req.body.adminID
+        }
+    })
+        .then(surveys => {
+            if (surveys) {
+                    res.json(surveys);          
+            }
+            else {
+                res.status(400).json({error: 'Admin do not exist'})
+            }
+        })
+        .catch(err => {
+        res.status(400).json({ error: err })
+    })
+})
 
 module.exports = surveys
