@@ -48,6 +48,38 @@ export const createAnchor = newAnchor => {
     });
 }
 
+export const getSurveys = surveys => {
+    return fetch("https://auto-q-survey-web.herokuapp.com/api/getSurveys", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            adminID: surveys.adminID,
+        })
+    });
+}
+
+export const getSurveys2 = survey => {
+    return axios
+        .post('surveys/getSurveys', {
+            adminID: survey.adminID
+        })
+        .then(res => {
+            //localStorage.setItem('adminToken', res.data)
+            console.log(res.surveyName)
+            return res.data
+
+        })
+        // .then((data) => {
+        //     console.log(data)
+        // })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
+
 export const createBoard = newBoard => {
     return fetch("https://auto-q-survey-web.herokuapp.com/api/board", {
         method: 'POST',
@@ -140,21 +172,3 @@ export const create = survey => {
         })
 }
 
-export const getSurveys = survey => {
-    return axios
-        .post('surveys/getSurveys', {
-            adminID: survey.adminID
-        })
-        .then(res => {
-            //localStorage.setItem('adminToken', res.data)
-            console.log(res.surveyName)
-            return res.data
-
-        })
-        // .then((data) => {
-        //     console.log(data)
-        // })
-        .catch(err => {
-            console.log(err)
-        })
-}

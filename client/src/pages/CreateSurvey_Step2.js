@@ -20,18 +20,21 @@ export default class CreateSurvey_Step2 extends React.Component {
             anchor: [],
             //slot: 1,
             slot: [{}],
+            slot1: 1,
             
             positive: 0,
             negative: 0,
             totalSlots: 1,
-            anchorsList: [{ anchor: 0, slots: 1, surveyID: 9 },
-                { anchor: 1, slots: 2, surveyID: 9 },
-                { anchor: -1, slots: 2, surveyID: 9 }],
+            anchorsList: [],
+            surveysIDs: [],
+            surveyID: '',
         }
 
         this.postNewBoard = this.postNewBoard.bind(this);
         
     }
+
+
 
     addAnchor(){
         /*
@@ -43,27 +46,19 @@ export default class CreateSurvey_Step2 extends React.Component {
          * negative is decremented by 1 each time this method is called
          */
     
-        //this.state.anchorsList.push({ anchor: this.state.neutral, slots: this.state.slot });
-        //* ---POSITIVE BOARD SETUP---
+        //*---POSITIVE BOARD SETUP---
 
         this.state.positive = this.state.positive + 1;
-        
         this.state.positiveBoard.push({
           positive: this.state.positive, 
           slot: this.state.slot
         })
-        //console.log(this.state.positiveBoard)
-    
-        //*The state is updated to keep the process "live"
+        //The state is updated to keep the process "live"
         this.setState({
           positiveBoard: this.state.positiveBoard
-        })
-       // this.state.anchorsList.push({ anchor: this.state.positive, slots: this.state.slot });
-        //console.log(this.state.anchorsList)
+        }) 
         this.state.totalSlots = this.state.totalSlots + 1;
-       // console.log(this.state.totalSlots)
-
-        //* ---NEGATIVE BOARD SETUP---
+        //---NEGATIVE BOARD SETUP---
         this.state.negative = this.state.negative - 1;
 
         this.state.negativeBoard.push({
@@ -73,46 +68,25 @@ export default class CreateSurvey_Step2 extends React.Component {
         this.setState({
             negativeBoard: this.state.negativeBoard
         })
-       // this.state.anchorsList.push({ anchor: this.state.negative, slots: this.state.slot });
-
-       // console.log(this.state.anchorsList)
-
         this.state.totalSlots = this.state.totalSlots + 1;
-        
-        
-        /* 
-         * negativeBoard items must be reversed so they are 
-         * displayed backwards: 
-         * negativeBoard: [ -1, -2, -3]     =>     reversedBoard: [ -3, -2, -1]
-        */
+        //negativeBoard items must be reversed so they are 
+        //displayed backwards: 
+        //negativeBoard: [ -1, -2, -3]     =>     reversedBoard: [ -3, -2, -1]
         this.state.reversedBoard = [...this.state.negativeBoard].reverse()
-
-        //this.state.totalSlots = this.state.totalSlots + 1;
     }
 
-    addPositiveSlot(index){
-
-        //*Log the index number
-        //console.log(index)
-        /*
-         * copy the 'slot' object from the board at specified index
-         */
+    addPositiveSlot(index) {
+        //copy the 'slot' object from the board at specified index
         var copyPositiveBoard = [...this.state.positiveBoard[index].slot]
-        //*then push another object to the copied slot object
+        //then push another object to the copied slot object
         copyPositiveBoard.push({})
-        //console.log(copyPositiveBoard)
-        //*Asign the copied slot objects with new slots added
-        //*to the board array at a specfied index
+        //Asign the copied slot objects with new slots added
+        //to the board array at a specfied index
         this.state.positiveBoard[index].slot = copyPositiveBoard
-       // this.state.anchorsList[index].slot = copyPositiveBoard
-        //console.log(this.state.positiveBoard)
         this.setState({
             positiveBoard: this.state.positiveBoard,
-            //anchorsList : this.state.anchorsList
-        })
-        
+        })    
         this.state.totalSlots = this.state.totalSlots + 1;
-        //console.log(this.state.anchorsList)
     }
 
     addNegativeSlot(x){
@@ -162,9 +136,6 @@ export default class CreateSurvey_Step2 extends React.Component {
         //console.log(this.state.totalSlots)
     }
 
-
-    
-
     getTotal(){
 
         console.log(this.state.totalSlots)
@@ -172,47 +143,58 @@ export default class CreateSurvey_Step2 extends React.Component {
         localStorage.setItem('TOTAL_CARDS', this.state.totalSlots);
     }
 
+    createAnchorsList() {
+        //*---POSITIVE ANCHORS---
+        var positiveBoardCopy = this.state.positiveBoard;
+        var i;
+        for (i = 0; i < positiveBoardCopy.length; i++){
+            var anchorNumber = positiveBoardCopy[i].positive;
+            var numberOfSlots = positiveBoardCopy[i].slot.length;
+            const anchorsObject = { anchor: anchorNumber, slots: numberOfSlots };
+            this.state.anchorsList.push(anchorsObject);
+        };
+        //*---NEGATIVE ANCHORS---
+        var negativeBoardCopy = this.state.negativeBoard;
+        var i;
+        for (i = 0; i < negativeBoardCopy.length; i++){
+            var anchorNumber = negativeBoardCopy[i].negative;
+            var numberOfSlots = negativeBoardCopy[i].slot.length;
+            const anchorsObject = { anchor: anchorNumber, slots: numberOfSlots };
+            this.state.anchorsList.push(anchorsObject);
+        };
+        //*---NEUTRAL ANCHORS---
+        var neutralBoardCopy = this.state.neutralBoard;
+        var i;
+        for (i = 0; i < neutralBoardCopy.length; i++){
+            var anchorNumber = neutralBoardCopy[i].neutral;
+            var numberOfSlots = neutralBoardCopy[i].slot.length;
+            const anchorsObject = { anchor: anchorNumber, slots: numberOfSlots };
+            this.state.anchorsList.push(anchorsObject);
+        };
+    }
+
     postNewBoard(e) {
         e.preventDefault();
+        //console.log(this.state.positiveBoard[1].positive)
+        this.createAnchorsList();
+        //console.log(this.state.anchorsList)
 
-         const newAnchor = {
-            anchor: 1,
-            slots: 9,
-            surveyID: 9
-        };
-        createAnchor(newAnchor)
-                .then(res => {
-                    console.log(res);
-                    if (res.ok == true) {
+        const anchor = this.state.anchorsList
+        var i;
+        var newAnchor = {};
+
+        for (i = 0; i < anchor.length; i++){
+            //console.log(newAnchor.anchor)
+            newAnchor = anchor[i]
+            createAnchor(newAnchor)
+                .then(response => {
+                    console.log(response);
+                    if (response.ok == true) {
                         console.log("Anchors added")
                        // this.setState({ Redirect: true });
                     };
             });
-
-        //const newAnchor = [[1, 1, 1]];
-        // createAnchor(newAnchor)
-        //         .then(response => {
-        //             console.log(response);
-        //             if (response.ok == true) {
-        //                 console.log("Anchors added")
-        //                // this.setState({ Redirect: true });
-        //             };
-        //     });
-        
-        //const newAnchor = this.state.anchorsList
-        //console.log(newAnchor)
-        // var i;
-
-        // for (i = 0; i < newAnchor.length; i++){
-        //     createAnchor(newAnchor)
-        //         .then(response => {
-        //             console.log(response);
-        //             if (response.ok == true) {
-        //                 console.log("Anchors added")
-        //                // this.setState({ Redirect: true });
-        //             };
-        //     });
-        // }
+        }
             
     }
 

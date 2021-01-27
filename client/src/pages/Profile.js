@@ -2,6 +2,7 @@ import React from "react";
 import jwt_decode from "jwt-decode";
 import { Link, Redirect } from 'react-router-dom';
 import Navbar from '../components/Navbar/Navbar';
+import { getSurveys } from '../BackendFunctions';
 
 //TODO change token expiration
 export default class Profile extends React.Component {
@@ -25,6 +26,22 @@ export default class Profile extends React.Component {
     });
 
     localStorage.setItem('adminID', decoded.id)
+    this.get();
+
+  };
+
+  get(e) {
+    e.preventDefault();
+    //this.state.admin_id = localStorage.getItem('adminID')
+    //console.log(this.state.admin_id)
+    const requestSurveys = {
+      adminID: localStorage.getItem('adminID')
+    }
+
+    getSurveys(requestSurveys)
+      .then(res => {
+        console.log(res)
+      })
 
   };
 
