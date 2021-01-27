@@ -18,6 +18,13 @@ anchors.post('/api/anchor', (req, res) => {
         survey_id: req.body.surveyID,
     }
     Anchor.create(anchorData)
+        .then(anchor => {
+            res.json(anchor)
+        })
+        .catch(err => {
+            res.send('error ' + err)
+        })
+})   
     
     //console.log(surveyData)
 
@@ -47,7 +54,7 @@ anchors.post('/api/anchor', (req, res) => {
     // .catch(err => {
     //     res.send('error: ' + err)
     // })
-})
+
 //LOGIN
 // admins.post('/api/login', (req, res) => {
 //     Admin.findOne({

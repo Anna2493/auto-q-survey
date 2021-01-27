@@ -175,35 +175,45 @@ export default class CreateSurvey_Step2 extends React.Component {
     postNewBoard(e) {
         e.preventDefault();
 
-        //  const newAnchor = {
-        //     // anchor: 1,
-        //     // slots: 9,
-        //     // surveyID: 9
-            
-        // };
-
-        const newAnchor = this.state.anchorsList
-        console.log(newAnchor)
-        var i;
-
-        for (i = 0; i < newAnchor.length; i++){
-            createAnchor(newAnchor)
-                .then(response => {
-                    console.log(response);
-                    if (response.ok == true) {
+         const newAnchor = {
+            anchor: 1,
+            slots: 9,
+            surveyID: 9
+        };
+        createAnchor(newAnchor)
+                .then(res => {
+                    console.log(res);
+                    if (res.ok == true) {
                         console.log("Anchors added")
                        // this.setState({ Redirect: true });
                     };
             });
-        }
-            // createAnchor(newAnchor)
-            //     .then(response => {
-            //         console.log(response);
-            //         if (response.ok == true) {
-            //             console.log("Anchors added")
-            //            // this.setState({ Redirect: true });
-            //         };
-            // });
+
+        //const newAnchor = [[1, 1, 1]];
+        // createAnchor(newAnchor)
+        //         .then(response => {
+        //             console.log(response);
+        //             if (response.ok == true) {
+        //                 console.log("Anchors added")
+        //                // this.setState({ Redirect: true });
+        //             };
+        //     });
+        
+        //const newAnchor = this.state.anchorsList
+        //console.log(newAnchor)
+        // var i;
+
+        // for (i = 0; i < newAnchor.length; i++){
+        //     createAnchor(newAnchor)
+        //         .then(response => {
+        //             console.log(response);
+        //             if (response.ok == true) {
+        //                 console.log("Anchors added")
+        //                // this.setState({ Redirect: true });
+        //             };
+        //     });
+        // }
+            
     }
 
 
