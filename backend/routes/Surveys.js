@@ -54,7 +54,7 @@ surveys.post('/api/survey', (req, res) => {
 })
 //GET SURVEYS
 surveys.post('/api/getSurveys', (req, res) => {
-    Survey.findOne({
+    Survey.findAll({
         where: {
             admin_id: req.body.adminID
         }
