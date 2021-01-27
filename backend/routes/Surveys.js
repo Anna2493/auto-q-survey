@@ -53,23 +53,23 @@ surveys.post('/api/survey', (req, res) => {
     })
 })
 //GET SURVEYS
-surveys.post('/api/getSurveys', (req, res) => {
-    Survey.findOne({
-        where: {
-            admin_id: req.body.adminID
-        }
-    })
-        .then(surveys => {
-            if (surveys) {
-                    res.json(surveys);          
-            }
-            else {
-                res.status(400).json({error: 'Admin do not exist'})
-            }
-        })
-        .catch(err => {
-        res.status(400).json({ error: err })
-    })
-})
+// surveys.post('/api/getSurveys', (req, res) => {
+//     Survey.findOne({
+//         where: {
+//             admin_id: req.body.adminID
+//         }
+//     })
+//         .then(surveys => {
+//             if (surveys) {
+//                     //res.json(surveys);          
+//             }
+//             else {
+//                 res.status(400).json({error: 'Admin do not exist'})
+//             }
+//         })
+//         .catch(err => {
+//         res.status(400).json({ error: err })
+//     })
+// })
 
 module.exports = surveys

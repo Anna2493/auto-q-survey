@@ -57,7 +57,13 @@ export const getSurveys = requestSurveys => {
         body: JSON.stringify({
             adminID: requestSurveys.adminID,
         })
-    });
+    })
+        .then((res) => {
+            return res.json()
+            })
+            .then((data) => {
+            console.log(data)
+        })
 }
 
 export const getSurveys2 = survey => {
