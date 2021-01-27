@@ -61,7 +61,7 @@ surveys.post('/api/getSurveys', (req, res) => {
     })
         .then(surveys => {
             if (surveys) {
-                    //res.json(surveys);          
+                    res.json(surveys);          
             }
             else {
                 res.status(400).json({error: 'Admin do not exist'})
