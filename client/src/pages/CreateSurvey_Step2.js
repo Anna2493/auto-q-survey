@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import Navbar from '../components/Navbar/Navbar';
-import { createAnchor } from '../BackendFunctions';
+import { createAnchor, getSurveys } from '../BackendFunctions';
 
 export default class CreateSurvey_Step2 extends React.Component {
     constructor() {
@@ -33,6 +33,31 @@ export default class CreateSurvey_Step2 extends React.Component {
         this.postNewBoard = this.postNewBoard.bind(this);
         
     }
+
+    componentDidMount() {
+        this.getSurveyId();
+    }
+
+    getSurveyId() {
+
+        //This part of the code was inspired by pilot application
+        const requestSurveys = {
+            adminID: localStorage.getItem('adminID')
+        };
+        getSurveys(requestSurveys)
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                console.log(data);
+                var listOfIds = data.map(({ survey_id }) => survey_id)
+                this.setState({
+                    surveyID : listOfIds.slice(-1)[0]
+                })
+                console.log(this.state.surveyID);
+                localStorage.setItem('surveyID', this.state.surveyID);
+            })
+    };
 
 
 
@@ -150,7 +175,7 @@ export default class CreateSurvey_Step2 extends React.Component {
         for (i = 0; i < positiveBoardCopy.length; i++){
             var anchorNumber = positiveBoardCopy[i].positive;
             var numberOfSlots = positiveBoardCopy[i].slot.length;
-            const anchorsObject = { anchor: anchorNumber, slots: numberOfSlots };
+            const anchorsObject = { anchor: anchorNumber, slots: numberOfSlots, survey_id: this.state.surveyID };
             this.state.anchorsList.push(anchorsObject);
         };
         //*---NEGATIVE ANCHORS---
@@ -159,7 +184,7 @@ export default class CreateSurvey_Step2 extends React.Component {
         for (i = 0; i < negativeBoardCopy.length; i++){
             var anchorNumber = negativeBoardCopy[i].negative;
             var numberOfSlots = negativeBoardCopy[i].slot.length;
-            const anchorsObject = { anchor: anchorNumber, slots: numberOfSlots };
+            const anchorsObject = { anchor: anchorNumber, slots: numberOfSlots, survey_id: this.state.surveyID };
             this.state.anchorsList.push(anchorsObject);
         };
         //*---NEUTRAL ANCHORS---
@@ -168,7 +193,7 @@ export default class CreateSurvey_Step2 extends React.Component {
         for (i = 0; i < neutralBoardCopy.length; i++){
             var anchorNumber = neutralBoardCopy[i].neutral;
             var numberOfSlots = neutralBoardCopy[i].slot.length;
-            const anchorsObject = { anchor: anchorNumber, slots: numberOfSlots };
+            const anchorsObject = { anchor: anchorNumber, slots: numberOfSlots, survey_id: this.state.surveyID };
             this.state.anchorsList.push(anchorsObject);
         };
     }

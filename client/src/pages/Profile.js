@@ -31,18 +31,13 @@ export default class Profile extends React.Component {
   };
 
   get() {
-    //e.preventDefault();
-    //this.state.admin_id = localStorage.getItem('adminID')
-    //console.log(this.state.admin_id)
     const requestSurveys = {
       adminID: localStorage.getItem('adminID')
     }
-
     getSurveys(requestSurveys)
       .then(res => {
         console.log(res)
       })
-
   };
 
     render() {
@@ -71,7 +66,7 @@ export default class Profile extends React.Component {
                       <button className="profile-btn">New Survey</button>
                     </Link>
                   </div>   
-                <div><button onClick={this.get} className='profile-btn'>Change Password</button></div> 
+                <div><button className='profile-btn'>Change Password</button></div> 
                 <div><button className='profile-btn'>Edit Avatar</button></div> 
                 <div><button className='profile-btn'>Delete Account</button></div> 
                 </div>
