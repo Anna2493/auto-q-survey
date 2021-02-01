@@ -139,7 +139,6 @@ export default class CreateSurvey_Step2 extends React.Component {
 
     addNeutralSlot(n){
 
-        //TODO fix adding slots to neutral board
         //*Log the index number
         //console.log(n)
         /*
