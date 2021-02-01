@@ -38,19 +38,27 @@ export default class ManuallStatements extends React.Component {
         this.setState({ statementCards : this.state.statementCards})
     };
 
-    next = (e) => {
-        
+    getStatements = () => {
+
         var rawStatements = this.state.statementCards;
         rawStatements = rawStatements.toString().split(",");
         var statementsArray = [];
         for (var i = 0; i < rawStatements.length; i++){
             var data = rawStatements[i].split(',');
-            statementsArray.push({ statement: data.toString(), surveyID: this.state.surveyID });
+            this.state.statements.push({ statement: data.toString(), surveyID: this.state.surveyID });
         }
         //console.log(statementsArray)
-        this.setState({ statements: statementsArray });
+        //this.setState({ statements: statementsArray });
+        
+    }
 
+    next = (e) => {
+        e.preventDefault();
+
+        this.getStatements();
+       console.log(this.state.statements)
         const statement = this.state.statements;
+        //console.log(statement)
         var newStatement = {};
         var success = [];
         for (var i = 0; i < statement.length; i++){
@@ -68,6 +76,8 @@ export default class ManuallStatements extends React.Component {
             console.log("statements successfully added to the database");
         }
     };
+
+
 
 
     render() {
