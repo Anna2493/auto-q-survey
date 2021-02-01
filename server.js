@@ -34,7 +34,7 @@ var Statements = require('./backend/routes/Statements')
 app.use('/', Admins)
 app.use('/', Surveys)
 app.use('/', Anchors)
-app.use('/ ', Statements)
+app.use('/', Statements)
 
 // const jwt = require("jsonwebtoken")
 // process.env.SECRET_KEY = 'secret'
