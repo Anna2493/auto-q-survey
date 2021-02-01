@@ -98,7 +98,7 @@ export default class CreateSurvey_Step1 extends React.Component {
                         <div className='label-container'>
                             <label className='label'>Description</label>
                         </div>
-                        <input
+                        <textarea
                             className='form-input'
                             type='text'
                             name='surveyDescription'
@@ -141,7 +141,7 @@ export default class CreateSurvey_Step1 extends React.Component {
                         <div className='label-container'>
                             <label className='label'>Privacy and Consent</label>
                         </div>
-                            <input
+                            <textarea
                                 className='form-input'
                                 type='text'
                                 name='privacyStatement'

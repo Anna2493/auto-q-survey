@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import Navbar from '../components/Navbar/Navbar';
 import { createAnchor, getSurveys } from '../BackendFunctions';
-
+//TODO fix direct mutation of the state
 export default class CreateSurvey_Step2 extends React.Component {
     constructor() {
         super();
@@ -55,7 +55,7 @@ export default class CreateSurvey_Step2 extends React.Component {
                     surveyID : listOfIds.slice(-1)[0]
                 })
                 console.log(this.state.surveyID);
-                localStorage.setItem('surveyID', this.state.surveyID);
+                localStorage.setItem('SURVEY_ID', this.state.surveyID);
             })
     };
 
@@ -175,7 +175,7 @@ export default class CreateSurvey_Step2 extends React.Component {
         for (i = 0; i < positiveBoardCopy.length; i++){
             var anchorNumber = positiveBoardCopy[i].positive;
             var numberOfSlots = positiveBoardCopy[i].slot.length;
-            const anchorsObject = { anchor: anchorNumber, slots: numberOfSlots, survey_id: this.state.surveyID };
+            const anchorsObject = { anchor: anchorNumber, slots: numberOfSlots, surveyID: this.state.surveyID };
             this.state.anchorsList.push(anchorsObject);
         };
         //*---NEGATIVE ANCHORS---
@@ -184,7 +184,7 @@ export default class CreateSurvey_Step2 extends React.Component {
         for (i = 0; i < negativeBoardCopy.length; i++){
             var anchorNumber = negativeBoardCopy[i].negative;
             var numberOfSlots = negativeBoardCopy[i].slot.length;
-            const anchorsObject = { anchor: anchorNumber, slots: numberOfSlots, survey_id: this.state.surveyID };
+            const anchorsObject = { anchor: anchorNumber, slots: numberOfSlots, surveyID: this.state.surveyID };
             this.state.anchorsList.push(anchorsObject);
         };
         //*---NEUTRAL ANCHORS---
@@ -193,7 +193,7 @@ export default class CreateSurvey_Step2 extends React.Component {
         for (i = 0; i < neutralBoardCopy.length; i++){
             var anchorNumber = neutralBoardCopy[i].neutral;
             var numberOfSlots = neutralBoardCopy[i].slot.length;
-            const anchorsObject = { anchor: anchorNumber, slots: numberOfSlots, survey_id: this.state.surveyID };
+            const anchorsObject = { anchor: anchorNumber, slots: numberOfSlots, surveyID: this.state.surveyID };
             this.state.anchorsList.push(anchorsObject);
         };
     }
@@ -207,20 +207,25 @@ export default class CreateSurvey_Step2 extends React.Component {
         const anchor = this.state.anchorsList
         var i;
         var newAnchor = {};
+        var success = [];
 
         for (i = 0; i < anchor.length; i++){
-            //console.log(newAnchor.anchor)
+            //console.log(i)
             newAnchor = anchor[i]
             createAnchor(newAnchor)
                 .then(response => {
-                    console.log(response);
-                    if (response.ok == true) {
-                        console.log("Anchors added")
-                       // this.setState({ Redirect: true });
-                    };
-            });
+                    //console.log(response);
+                    success.push(response.ok)
+                })
+                .catch(err => { console.log(err) })
         }
-            
+        var check = success.every( function (value, _, array) { return array[0] === value; });
+        if (check === true) {
+            this.getTotal();
+            { this.setState({ Redirect: true }); }; 
+        }
+        
+              
     }
 
 
@@ -229,7 +234,7 @@ export default class CreateSurvey_Step2 extends React.Component {
          if (this.state.Redirect) {
             return (
                 <Redirect to={{
-                pathname: '/',
+                pathname: '/CreateSurvey_Step3',
                 }}/>
             )
         };
@@ -259,7 +264,7 @@ export default class CreateSurvey_Step2 extends React.Component {
 
                 
            
-                <div className='survey-content-container'>
+                <div className='survey-content-container-2'>
                     {this.state.reversedBoard.map((item, x) => {
                         return (
                             <div>
@@ -280,7 +285,8 @@ export default class CreateSurvey_Step2 extends React.Component {
                                 <div>
                                     {item.slot.map((c, i) =>
                                         <div
-                                            key={i}>
+                                            key={i}
+                                            className='slot-container'>
                                             <input
                                             className='slot center'
                                             readOnly/>
@@ -311,7 +317,8 @@ export default class CreateSurvey_Step2 extends React.Component {
                                     <div> 
                                         {item.slot.map((c, i)=>
                                             <div 
-                                            key={i}>
+                                                key={i}
+                                                className='slot-container'>
                                                 <input 
                                                 className='slot center'
                                                 readOnly/>
@@ -344,7 +351,8 @@ export default class CreateSurvey_Step2 extends React.Component {
                                     <div> 
                                         {item.slot.map((c, i)=>
                                             <div 
-                                            key={i}>
+                                                key={i}
+                                                className='slot-container'>
                                                 <input 
                                                 className='slot center'
                                                 readOnly/>

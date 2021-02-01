@@ -58,13 +58,19 @@ export const getSurveys = requestSurveys => {
             adminID: requestSurveys.adminID,
         })
     })
-        // .then((res) => {
-        //     return res.json()
-        //     })
-        // .then((data) => {
-        //     console.log(data)
-            
-        // })
+}
+
+export const createStatement = newStatement => {
+    return fetch("https://auto-q-survey-web.herokuapp.com/api/statement", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            statement: newStatement.statement,
+            surveyID: newStatement.surveyID
+        })
+    });
 }
 
 export const getSurveys2 = survey => {

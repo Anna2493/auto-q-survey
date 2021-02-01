@@ -8,6 +8,9 @@ import Registration from './pages/Registration';
 import Profile from './pages/Profile';
 import CreateSurvey_Step1 from './pages/CreateSurvey_Step1';
 import CreateSurvey_Step2 from './pages/CreateSurvey_Step2';
+import CreateSurvey_Step3 from './pages/CreateSurvey_Step3';
+import ManuallStatements from './pages/ManuallStatements';
+import UploadStatements from './pages/UploadStatements';
 
 export default class App extends React.Component {
   render() {
@@ -21,6 +24,9 @@ export default class App extends React.Component {
               <Route path="/profile" component={Profile} />
               <Route path="/CreateSurvey_Step1" component={CreateSurvey_Step1} />
               <Route path="/CreateSurvey_Step2" component={CreateSurvey_Step2} />
+              <Route path="/CreateSurvey_Step3" component={CreateSurvey_Step3} />
+              <Route path="/ManuallStatements" component={ManuallStatements} />
+              <Route path="/UploadStatements" component={UploadStatements} />
             </Switch>
           </div>
         </Router>

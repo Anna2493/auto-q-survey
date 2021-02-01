@@ -55,6 +55,7 @@ export default class Profile extends React.Component {
               </div>
             </div>
 
+            <div className='center'>
             <div className='dashboard-grid-container'>
             <div><h1 className='item7 container-heading'>Profile</h1></div>  
 
@@ -73,13 +74,15 @@ export default class Profile extends React.Component {
               </div>
 
               <div><h1 className='item7 container-heading'>Surveys</h1></div>
-              <div className='item10 profile-content-container'>
-                <div className='profile-container'>
-                  <h2>{this.state.firstName}</h2>
-                </div>
+                <div className='item10 profile-content-container'>
+                  <div className='all-surveys-container'>
+                    <div className='survey-container'>
+                      <h2>{this.state.firstName}</h2>
+                    </div>
+                  </div>
               </div>
             </div>
-
+          </div>
         </div>
         )
     }

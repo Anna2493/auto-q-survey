@@ -2,28 +2,19 @@ const Sequelize = require('sequelize')
 const db = require('../database/db.js')
 
 module.exports = db.sequelize.define( //relfect database fileds
-  'board',
+  'statement',
   {
-    board_id: {
+    statement_id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
-    admin_id: {
-      type: Sequelize.INTEGER
+    statement: {
+      type: Sequelize.STRING
     },
     survey_id: {
       type: Sequelize.INTEGER,
     },
-    anchor: {
-      type: Sequelize.INTEGER
-    },
-    slots: {
-      type: Sequelize.INTEGER
-      },
-    total_slots: {
-      type: Sequelize.INTEGER
-      },
    
   },
   {

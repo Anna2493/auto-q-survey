@@ -26,15 +26,15 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-var Admins = require('./backend/routes/Admins')
-var Surveys = require('./backend/routes/Surveys')
-var Boards = require('./backend/routes/Boards')
-var Anchors = require('./backend/routes/Anchors')
+var Admins = require('./backend/routes/Admins');
+var Surveys = require('./backend/routes/Surveys');
+var Anchors = require('./backend/routes/Anchors');
+var Statements = require('./backend/routes/Statements')
 
 app.use('/', Admins)
 app.use('/', Surveys)
-app.use('/', Boards)
 app.use('/', Anchors)
+app.use('./', Statements)
 
 // const jwt = require("jsonwebtoken")
 // process.env.SECRET_KEY = 'secret'

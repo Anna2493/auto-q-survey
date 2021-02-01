@@ -26,7 +26,7 @@ export default class Registration extends React.Component {
 
     validateUser(e) {
         e.preventDefault();
-        if (this.state.password != this.state.confirmPassword) {
+        if (this.state.password !== this.state.confirmPassword) {
             alert("Password don't match");
         }
         else if (!this.state.email.includes('@')) {

@@ -230,12 +230,14 @@
 
 
 .profile-container{
-    align-self: center;
-  justify-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     border: 2px solid #b5b5b5;
     box-shadow: 0 0 15px #d4d4d4;
-    padding: 50px;
-    justify-items: center;
+    padding: 20px;
+    width: 250px;
+    height: 500px;
 }
 
 .name-text{
@@ -265,6 +267,22 @@
     border: 2px solid #37224d;
     color: #fff;
     transition: all 0.2s ease-in-out;
+}
+.all-surveys-container{
+    border: 2px solid #b5b5b5;
+    box-shadow: 0 0 15px #d4d4d4;
+    padding: 20px;
+    overflow-y:auto;
+    height: 500px;
+}
+.survey-container{
+    width: 600px;
+    align-self: center;
+    justify-self: center;
+    border: 2px solid #b5b5b5;
+    box-shadow: 0 0 15px #d4d4d4;
+    padding: 50px;
+    justify-items: center;
 }
 
 /*--------------CREATE SURVEY STEP 1 PAGE--------------*/
@@ -305,49 +323,65 @@
 } 
 
 /*--------------CREATE SURVEY STEP 2 PAGE--------------*/
+.survey-content-container-2 {
+    
+    background-color: #fff;
+    width: 100%;
+    height: 100vh;
+    display: flex;      
+    justify-content: center;
+}
 
 .center {
     display: flex;      
     justify-content: center;
-    
 }
 
 .add-slot-btn {
     border-radius: 50%;
-    border: 1px solid grey;
-    background-color: #fff;
-    width: 30px;
-    height: 30px;    
+    /* border: 1px solid #121636; */
+    border: none;
+    background-color: #121636;
+    width: 40px;
+    height: 40px;    
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
     text-align: center;
     margin-top: 20px;
     font-size: 20px;
-    color: grey;
+    color: #fff; 
+}
+.add-slot-btn:hover{
+    color: #fff;
+    background-color: #fd681d; 
+}
+.slot-container{
+    margin-top: 20px;
+}
+.slot {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    border: 1px solid #121636;
+    border-radius: 3px;
+    /* background-image: linear-gradient(#ebe5f1, #fff, #ebe5f1); */
+    background: linear-gradient(#37224d, #121636);
+    /* background-color:  #ebe5f1; */
+    cursor: pointer;
     
 }
 
-.slot {
-    width: 10px;
-    padding: 12px 20px;
-    margin: 8px;
-    box-sizing: border-box;
-    border: none;
-    background-color: grey;
-    cursor: pointer;
-}
-
 .slot-index {
-    margin-top: 30px;
+    margin-top: 50px;
     font-family: 'Montserrat', sans-serif;
-    color: grey;
+    color: #121636;
     font-size: 25px;
 }
 
 .add_anchor-btn {
-    background-color: #fff;
-    border: 2px solid #fd681d;
-    color: #fd681d;
+    background-color:  #fd681d;
+    border: none;
+    color: #fff;
     padding: 5px 10px;
     text-align: center;
     cursor: pointer;
@@ -359,18 +393,87 @@
 }
 
 .add_anchor-btn:hover {
-    background-color: #fd681d;
-    border: 2px solid #fff;
-    color: #fff;
-    padding: 5px 10px;
-    text-align: center;
-    cursor: pointer;
-    font-size: 16px;
-    font-family: 'Montserrat', sans-serif;
-    border-radius: 4px;
-    transition: all 0.2s ease-in-out;
-    margin-top: 30px;
+    background-color: #37224d;
+   
 }
+
+/*--------------CREATE SURVEY STEP 3 PAGE--------------*/
+
+.big-btn{
+    height: 250px;
+    width: 250px;
+    padding: 50px;
+    margin-top: 50px;
+    background-color: #121636;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #37224d;  
+    font-family: 'Raleway', sans-serif;
+    font-size: 30px;
+    color: #fff;
+}
+.big-btn:hover{
+    cursor: pointer;
+    background-color: #434557;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #37224d;
+}
+
+.gap{
+    padding: 100px;
+}
+
+/*--------------MANUALL STATEMENTS--------------*/
+.column-center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    width: 100%;
+    height: 100vh;
+}
+.total-text-container{
+    margin-top: 5px;
+    width: 440px;
+    
+}
+.total-cards-text{
+    font-family: 'Raleway', sans-serif;
+    font-size: 30px;
+    /* color: #fff; */
+    text-align: center;
+}
+.total-number-text{
+    font-family: 'Raleway', sans-serif;
+    font-size: 50px;
+    /* color: #fff; */
+    text-align: center;
+    margin-top: 5px;
+}
+.cards-container{
+    width: 400px;
+    height: 450px;
+    background-color: #121636;
+    box-shadow: 0 0 15px #37224d;
+    margin-top: 2px;
+    overflow-y:auto;
+    border: 20px solid #121636;
+}
+.space{
+    padding: 15px;
+}
+.card{
+    width: 300px;
+    height: 150px;
+    border: none;
+    box-shadow: 5px 5px #434557;
+    padding: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    text-align: center;
+}
+
 
 
 
