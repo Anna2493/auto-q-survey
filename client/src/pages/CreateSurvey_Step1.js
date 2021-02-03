@@ -42,10 +42,14 @@ export default class CreateSurvey_Step1 extends React.Component {
     }
 
     postSurvey(e) {
-        e.preventDefault();
-       
+        
+        var randomString = ''
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        for (var i = 0; i < 6; i++){
+            randomString += characters.charAt(Math.floor(Math.random() * characters.length))
+        }
 
-        this.generateSurveyCode();
+        e.preventDefault();
 
         const newSurvey = {
             adminID: this.state.adminID,
@@ -55,7 +59,7 @@ export default class CreateSurvey_Step1 extends React.Component {
             category2: this.state.category2,
             category3: this.state.category3,
             privacyStatement: this.state.privacyStatement,
-            surveyCode: this.state.surveyCode
+            surveyCode: randomString
         };
         
             createSurvey(newSurvey)
