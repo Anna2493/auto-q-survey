@@ -47,8 +47,6 @@ export default class ManuallStatements extends React.Component {
             var data = rawStatements[i].split(',');
             this.state.statements.push({ statement: data.toString(), surveyID: this.state.surveyID });
         }
-        //console.log(statementsArray)
-        //this.setState({ statements: statementsArray });
         
     }
 
@@ -56,7 +54,6 @@ export default class ManuallStatements extends React.Component {
         e.preventDefault();
 
         this.getStatements();
-       console.log(this.state.statements)
         const statement = this.state.statements;
         //console.log(statement)
         var newStatement = {};

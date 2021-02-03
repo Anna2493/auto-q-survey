@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import Navbar from '../components/Navbar/Navbar';
+import { createStatement } from '../BackendFunctions';
 
 export default class UploadStatements extends React.Component {
     constructor() {
@@ -43,10 +44,33 @@ export default class UploadStatements extends React.Component {
         var statementsArray = [];
         for(var i = 0; i < rawStatements.length; i++) {
             var data = rawStatements[i].split(',');
-            statementsArray.push({ statement: data.toString(), surveyID: this.state.surveyID });
+            this.state.statements.push({ statement: data.toString(), surveyID: this.state.surveyID });
         };
         
-        this.setState({ statements: statementsArray });
+        //this.setState({ statements: statementsArray });
+    }
+
+    next = (e) => {
+        e.preventDefault();
+
+        const statement = this.state.statements;
+        var newStatement = {};
+        var success = [];
+        for (var i = 0; i < statement.length; i++){
+            newStatement = statement[i];
+            createStatement(newStatement)
+                .then(response => {
+                    success.push(response.ok)
+                })
+                .catch(err => { console.log(err) })
+        }
+        var check = success.every( function (value, _, array) { return array[0] === value; });
+        if (check === true) {
+            //this.getTotal();
+            //{ this.setState({ Redirect: true }); }; 
+            console.log("statements successfully added to the database");
+        }
+        
     }
 
 
@@ -92,9 +116,9 @@ export default class UploadStatements extends React.Component {
                         </div>
                     </div>
 
-                    {/* <button onClick={this.generateStatementCards}>
-                        test
-                    </button> */}
+                    <button onClick={(e)=>this.next(e)}>
+                        Next
+                    </button>
                 </div>
                 
 

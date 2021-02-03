@@ -14,7 +14,7 @@ export default class CreateSurvey_Step1 extends React.Component {
             category3: '',
             privacyStatement: '',
             adminID: '',
-            surveyCode: 'ABC123',
+            surveyCode: '',
         }
         this.handleChange = this.handleChange.bind(this);
         this.postSurvey = this.postSurvey.bind(this);
@@ -31,9 +31,23 @@ export default class CreateSurvey_Step1 extends React.Component {
         });
     };
 
+    generateSurveyCode() {
+        var randomString = ''
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        for (var i = 0; i < 6; i++){
+            randomString += characters.charAt(Math.floor(Math.random() * characters.length))
+        }
+
+        this.setState({ surveyCode: randomString });
+    }
+
     postSurvey(e) {
         e.preventDefault();
-       const newSurvey = {
+       
+
+        this.generateSurveyCode();
+
+        const newSurvey = {
             adminID: this.state.adminID,
             surveyName: this.state.surveyName,
             surveyDescription: this.state.surveyDescription,
