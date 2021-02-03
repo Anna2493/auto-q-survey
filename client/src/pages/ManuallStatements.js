@@ -69,7 +69,7 @@ export default class ManuallStatements extends React.Component {
         var check = success.every( function (value, _, array) { return array[0] === value; });
         if (check === true) {
             //this.getTotal();
-            //{ this.setState({ Redirect: true }); }; 
+            { this.setState({ Redirect: true }); }; 
             console.log("statements successfully added to the database");
         }
     };
@@ -81,7 +81,7 @@ export default class ManuallStatements extends React.Component {
          if (this.state.Redirect) {
             return (
                 <Redirect to={{
-                pathname: '/',
+                pathname: '/CreateSurvey_Step4',
                 }}/>
             )
         };
@@ -123,7 +123,9 @@ export default class ManuallStatements extends React.Component {
                         
                     </div>
 
-                    <button onClick={(e)=>this.next(e)}>
+                    <button
+                        className="register-btn"
+                        onClick={(e) => this.next(e)}>
                         Next
                     </button>
                 </div>

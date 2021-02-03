@@ -17,9 +17,8 @@ export default class UploadStatements extends React.Component {
 
     }
 
-    componentDidMount() {
+    componentDidMount() { 
         this.generateStatementCards();
-        this.setState({ surveyID: localStorage.getItem('SURVEY_ID') });
     }
 
     generateStatementCards() {
@@ -44,7 +43,7 @@ export default class UploadStatements extends React.Component {
         var statementsArray = [];
         for(var i = 0; i < rawStatements.length; i++) {
             var data = rawStatements[i].split(',');
-            this.state.statements.push({ statement: data.toString(), surveyID: this.state.surveyID });
+            this.state.statements.push({ statement: data.toString(), surveyID: localStorage.getItem('SURVEY_ID') });
         };
         
         //this.setState({ statements: statementsArray });
@@ -54,6 +53,7 @@ export default class UploadStatements extends React.Component {
         e.preventDefault();
 
         const statement = this.state.statements;
+        //console.log(statement)
         var newStatement = {};
         var success = [];
         for (var i = 0; i < statement.length; i++){
@@ -67,7 +67,7 @@ export default class UploadStatements extends React.Component {
         var check = success.every( function (value, _, array) { return array[0] === value; });
         if (check === true) {
             //this.getTotal();
-            //{ this.setState({ Redirect: true }); }; 
+            { this.setState({ Redirect: true }); }; 
             console.log("statements successfully added to the database");
         }
         
@@ -78,7 +78,7 @@ export default class UploadStatements extends React.Component {
          if (this.state.Redirect) {
             return (
                 <Redirect to={{
-                pathname: '/',
+                pathname: '/CreateSurvey_Step4',
                 }}/>
             )
         };
@@ -116,7 +116,9 @@ export default class UploadStatements extends React.Component {
                         </div>
                     </div>
 
-                    <button onClick={(e)=>this.next(e)}>
+                    <button
+                        className="register-btn"
+                        onClick={(e) => this.next(e)}>
                         Next
                     </button>
                 </div>

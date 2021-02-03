@@ -73,6 +73,19 @@ export const createStatement = newStatement => {
     });
 }
 
+export const createQuestion = newQuestion => {
+    return fetch("https://auto-q-survey-web.herokuapp.com/api/question", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            question: newQuestion.question,
+            surveyID: newQuestion.surveyID
+        })
+    });
+}
+
 export const getSurveys2 = survey => {
     return axios
         .post('surveys/getSurveys', {
