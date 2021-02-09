@@ -4,9 +4,10 @@ import '../styles/HomeGrid.css';
 import { Input } from '@material-ui/core';
 import { login } from '../BackendFunctions';
 import Navbar from './Navbar/Navbar';
+import Cookies from 'js-cookie';
 
 
-export default class Home extends React.Component {
+class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -46,7 +47,8 @@ export default class Home extends React.Component {
           this.setState({ adminToken: data.token });
           //console.log(this.state.adminToken);
           if (this.state.adminToken != null) {
-            localStorage.setItem('adminToken', this.state.adminToken);
+            Cookies.set('user', 'true');
+            localStorage.setItem('ADMIN_TOKEN', this.state.adminToken);
             this.setState({ Redirect: true });
           };
         })
@@ -160,3 +162,5 @@ export default class Home extends React.Component {
     );
   }
 }
+
+export default Home;

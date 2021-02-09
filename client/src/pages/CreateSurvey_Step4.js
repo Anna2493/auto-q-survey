@@ -52,7 +52,7 @@ export default class CreateSurvey_Step4 extends React.Component {
         var check = success.every( function (value, _, array) { return array[0] === value; });
         if (check === true) {
             //this.getTotal();
-            //{ this.setState({ Redirect: true }); }; 
+            { this.setState({ Redirect: true }); }; 
             console.log("Questions successfully added to the database");
         }
 
@@ -65,7 +65,7 @@ export default class CreateSurvey_Step4 extends React.Component {
          if (this.state.Redirect) {
             return (
                 <Redirect to={{
-                pathname: '/',
+                pathname: '/CreateSurvey_Finish',
                 }}/>
             )
         };

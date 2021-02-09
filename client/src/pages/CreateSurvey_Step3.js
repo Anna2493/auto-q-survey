@@ -22,7 +22,7 @@ export default class CreateSurvey_Step3 extends React.Component {
     }
 
     getSurveyId() {
-        this.setState({ surveyID : localStorage.getItem('surveyID')})
+        this.setState({ surveyID : localStorage.getItem('SURVEY_ID')})
     };
 
     postNewBoard(e) {

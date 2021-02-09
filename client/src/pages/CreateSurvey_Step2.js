@@ -28,6 +28,7 @@ export default class CreateSurvey_Step2 extends React.Component {
             anchorsList: [],
             surveysIDs: [],
             surveyID: '',
+            surveyCode: '',
         }
 
         this.postNewBoard = this.postNewBoard.bind(this);
@@ -42,7 +43,7 @@ export default class CreateSurvey_Step2 extends React.Component {
 
         //This part of the code was inspired by pilot application
         const requestSurveys = {
-            adminID: localStorage.getItem('adminID')
+            adminID: localStorage.getItem('ADMIN_ID')
         };
         getSurveys(requestSurveys)
             .then((res) => {
@@ -50,12 +51,15 @@ export default class CreateSurvey_Step2 extends React.Component {
             })
             .then((data) => {
                 console.log(data);
-                var listOfIds = data.map(({ survey_id }) => survey_id)
+                var listOfIds = data.map(({ survey_id }) => survey_id);
+                var listOfCodes = data.map(({ survey_code }) => survey_code);
                 this.setState({
-                    surveyID : listOfIds.slice(-1)[0]
+                    surveyID: listOfIds.slice(-1)[0],
+                    surveyCode: listOfCodes.slice(-1)[0]
                 })
                 console.log(this.state.surveyID);
                 localStorage.setItem('SURVEY_ID', this.state.surveyID);
+                localStorage.setItem('SURVEY_CODE', this.state.surveyCode);
             })
     };
 

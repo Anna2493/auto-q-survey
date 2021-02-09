@@ -7,7 +7,7 @@ const MyContext = createContext({
 })
 
 //PROVIDER
-//Parent component that will manmge the shared state
+//Parent component that will manage the shared state
 class MyProvider extends React.Component {
     updateID = newID => {
         this.setState({ id: newID });

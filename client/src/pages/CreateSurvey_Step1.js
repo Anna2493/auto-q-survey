@@ -21,7 +21,7 @@ export default class CreateSurvey_Step1 extends React.Component {
     }
 
     componentDidMount() {
-        const id = localStorage.getItem('adminID');
+        const id = localStorage.getItem('ADMIN_ID');
         this.setState({ adminID: id });
     };
 

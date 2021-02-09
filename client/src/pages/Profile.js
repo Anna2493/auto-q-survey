@@ -16,7 +16,7 @@ export default class Profile extends React.Component {
     }
 
   componentDidMount() {
-    const token = localStorage.getItem('adminToken');
+    const token = localStorage.getItem('ADMIN_TOKEN');
     const decoded = jwt_decode(token);
     this.setState({
       firstName: decoded.first_name,
@@ -25,14 +25,14 @@ export default class Profile extends React.Component {
       
     });
 
-    localStorage.setItem('adminID', decoded.id)
+    localStorage.setItem('ADMIN_ID', decoded.id)
     this.get();
 
   };
 
   get() {
     const requestSurveys = {
-      adminID: localStorage.getItem('adminID')
+      adminID: localStorage.getItem('ADMIN_ID')
     }
     getSurveys(requestSurveys)
       .then(res => {
