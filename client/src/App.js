@@ -16,7 +16,9 @@ import ManuallStatements from './pages/ManuallStatements';
 import UploadStatements from './pages/UploadStatements';
 import CreateSurvey_Step4 from './pages/CreateSurvey_Step4';
 import CreateSurvey_Finish from './pages/CreateSurvey_Finish';
-//USER ROUTES
+//PARTICIPANT ROUTES
+import Participant_Step1 from './pages/participant/Participant_Step1';
+import Participant_Step2 from './pages/participant/Participant_Step2';
 
 function App() {
   const [auth, setAuth] = React.useState(false);
@@ -58,6 +60,8 @@ const Routes = () => {
       <Route path="/UploadStatements" component={UploadStatements} />
       <Route path="/CreateSurvey_Step4" component={CreateSurvey_Step4} />
       <Route path="/CreateSurvey_Finish" component={CreateSurvey_Finish} />
+      <Route path="/Participant_Step1" component={Participant_Step1} />
+      <Route path="/Participant_Step2" component={Participant_Step2} />
     </Switch>
   )
 }
@@ -71,6 +75,20 @@ const ProtectedProfile = ({auth,component:Component,...rest}) => {
       ) :
         (
           <Redirect to='/profile' />
+        )}
+    />
+  )
+}
+
+const ProtectedParticipant = ({auth,component:Component,...rest}) => {
+  return (
+    <Route
+      {...rest}
+      render={() =>auth? (
+        <Component/>
+      ) :
+        (
+          <Redirect to='/Participant_Step1' />
         )}
     />
   )

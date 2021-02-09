@@ -14,6 +14,7 @@ class Home extends React.Component {
       email: "",
       password: "",
       adminToken: '',
+      surveyCode: '',
     };
 
       this.onChange = this.onChange.bind(this);
@@ -51,6 +52,35 @@ class Home extends React.Component {
             localStorage.setItem('ADMIN_TOKEN', this.state.adminToken);
             this.setState({ Redirect: true });
           };
+        })
+        .catch(error => console.log(error));
+  };
+
+  getSurvey = (e) => {
+      e.preventDefault()
+
+      fetch("https://auto-q-survey-web.herokuapp.com/api/getSurveyDetails", {
+
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          surveyCode: this.state.surveyCode,
+        })
+      })
+        .then(res => {
+          return res.json()
+        })
+        .then((data) => {
+          console.log(data)
+          // this.setState({ adminToken: data.token });
+          // //console.log(this.state.adminToken);
+          // if (this.state.adminToken != null) {
+          //   Cookies.set('user', 'true');
+          //   localStorage.setItem('ADMIN_TOKEN', this.state.adminToken);
+          //   this.setState({ Redirect: true });
+          // };
         })
         .catch(error => console.log(error));
     }
@@ -142,12 +172,23 @@ class Home extends React.Component {
             <h2 className="heading-two">Participant</h2>
 
             <div className="center">
-              <input className="inputBox" placeholder="Code"></input>
+              <input
+                className="inputBox"
+                placeholder="Code"
+                type="text"
+                name="surveyCode"
+                value={this.state.surveyCode}
+                onChange={this.onChange}
+              >
+                
+              </input>
             </div>
 
             <div className="btn-container">
               <div className="center">
-                <button className="btn">START SURVEY</button>
+                {/* <Link to={'/Participant_Step1'}> */}
+                  <button className="btn" onClick={this.getSurvey}>START SURVEY</button>
+                {/* </Link> */}
                 </div>
             </div>
  

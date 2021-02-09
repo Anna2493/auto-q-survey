@@ -66,5 +66,19 @@ surveys.post('/api/getSurveys', (req, res) => {
         res.status(400).json({ error: err })
     })
 })
+//GET SURVEYS
+surveys.post('/api/getSurveyDetails', (req, res) => {
+    Survey.findOne({
+        where: {
+            survey_code: req.body.surveyCode
+        }
+    })
+        .then(surveys => {
+            res.json(surveys); 
+        })
+        .catch(err => {
+        res.status(400).json({ error: err })
+    })
+})
 
 module.exports = surveys
