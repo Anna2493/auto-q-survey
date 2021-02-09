@@ -3,14 +3,13 @@ import jwt_decode from "jwt-decode";
 import { Link, Redirect } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 // import { getSurveys } from '../BackendFunctions';
-
+//TODO store admin name and email when creating survey
 export default class Participant_Step1 extends React.Component {
     constructor() {
         super();
         this.state = {
-            surveyName: 'This is test survey name',
-            surveyDescription: 'This is test survey description that will describe the purpose of the survey and addiitonal information regarding the survey',
-            privacyNotice: 'This is privacy notice and participant must agree to its terms in order to proceed to the next stage',
+            surveyName: '',
+            surveyDescription: '',
             adminName: 'Admin Name',
             adminEmail: 'admin@gmail.com',
 
@@ -18,29 +17,16 @@ export default class Participant_Step1 extends React.Component {
     }
 
   componentDidMount() {
-    // const token = localStorage.getItem('ADMIN_TOKEN');
-    // const decoded = jwt_decode(token);
-    // this.setState({
-    //   firstName: decoded.first_name,
-    //   email: decoded.email,
-    //   adminID: decoded.id,
-      
-    // });
-
-    // localStorage.setItem('ADMIN_ID', decoded.id)
-    // this.get();
+    this.getSurveyDetails();
 
   };
 
-//   get() {
-//     const requestSurveys = {
-//       adminID: localStorage.getItem('ADMIN_ID')
-//     }
-//     getSurveys(requestSurveys)
-//       .then(res => {
-//         console.log(res)
-//       })
-//   };
+  getSurveyDetails() {
+    this.setState({
+      surveyName: localStorage.getItem('SURVEY_NAME'),
+      surveyDescription: localStorage.getItem('SURVEY_DESCRIPTION'),
+    })
+  };
 
     render() {
         return (

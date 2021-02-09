@@ -15,6 +15,7 @@ class Home extends React.Component {
       password: "",
       adminToken: '',
       surveyCode: '',
+      surveyID: '',
     };
 
       this.onChange = this.onChange.bind(this);
@@ -55,35 +56,6 @@ class Home extends React.Component {
         })
         .catch(error => console.log(error));
   };
-
-  getSurvey = (e) => {
-      e.preventDefault()
-
-      fetch("https://auto-q-survey-web.herokuapp.com/api/getSurveyDetails", {
-
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          surveyCode: this.state.surveyCode,
-        })
-      })
-        .then(res => {
-          return res.json()
-        })
-        .then((data) => {
-          console.log(data)
-          // this.setState({ adminToken: data.token });
-          // //console.log(this.state.adminToken);
-          // if (this.state.adminToken != null) {
-          //   Cookies.set('user', 'true');
-          //   localStorage.setItem('ADMIN_TOKEN', this.state.adminToken);
-          //   this.setState({ Redirect: true });
-          // };
-        })
-        .catch(error => console.log(error));
-    }
 
   render() {
 
@@ -170,7 +142,7 @@ class Home extends React.Component {
 
           <div className="item4 sub-container">
             <h2 className="heading-two">Participant</h2>
-
+{/* 
             <div className="center">
               <input
                 className="inputBox"
@@ -182,13 +154,13 @@ class Home extends React.Component {
               >
                 
               </input>
-            </div>
+            </div> */}
 
             <div className="btn-container">
               <div className="center">
-                {/* <Link to={'/Participant_Step1'}> */}
-                  <button className="btn" onClick={this.getSurvey}>START SURVEY</button>
-                {/* </Link> */}
+                <Link to={'/Participant_Home'}>
+                  <button className="btn">START SURVEY</button>
+                </Link>
                 </div>
             </div>
  

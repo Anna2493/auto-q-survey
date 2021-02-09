@@ -8,40 +8,41 @@ export default class Participant_Step2 extends React.Component {
     constructor() {
         super();
         this.state = {
-            surveyName: 'This is test survey name',
-            privacyNotice: 'This is privacy notice and participant must agree to its terms in order to proceed to the next stage',
-            adminName: 'Admin Name',
-            adminEmail: 'admin@gmail.com',
+          surveyName: '',
+          privacyNotice: '',
+          adminName: 'Admin Name',
+          adminEmail: 'admin@gmail.com',
+          agreed: false,
 
         }
-    }
+  };
 
   componentDidMount() {
-    // const token = localStorage.getItem('ADMIN_TOKEN');
-    // const decoded = jwt_decode(token);
-    // this.setState({
-    //   firstName: decoded.first_name,
-    //   email: decoded.email,
-    //   adminID: decoded.id,
-      
-    // });
-
-    // localStorage.setItem('ADMIN_ID', decoded.id)
-    // this.get();
+    this.getSurveyDetails();
 
   };
 
-//   get() {
-//     const requestSurveys = {
-//       adminID: localStorage.getItem('ADMIN_ID')
-//     }
-//     getSurveys(requestSurveys)
-//       .then(res => {
-//         console.log(res)
-//       })
-//   };
+  getSurveyDetails() {
+    this.setState({
+      surveyName: localStorage.getItem('SURVEY_NAME'),
+      privacyNotice: localStorage.getItem('PRIVACY_NOTICE'),
+    })
+  };
 
-    render() {
+  handleCheckboxChange = () => {
+    this.setState(previousState => {
+      return { agreed: !previousState.agreed }
+    })
+    
+  };
+
+  clearLocalStorage = () => {
+    localStorage.clear();
+  }
+
+  render() {
+      
+        let agreeBtnStyle = this.state.agreed ? 'enabled' : 'disabled';
         return (
 
             <div>
@@ -68,6 +69,32 @@ export default class Participant_Step2 extends React.Component {
                     <div className='description-container'>
                         <p className='survey-description'>{this.state.privacyNotice}</p>
                     </div>
+
+                <p>I Agree 
+                    <input 
+                    name ="agree"
+                    type="Checkbox"
+                    value={this.state.agreed}
+                    onChange={this.handleCheckboxChange}
+                    />
+                </p>
+                <Link to={'/Participant_Home'}>
+                  <button
+                  className='space button button3'
+                  onClick={this.clearLocalStorage}>
+                      Disagree
+                  </button>
+                  </Link>
+                
+                <Link to={'/Participant_Step3'}>
+                  <button
+                    type="submit" 
+                    className = {agreeBtnStyle}
+                    disabled={!this.state.agreed}
+                    >
+                      Agree
+                  </button>
+                </Link>
 
             </div>
 

@@ -17,8 +17,10 @@ import UploadStatements from './pages/UploadStatements';
 import CreateSurvey_Step4 from './pages/CreateSurvey_Step4';
 import CreateSurvey_Finish from './pages/CreateSurvey_Finish';
 //PARTICIPANT ROUTES
+import Participant_Home from './pages/participant/Participant_Home';
 import Participant_Step1 from './pages/participant/Participant_Step1';
 import Participant_Step2 from './pages/participant/Participant_Step2';
+import Participant_Step3 from './pages/participant/Participant_Step3';
 
 function App() {
   const [auth, setAuth] = React.useState(false);
@@ -60,8 +62,10 @@ const Routes = () => {
       <Route path="/UploadStatements" component={UploadStatements} />
       <Route path="/CreateSurvey_Step4" component={CreateSurvey_Step4} />
       <Route path="/CreateSurvey_Finish" component={CreateSurvey_Finish} />
+      <Route path="/Participant_Home" component={Participant_Home} />
       <Route path="/Participant_Step1" component={Participant_Step1} />
       <Route path="/Participant_Step2" component={Participant_Step2} />
+      <Route path="/Participant_Step3" component={Participant_Step3} />
     </Switch>
   )
 }

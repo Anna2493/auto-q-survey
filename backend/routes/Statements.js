@@ -19,6 +19,21 @@ statements.post('/api/statement', (req, res) => {
         .catch(err => {
             res.send('error ' + err)
         })
-})   
+})
+
+//GET STATEMENTS
+surveys.post('/api/getStatements', (req, res) => {
+    Survey.findOne({
+        where: {
+            survey_id: req.body.surveyID
+        }
+    })
+        .then(surveys => {
+            res.json(surveys); 
+        })
+        .catch(err => {
+        res.status(400).json({ error: err })
+    })
+})
     
 module.exports = statements

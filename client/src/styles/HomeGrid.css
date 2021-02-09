@@ -520,6 +520,14 @@
     color: #fff;
    
 }
+/*--------------PARTICIPANT HOME PAGE--------------*/
+
+.center-3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+}
 
 /*--------------PARTICIPANT STEP 1 PAGE--------------*/
 
@@ -560,6 +568,14 @@
     margin-top: -10px;
 }
 
+/*--------------PARTICIPANT STEP 1 PAGE--------------*/
+.enabled{
+     background-color: green;
+}
+
+.disabled{
+     background-color: red;
+}
 
 
 
