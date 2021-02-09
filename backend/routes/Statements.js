@@ -22,14 +22,14 @@ statements.post('/api/statement', (req, res) => {
 })
 
 //GET STATEMENTS
-surveys.post('/api/getStatements', (req, res) => {
-    Survey.findOne({
+statements.post('/api/getStatements', (req, res) => {
+    Statement.findAll({
         where: {
             survey_id: req.body.surveyID
         }
     })
-        .then(surveys => {
-            res.json(surveys); 
+        .then(statement => {
+            res.json(statement); 
         })
         .catch(err => {
         res.status(400).json({ error: err })
