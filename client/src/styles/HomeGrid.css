@@ -568,7 +568,7 @@
     margin-top: -10px;
 }
 
-/*--------------PARTICIPANT STEP 1 PAGE--------------*/
+/*--------------PARTICIPANT STEP 2 PAGE--------------*/
 .enabled{
      background-color: green;
 }
@@ -577,6 +577,48 @@
      background-color: red;
 }
 
+/*--------------PARTICIPANT STEP 3 PAGE--------------*/
+.cards-container-parent{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    width: 350px;
+    height: 200px;
+}
+.stack{
+    position: absolute;
+    width: 300px;
+    height: 150px;
+    padding: 20px;
+    border: 2px solid black;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.categories-container{
+    margin-top: 10px;
+    width: 1000px;
+    height: 300px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+   
+}
+
+.category-container{
+    width: 300px;
+    height: 150px;
+    border: 2px solid black;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+}
 
 
 /*_____________________________________________________________________________*/
