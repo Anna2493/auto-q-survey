@@ -55,6 +55,16 @@ export default class Participant_Step4 extends React.Component {
       category3: '',
 
       anchors: [],
+
+       anchors2: [
+        { 'id': "0", 'anchor': 1, 'slots': 3 },
+        { 'id': "1", 'anchor': 2, 'slots': 2 },
+        { 'id': "2", 'anchor': 3, 'slots': 1 },
+        { 'id': "3", 'anchor': 0, 'slots': 4 },
+        { 'id': "4", 'anchor': -2, 'slots': 2 },
+        { 'id': "5", 'anchor': -1, 'slots': 3 },
+        { 'id': "6", 'anchor': -3, 'slots': 1 },
+      ],
      
     };
 
@@ -70,6 +80,8 @@ export default class Participant_Step4 extends React.Component {
     });
 
     this.getAnchors();
+    //console.log(this.state.anchors)
+    //console.log(this.state.anchors2)
   };
 
   getAnchors(e){
@@ -93,22 +105,11 @@ export default class Participant_Step4 extends React.Component {
           return res.json()
         })
         .then((data) => {
-          for (var i = 0; i < data.length; i++) {   
-            
-            anchorsArr.push({ id: i.toString(), anchor: data[i].anchor, slots: data[i].slots })
-            
-            this.setState(prevState => ({
-              anchors: { ...prevState.anchors, ...anchorsArr },
-            }));
-
-            // var keys = Object.keys(this.state.statements)
-            //   for (var j = 0; j < keys.length; j++){  
-            //     if (!(keys[j] in this.state.columns['column-1'].statementIds)) {
-            //       this.state.columns['column-1'].statementIds.push(keys[j])
-            //     }     
-            //   };
-
+          for (var i = 0; i < data.length; i++) {          
+            anchorsArr.push({ id: i.toString(), anchor: data[i].anchor, slots: data[i].slots });
           }
+          this.setState({ anchors: anchorsArr });
+          
         })
       .catch(error => console.log(error));
   };
@@ -116,14 +117,6 @@ export default class Participant_Step4 extends React.Component {
  
 
   render() {
-    if (this.state.Redirect) {
-      return (
-        <Redirect to={{
-          pathname: '/Participant_Step1',
-        }}/>
-      )
-    };
-       
         return (
 
             <div>
@@ -143,8 +136,46 @@ export default class Participant_Step4 extends React.Component {
             <div className='center-2'>
               <p className='headings'>Survey Name</p>  
               <p className='survey-name'>{this.state.surveyName}</p>
+            <div style={{display: 'flex', flexDirection: 'row', justifyContent: "center"}}>
+              {this.state.anchors.map((item, index) => {
+                return (
+                  <div
+                    style={{
+                      padding: 8,
+                      backgroundColor: 'skyblue',
+                      minHeight: 500,
+                      width: 200,
+                      border: '2px solid black',
+                      textAlign: 'center'
+                    }}
+                  key={item.id}
+                  index={index}
+                >
+                    <h3>{item.anchor}</h3>
+                    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: "center" }}>
+                      {this.state.anchors.map((i, k) => {
+                        return (
+                          <div  style={{
+                            padding: 8,
+                            backgroundColor: 'white',
+                            height: 80,
+                            width: 180,
+                            border: '2px solid black',
+                            textAlign: 'center'
+                          }}
+                            key={item.id}
+                            index={i}
+                          >
 
-              
+                        </div>
+                        )
+                      })}
+                      
+                    </div>
+                </div>
+                )
+              })}
+            </div>  
 
               <div>
                 <button onClick={this.next}>
