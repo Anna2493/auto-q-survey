@@ -208,9 +208,7 @@ export default class Participant_Step3 extends React.Component {
       data: [],
 
       //statements: [],
-      category1List: [],
-      category2List: [],
-      category3List: [],
+      
 
       lists: {
         statements: 'statements',
@@ -252,14 +250,18 @@ export default class Participant_Step3 extends React.Component {
       columnOrder: ['column-1', 'column-2', 'column-3', 'column-4'],
       statements: {},
       columns: {
-        'column-1': { id: 'column-1', title: 'Statements', statementIds: []},
+        'column-1': { id: 'column-1', title: 'Statements', statementIds: [] },
         'column-2': { id: 'column-2', title: localStorage.getItem('CATEGORY1'), statementIds: [] },
         'column-3': { id: 'column-3', title: localStorage.getItem('CATEGORY2'), statementIds: [] },
         'column-4': { id: 'column-4', title: localStorage.getItem('CATEGORY3'), statementIds: [] },
-        },
-      }
+      },
+      
+      category1List: [],
+      category2List: [],
+      category3List: [],
+    };
 
-    }
+  };
 
   componentDidMount() {
     this.setState({
@@ -432,14 +434,64 @@ export default class Participant_Step3 extends React.Component {
         [newFinish.id]: newFinish
       }
     }
+
+    
     this.setState(newState)
+  };
+
+  next = () => {
+    //Fit statemnents from columns into list of array
+    var cat1Ids = Object.values(this.state.columns['column-2'].statementIds)
+    var keys = Object.keys(this.state.statements)
+    for (var i = 0; i < cat1Ids.length; i++) {
+      if ((cat1Ids[i] in keys)) {
+        var id = cat1Ids[i]
+        this.state.category1List.push(this.state.statements[id])
+      };
+    };
+
+    var cat2Ids = Object.values(this.state.columns['column-3'].statementIds)
+    var keys = Object.keys(this.state.statements)
+    for (var i = 0; i < cat2Ids.length; i++) {
+      if ((cat2Ids[i] in keys)) {
+        var id = cat2Ids[i]
+        this.state.category2List.push(this.state.statements[id])
+      };
+    };
+
+    var cat3Ids = Object.values(this.state.columns['column-4'].statementIds)
+    var keys = Object.keys(this.state.statements)
+    for (var i = 0; i < cat3Ids.length; i++) {
+      if ((cat3Ids[i] in keys)) {
+        var id = cat3Ids[i]
+        this.state.category3List.push(this.state.statements[id])
+      };
+    };
+
+    // console.log(this.state.category1List)
+    // console.log(this.state.category2List)
+    // console.log(this.state.category3List)
+
+    if (this.state.columns['column-1'].statementIds.length === 0) {
+      console.log(this.state.columns['column-1'])
+      this.setState({ Redirect: true });
+    }
+    else {
+      alert('Please complete the pre-sort')
+      console.log(this.state.columns['column-1'])
+    }
+
   };
 
 
   render() {
-    
-
-    console.log(this.state.statements)
+    if (this.state.Redirect) {
+      return (
+        <Redirect to={{
+          pathname: '/Participant_Step4',
+        }}/>
+      )
+    };
        
         return (
 
@@ -620,6 +672,12 @@ export default class Participant_Step3 extends React.Component {
                   </Droppable>
               </DragDropContext>
             </div>    */}
+
+              <div>
+                <button onClick={this.next}>
+                  Next
+                </button>
+              </div>
             </div>
 
         </div>
