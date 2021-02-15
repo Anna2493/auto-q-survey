@@ -322,6 +322,9 @@ export default class Participant_Step3 extends React.Component {
 
     if (this.state.columns['column-1'].statementIds.length === 0) {
       console.log(this.state.columns['column-1'])
+      localStorage.setItem('CATEGORY1_STATEMENTS', JSON.stringify(this.state.category1List));
+      localStorage.setItem('CATEGORY2_STATEMENTS', this.state.category2List.toString());
+      localStorage.setItem('CATEGORY3_STATEMENTS', this.state.category3List.toString());
       this.setState({ Redirect: true });
     }
     else {

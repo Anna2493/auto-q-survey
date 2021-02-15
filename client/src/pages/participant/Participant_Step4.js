@@ -56,32 +56,25 @@ export default class Participant_Step4 extends React.Component {
 
       anchors: [],
 
-       anchors2: [
-        { 'id': "0", 'anchor': 1, 'slots': 3 },
-        { 'id': "1", 'anchor': 2, 'slots': 2 },
-        { 'id': "2", 'anchor': 3, 'slots': 1 },
-        { 'id': "3", 'anchor': 0, 'slots': 4 },
-        { 'id': "4", 'anchor': -2, 'slots': 2 },
-        { 'id': "5", 'anchor': -1, 'slots': 3 },
-        { 'id': "6", 'anchor': -3, 'slots': 1 },
-      ],
-     
-    };
-
+      category1List: [],
+      category2List: [],
+      category3List: [],
+    }
   };
 
   componentDidMount() {
+
+    
     this.setState({
       surveyName: localStorage.getItem('SURVEY_NAME'),
       surveyID: localStorage.getItem('SURVEY_ID'),
       category1: localStorage.getItem('CATEGORY1'),
       category2: localStorage.getItem('CATEGORY2'),
-      category3: localStorage.getItem('CATEGORY3'),
+      category3: localStorage.getItem('CATEGORY3')
     });
 
-    this.getAnchors();
-    //console.log(this.state.anchors)
-    //console.log(this.state.anchors2)
+    this.getAnchors();  
+
   };
 
   getAnchors(e){
@@ -90,6 +83,13 @@ export default class Participant_Step4 extends React.Component {
     var surveyID = localStorage.getItem('SURVEY_ID');
     var anchorsArr = [];
     var statementId = '';
+    var anchorsArr3 = [];
+    var slot= '';
+    var slots = [];
+    var numberOfSlots = [];
+    var arr = [];
+
+    var statementsCat1 = []
 
       fetch("https://auto-q-survey-web.herokuapp.com/api/getAnchors", {
 
@@ -105,16 +105,67 @@ export default class Participant_Step4 extends React.Component {
           return res.json()
         })
         .then((data) => {
-          for (var i = 0; i < data.length; i++) {          
-            anchorsArr.push({ id: i.toString(), anchor: data[i].anchor, slots: data[i].slots });
-          }
-          this.setState({ anchors: anchorsArr });
+          //Sort the data first
+          
+          for (var i = 0; i < data.length; i++) {
+            arr.push(data[i].anchor)
+            numberOfSlots = data[i].slots
+            //Create and array of objects for each anchor
+            //the number of objects is specified in the data[i].slots 
+            //push it to
+            for (var array = [], j = 0; j < numberOfSlots; j++) {
+              array.push({ id: j.toString() });
+            }
+            anchorsArr3.push({ id: i.toString(), anchorNumber: data[i].anchor, slots: array });
+            
+          };
+
+          this.sort('anchorNumber', anchorsArr3)
+          this.setState({ anchors: anchorsArr3 });
           
         })
       .catch(error => console.log(error));
+    
+    //Get statements for category 1
+      var statements = localStorage.getItem('CATEGORY1_STATEMENTS')
+      var statementsCat1 = JSON.parse(statements)
+      console.log(statementsCat1)
+      this.setState({ category1List : statementsCat1 })
+    
+    var categories = [];
+    for (var i = 0; i < statementsCat1.length; i++){
+      categories.push(statementsCat1[i])
+      //this.state.anchors.push({category1: statementsCat1[i]})
+    }
+    
+    
+    //this.setState(prevState => ({ anchors: [...prevState.anchors, categories]}))
+    console.log(categories)
   };
 
- 
+  sort = function (prop, arr) {
+    prop = prop.split('.');
+    var len = prop.length;
+              
+    arr.sort(function (a, b) {
+      var i = 0;
+        while( i < len ) {
+          a = a[prop[i]];
+          b = b[prop[i]];
+          i++;
+        }
+      if (a < b) {
+        return -1;
+      }
+      else if (a > b) {
+        return 1;
+      }
+      else {
+        return 0;
+      }
+    });
+    return arr;
+  };
 
   render() {
         return (
@@ -136,47 +187,112 @@ export default class Participant_Step4 extends React.Component {
             <div className='center-2'>
               <p className='headings'>Survey Name</p>  
               <p className='survey-name'>{this.state.surveyName}</p>
-            <div style={{display: 'flex', flexDirection: 'row', justifyContent: "center"}}>
-              {this.state.anchors.map((item, index) => {
-                return (
-                  <div
+              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: "center" }}> 
+                <div>                    
+                  <div                       
                     style={{
-                      padding: 8,
-                      backgroundColor: 'skyblue',
-                      minHeight: 500,
-                      width: 200,
-                      border: '2px solid black',
+                      margin: 8,
+                      border: '1px solid black',
+                      borderRadius: 2,
+                      display: 'flex',
+                      flexDirection: 'row',
+                      padding: 10,
                       textAlign: 'center'
                     }}
-                  key={item.id}
-                  index={index}
-                >
-                    <h3>{item.anchor}</h3>
-                    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: "center" }}>
-                      {this.state.anchors.map((i, k) => {
-                        return (
-                          <div  style={{
-                            padding: 8,
-                            backgroundColor: 'white',
-                            height: 80,
-                            width: 180,
-                            border: '2px solid black',
-                            textAlign: 'center'
-                          }}
-                            key={item.id}
-                            index={i}
+                  >
+                    {this.state.anchors.map((item, index) => (
+                      <div key={item.id} index={index}>                            
+                        <div>
+                          <div
+                            style={{
+                              userSelect: "none",
+                              padding: 10,
+                              margin: "0 0 8px 0",
+                              minHeight: "50px",
+                              backgroundColor: 'grey',
+                            }}
                           >
+                            {item.anchorNumber}
+                              <div>                                    
+                                <div                                        
+                                  style={{
+                                    userSelect: "none",
+                                    padding: 10,
+                                    margin: "0 0 8px 0",
+                                    minHeight: 50,
+                                    width: 110,
+                                    backgroundColor: 'lightGrey',
+                                    color: "white",
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: "center",
+                                  }}
+                                >
+                                  <DragDropContext onDragEnd={this.onDragEnd}>
+                                    {item.slots.map((item, index) => (
+                                      <Droppable
+                                        key={item.id}
+                                        droppableId={item.id}
+                                        index={index}
+                                      >
+                                        {(provided, snapshot) => (
+                                          <div style={{ display: "flex", justifyContent: "center" }}>
+                                            <div
+                                              ref={provided.innerRef}
+                                              style={{
+                                                userSelect: "none",
+                                                padding: 10,
+                                                margin: "0 0 8px 0",
+                                                height: 50,
+                                                width: 100,
+                                                backgroundColor: "#456C86",
+                                                color: "white",
+                                              }}
+                                            >
+                                            </div>
 
-                        </div>
-                        )
-                      })}
-                      
-                    </div>
+                                            {/* {this.state.category1List.map((item, index) => (
+                                                  <Draggable
+                                                    key={item.id}
+                                                    draggableId={item.id}
+                                                    index={index}
+                                                  >
+                                                    {(provided, snapshot) => (
+                                                      <div style={{ display: "flex" }}>
+                                                        <div
+                                                          ref={provided.innerRef}
+                                                          // {...provided.draggableProps}
+                                                          // style={getItemStyle(
+                                                          //   snapshot.isDragging,
+                                                          //   provided.draggableProps.style
+                                                          // )}
+                                                        >
+                                                          {item.content}
+                                                        </div>
+                                                        {provided.placeholder}
+                                                      </div>
+                                                    )}
+                                                  </Draggable>
+                                                ))} */}
+                                              {provided.placeholder}
+                                          </div>
+                                        )}
+                                      </Droppable>
+                                    ))}
+                                  
+                                    
+                                      
+                                  </DragDropContext>
+                                </div>                                  
+                              </div>
+                            </div>                                
+                          </div>                           
+                      </div>
+                    ))}                        
+                  </div>                   
                 </div>
-                )
-              })}
-            </div>  
-
+              
+              </div>
               <div>
                 <button onClick={this.next}>
                   Next
