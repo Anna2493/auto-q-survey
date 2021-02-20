@@ -27,18 +27,18 @@ const move = (source, destination, droppableSource, droppableDestination) => {
   //console.log(source)
   //console.log(destination)
     const sourceClone = Array.from(source);
-    console.log(sourceClone)
+    //console.log(sourceClone)
     const destClone = Array.from(destination);
-    console.log(destClone)
+    //console.log(destClone)
     const [removed] = sourceClone.splice(droppableSource.index, 1);
-    console.log(removed)
+    //console.log(removed)
     destClone.splice(droppableDestination.index, 0, removed);
-    console.log(destClone)
+    //console.log(destClone)
     
     const result = {};
     result[droppableSource.droppableId] = sourceClone;
     result[droppableDestination.droppableId] = destClone;
-    console.log(result)
+    //console.log(result)
     return result;
 };
 
@@ -169,7 +169,10 @@ export default class Participant_Step3 extends React.Component {
                 }     
               };
 
-          }
+          };
+
+          console.log(this.state.statements)
+          console.log(this.state.columns)
         })
       .catch(error => console.log(error));
   };
@@ -339,7 +342,7 @@ export default class Participant_Step3 extends React.Component {
     if (this.state.Redirect) {
       return (
         <Redirect to={{
-          pathname: '/Participant_Step4',
+          pathname: '/Participant_Step4_Second',
         }}/>
       )
     };

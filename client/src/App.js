@@ -22,6 +22,8 @@ import Participant_Step1 from './pages/participant/Participant_Step1';
 import Participant_Step2 from './pages/participant/Participant_Step2';
 import Participant_Step3 from './pages/participant/Participant_Step3';
 import Participant_Step4 from './pages/participant/Participant_Step4';
+import Participant_Step4_test from './pages/participant/Participant_Step4_test';
+import Participant_Step4_Second from './pages/participant/Participant_Step4_Second';
 
 function App() {
   const [auth, setAuth] = React.useState(false);
@@ -68,6 +70,8 @@ const Routes = () => {
       <Route path="/Participant_Step2" component={Participant_Step2} />
       <Route path="/Participant_Step3" component={Participant_Step3} />
       <Route path="/Participant_Step4" component={Participant_Step4} />
+      <Route path="/Participant_Step4_test" component={Participant_Step4_test} />
+      <Route path="/Participant_Step4_Second" component={Participant_Step4_Second} />
     </Switch>
   )
 }
