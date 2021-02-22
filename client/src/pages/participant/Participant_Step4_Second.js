@@ -396,7 +396,62 @@ export default class Participant_Step4_Second extends React.Component {
     // dropped outside the list
     if (!destination) {
       return;
-    };    
+    };
+
+    //Find the index of anchors5 object and slots given the destinarion only
+    var slotPosition;
+    var destinationSlot;
+    this.state.anchors5.map((anchor, index) => {
+      anchor.slots.map((slot, i) => {
+        if (slot.id == destination.droppableId) {
+          slotPosition = i;
+          destinationSlot = slot
+        };
+      });
+    });
+
+    var sourceSlotPostion;
+    var sourceSlot;
+    this.state.anchors5.map((anchor, index) => {
+      anchor.slots.map((slot, i) => {
+        if (slot.id == source.droppableId) {
+          sourceSlotPostion = i;
+          sourceSlot = slot.statement
+        }
+      })
+    })
+    
+    //console.log(sourceSlot)
+    
+    switch (source.droppableId) {
+      case 'ITEMS':
+        const copied = copy(
+          this.state.cat1statements2,
+          destinationSlot.statement,
+          source,
+          destination
+        );
+        //Remove selected statement from the array
+        var copyCat1 = this.state.cat1statements2;
+        copyCat1.splice(source.index, 1);
+        this.setState({ cat1statements2: copyCat1 });
+        //push selected statement onto the selected slot
+        destinationSlot.statement.push({ id:copied[0].id, content: copied[0].content });
+      
+        break;
+      default:
+        const moved = move(
+          sourceSlot,
+          destinationSlot.statement,
+          source,
+          destination
+        );
+        console.log(sourceSlot)
+        console.log(destinationSlot.statement)
+        console.log(source)
+        console.log(destination)
+        
+    }
   };
 
   render() {
@@ -435,6 +490,7 @@ export default class Participant_Step4_Second extends React.Component {
                         {this.state.anchors5.map((list, i) => (
                           <div
                             key={list.id}
+                            index={i}
                           >
                             <div
                               style={{
@@ -464,6 +520,7 @@ export default class Participant_Step4_Second extends React.Component {
                                   <Droppable
                                     key={slot.id}
                                     droppableId={slot.id}
+                                    index={j}
                                   >
                                     {(provided, snapshot) => (
                                       <div
@@ -481,6 +538,38 @@ export default class Participant_Step4_Second extends React.Component {
                                           ref={provided.innerRef}
                                           isDraggingOver={snapshot.isDraggingOver}
                                         >
+                                          {slot.statement.map((item, k) => (
+                                            <Draggable
+                                              key={item.id}
+                                              draggableId={item.id}
+                                              index={k}
+                                            >
+                                              {(provided, snapshot) => ( 
+                                                <div
+                                                  ref={provided.innerRef}
+                                                  {...provided.draggableProps}
+                                                  {...provided.dragHandleProps}
+                                                  isDragging={snapshot.isDragging}
+                                                  style={{
+                                                    userSelect: "none",
+                                                    padding: 8,
+                                                    margin: "0 0 0 8px",
+                                                    height: 60,
+                                                    width: 100,
+                                                    backgroundColor: 'lightsalmon',
+                                                    color: "white",
+                                                    textAlign:'center',
+                                                    ...provided.draggableProps.style,
+                                                  }}
+                                                >
+                                                  {item.content}
+                                                </div>  
+                                              )}
+                                            </Draggable>
+                                            // <div key={k}>
+                                            //   {item.content}
+                                            // </div>
+                                          ))}
 
                                         </div>
                                       </div>

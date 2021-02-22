@@ -6,6 +6,7 @@ import Cookies from 'js-cookie';
 import AuthApi from './AuthApi';
 
 import HomePage from './pages/HomePage';
+import Admin_Home from './pages/Admin_Home';
 import Registration from './pages/Registration';
 //ADMIN ROUTES
 import Profile from './pages/Profile';
@@ -56,6 +57,7 @@ const Routes = () => {
   return (
     <Switch>
       <Route path="/" exact component={HomePage} />
+      <Route path="/Admin_Home" exact component={Admin_Home} />
       <Route path="/register" component={Registration} />
       <ProtectedProfile path="/profile" auth={Auth.auth} component={Profile} />
       <Route path="/CreateSurvey_Step1" component={CreateSurvey_Step1} />

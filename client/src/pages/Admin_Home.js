@@ -3,18 +3,17 @@ import { Link, Redirect } from 'react-router-dom';
 import '../styles/HomeGrid.css';
 import { Input } from '@material-ui/core';
 import { login } from '../BackendFunctions';
-import Navbar from './Navbar/Navbar';
+// import Navbar from './Navbar/Navbar';
 import Cookies from 'js-cookie';
 
 
-class Home extends React.Component {
+class Admin_Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
       password: "",
       adminToken: '',
-      surveyCode: '',
       surveyID: '',
     };
 
@@ -72,46 +71,73 @@ class Home extends React.Component {
 
           <div className="item1 header-container">
             <p className="heading">
-              Q-methodology research survey
+              Build Q-methodology research survey
             </p>
             <p className="sub-heading2">Digital Application</p>
           </div>
 
           <div className=' item6 navbar-container'>
-            <Navbar/>
+            {/* <Navbar/> */}
           </div>
 
         </div>
         
         <div className='center-squares'>
-
-          <div className="sub-container">
-    
-            <h2 className="heading-two">Admin</h2>
-            <div className="btn-container">
-              <div className="center">
-                <Link to={'/Admin_Home'}>
-                  <button className="btn">I am a researcher</button>
-                </Link>
-                </div>
-            </div>
-          </div>
-
-          <div className="sub-container">
-            <h2 className="heading-two">Participant</h2>
-            <div className="btn-container">
-              <div className="center">
-                <Link to={'/Participant_Home'}>
-                  <button className="btn">I am a participant</button>
-                </Link>
-                </div>
-            </div>
- 
-            <div className="center">
-              <button className="pass-reset-btn">Manage my data</button>
-            </div>
-          </div>
           
+          <div className="sub-container-admin">
+            <h2 className="heading-two">Create an account</h2>
+            <p className="sub-paragraph">
+                Register with few clicks and start your Q-methodology survey!
+            </p>
+              
+            <div className="btn-container">
+              <div className='btn-center'>
+                <Link to={"/register"}>
+                <button className="btn">SING UP</button>
+                </Link>
+              </div>
+            </div>
+            </div>
+          
+          <div className="sub-container-admin">
+            <h2 className="heading-two">Sign in</h2>
+
+            <div className="center">
+              <input
+                className="input-box-admin"
+                placeholder="Email"
+                type="email"
+                name="email"
+                value={this.state.email}
+                onChange={this.onChange}
+              ></input>
+            </div>
+
+            <div className="center">
+              <input
+                className="input-box-admin"
+                placeholder="Password"
+                type="password"
+                name="password"
+                value={this.state.password}
+                onChange={this.onChange}
+              ></input>
+            </div>
+
+            <div className="btn-container">
+               <div className='btn-center'>
+              <Link to={"/profile"}>
+                <button className="btn" onClick={this.signin}>
+                  SIGN IN
+                </button>
+                </Link>
+                </div>
+            </div>
+
+            <div className="center">
+              <button className="pass-reset-btn">Reset password</button>
+            </div>
+          </div>
           
         </div>
 
@@ -120,4 +146,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+export default Admin_Home;

@@ -68,10 +68,11 @@ export default class CreateSurvey_Step3 extends React.Component {
         return (
             <div>
                 <div className='grid-container'>
-                    <div className="item1 sub-header-container">
-                        <h1 className="sub-heading">
-                            Create Survey
+                    <div className="item1 sub-header-container-blue">
+                         <h1 className="sub-heading-white-2">
+                            Add Statements
                         </h1>
+                        <p className="sub-sub-heading-white-2">Step 3 of 4</p>
                     </div>
                     <div className=' item6 navbar-container'>
                     <Navbar/>
@@ -93,12 +94,6 @@ export default class CreateSurvey_Step3 extends React.Component {
                         </button>
                         </ReactFileReader>
                     </div>
-
-                    {/* <div>
-                        <ReactFileReader fileTypes={'.csv'} handleFiles={this.handleFiles}>
-                            <button className='btn'>Upload</button>
-                        </ReactFileReader>
-                    </div> */}
      
                 </div>
 

@@ -44,18 +44,18 @@ export default class Profile extends React.Component {
         return (
           <div>
 
-            <div className='grid-container'>
+            {/* <div className='grid-container'>
               <div className="item1 sub-header-container">
                 <h1 className="sub-heading">
                   Dashboard
                 </h1>
               </div>
-              <div className=' item6 navbar-container'>
+              <div className=' item6 navbar-container'> */}
                 <Navbar/>
-              </div>
-            </div>
+              {/* </div>
+            </div> */}
 
-            <div className='center'>
+            <div className='profile-bg'>
             <div className='dashboard-grid-container'>
             <div><h1 className='item7 container-heading'>Profile</h1></div>  
 
@@ -77,11 +77,24 @@ export default class Profile extends React.Component {
                 <div className='item10 profile-content-container'>
                   <div className='all-surveys-container'>
                     <div className='survey-container'>
-                      <h2>{this.state.firstName}</h2>
+                      <div className='survey-details'>
+                      <p className='survey-title'>
+                        Survey Title
+                        <span className='survey-date'> 21/02/2021 </span>
+                      </p>
+                      </div>
+                      <div className='buttons-row'> 
+                        <button className='survey-btn'>Download Results</button>
+                        <button className='survey-btn'>Preview</button>
+                        <button className='survey-btn'>Edit</button>
+                        <button className='survey-btn'>Delete</button>
+                        <button className='survey-btn'>Copy</button>
+                      </div>
                     </div>
                   </div>
               </div>
-            </div>
+              </div>
+              
           </div>
         </div>
         )

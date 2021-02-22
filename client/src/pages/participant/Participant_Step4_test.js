@@ -166,20 +166,25 @@ export default class Participant_Step4_test extends Component {
         ['anchor-1']: [],
         ['anchor-2']: [],
         ['anchor-3']: [],
-    },
-    anchors3: [
-      {id: '1'},{id: '2'}    
-      ],
-      cat1statements: [
-        {
-            id: '0',
-            content: 'Statement 1'
         },
-        {
-            id: '1',
-            content: 'Statement 2'
-        },
-      ]
+        
+        anchors3: [
+            { id: '1' },
+            { id: '2' }    
+        ],
+        
+        cat1statements: [
+            {
+                id: '0',
+                content: 'Statement 1'
+            },
+            {
+                id: '1',
+                content: 'Statement 2'
+            },
+        ],
+
+        
       // ],
       // cat2statements: [
       //   {
@@ -214,72 +219,72 @@ export default class Participant_Step4_test extends Component {
 
     
     //Refactor This switch statement! 
-    // switch (source.droppableId) {
+    switch (source.droppableId) {
       
-    //   case destination.droppableId:
-    //     const reordered = reorder(
-    //       this.state.anchors2[destination.droppableId],
-    //       source.index,
-    //       destination.index
-    //     )
+      case destination.droppableId:
+        const reordered = reorder(
+          this.state.anchors2[destination.droppableId],
+          source.index,
+          destination.index
+        )
 
-    //     //console.log(reordered)
-    //     // var object = {};
-    //     // var newArray = [];
-    //     // for (var i = 0; i < reordered.length; i++) {
-    //     //   object = { id: reordered[i].id, content: reordered[i].content };
-    //     //   newArray.push(object)
-    //     // };
-    //     // console.log(newArray)
+        //console.log(reordered)
+        // var object = {};
+        // var newArray = [];
+        // for (var i = 0; i < reordered.length; i++) {
+        //   object = { id: reordered[i].id, content: reordered[i].content };
+        //   newArray.push(object)
+        // };
+        // console.log(newArray)
 
-    //     var arr = this.state.anchors2[destination.droppableId]
-    //     //arr.splice(0, 1, reordered)
-    //     //this.setState({ anchors2: [...this.state.anchors2[destination.droppableId], reordered ]});
-    //     console.log(arr)
-    //     arr.splice(0, arr.length, reordered)
-    //     console.log(arr)
-    //       // this.setState({
-    //       //   [destination.droppableId]: reorder(
-    //       //     this.state.anchors2[source.droppableId],
-    //       //     source.index,
-    //       //     destination.index
-    //       //   )
-    //       // });
-    //       break;
+        var arr = this.state.anchors2[destination.droppableId]
+        //arr.splice(0, 1, reordered)
+        //this.setState({ anchors2: [...this.state.anchors2[destination.droppableId], reordered ]});
+        console.log(arr)
+        arr.splice(0, arr.length, reordered)
+        console.log(arr)
+          // this.setState({
+          //   [destination.droppableId]: reorder(
+          //     this.state.anchors2[source.droppableId],
+          //     source.index,
+          //     destination.index
+          //   )
+          // });
+          break;
         
-    //   case 'ITEMS':
-    //         const copied = copy(
-    //             this.state.cat1statements,
-    //             this.state.anchors2[destination.droppableId],
-    //             source,
-    //             destination
-    //         );
-    //         console.log(copied);
-    //         var object = { id: uuid(), content: copied[0].content};
-    //         // for (var i = 0; i < copied.length; i++) {
-    //         //     object = { id: uuid(), content: copied[i].content };
-    //         // };
+      case 'ITEMS':
+            const copied = copy(
+                this.state.cat1statements,
+                this.state.anchors2[destination.droppableId],
+                source,
+                destination
+            );
+            console.log(this.state.anchors2[destination.droppableId]);
+            var object = { id: uuid(), content: copied[0].content};
+            // for (var i = 0; i < copied.length; i++) {
+            //     object = { id: uuid(), content: copied[i].content };
+            // };
             
-    //         //Remove selected item from the initiall list
-    //         var copyCat1 = this.state.cat1statements;
-    //         copyCat1.splice(source.index, 1);
-    //         this.setState({ cat1statements: copyCat1 });
-    //         this.state.anchors2[destination.droppableId].unshift(object);
-    //         //this.state.cat1statements.splice(source.index, 1)
-    //         break;
+            //Remove selected item from the initiall list
+            var copyCat1 = this.state.cat1statements;
+            copyCat1.splice(source.index, 1);
+            this.setState({ cat1statements: copyCat1 });
+            this.state.anchors2[destination.droppableId].unshift(object);
+            //this.state.cat1statements.splice(source.index, 1)
+            break;
       
-    //   default:
-    //         const moved = move(
-    //             this.state.anchors2[source.droppableId],
-    //             this.state.anchors2[destination.droppableId],
-    //             source,
-    //             destination
-    //         );
-    //         this.setState({ anchors2: moved });
-    //     break;
-    // }
+      default:
+            const moved = move(
+                this.state.anchors2[source.droppableId],
+                this.state.anchors2[destination.droppableId],
+                source,
+                destination
+            );
+            this.setState({ anchors2: moved });
+        break;
+    }
 
-    //console.log(this.state.anchors2);
+  //console.log(this.state.anchors2);
 
     
   };
@@ -294,11 +299,11 @@ export default class Participant_Step4_test extends Component {
         return (
           <DragDropContext onDragEnd={this.onDragEnd}>
                 <div style={{ marginRight: 200 }}>
-                    {this.state.anchors3.map((list, i) => (
+                    {Object.keys(this.state.anchors2).map((list, i) => (
                         <Droppable
-                            key={list.id}
-                            droppableId={list.id}
-                            direction="horizontal">
+                            key={list}
+                            droppableId={list}
+                        >
                                 {(provided, snapshot) => (
                                     <div
                                         style={{
@@ -309,19 +314,20 @@ export default class Participant_Step4_test extends Component {
                                             flexDirection: 'row',
                                             padding: 10,
                                             textAlign: 'center'
-                                        }}>
+                                        }}
+                                    >
                                     
-                                <div
-                                    style={{
-                                        background: 'lightGrey',
-                                        height: 50,
-                                        minWidth: 150
-                                    }}
-                                    ref={provided.innerRef}
-                                        isDraggingOver={snapshot.isDraggingOver}
-                                >
-                                    {/* {this.state.anchors2[list].length
-                                        ? this.state.anchors2[list].map(
+                                        <div
+                                            style={{
+                                                background: 'lightGrey',
+                                                height: 50,
+                                                minWidth: 300
+                                            }}
+                                            ref={provided.innerRef}
+                                            isDraggingOver={snapshot.isDraggingOver}
+                                        >
+                                        {this.state.anchors2[list].length
+                                            ? this.state.anchors2[list].map(
                                               (item, index) => (
                                                   <Draggable
                                                       key={item.id}
@@ -346,7 +352,7 @@ export default class Participant_Step4_test extends Component {
                                           )
                                         : !provided.placeholder && (
                                               <Notice>Drop items here</Notice>
-                                          )} */}
+                                          )}
                                     {provided.placeholder}
                                 </div>
                                 </div>
@@ -354,27 +360,26 @@ export default class Participant_Step4_test extends Component {
                         </Droppable>
                     ))}
                 </div>
-                <div style={{display:'flex'}}>
+                
+                <div style={{ display: 'flex' }}>
 
-                    <Droppable
-                        droppableId="ITEMS"
-                        isDropDisabled={true}
-                    >
+                <Droppable
+                    droppableId="ITEMS"
+                    isDropDisabled={true}
+                >
                     {(provided, snapshot) => (
-                            <div
-                                style={{
-                                    width: 200,
-                                    border: '1px solid lightGrey',
-                                    padding: 10
-                                }}
-                                ref={provided.innerRef}
-                                isDraggingOver={snapshot.isDraggingOver}
-                            >
-                                <div style={{ textAlign: 'center' }}>
-                                    <h3>Statements category 1</h3>
-                                </div>    
-                           
-                            
+                        <div
+                            style={{
+                                width: 200,
+                                border: '1px solid lightGrey',
+                                padding: 10
+                            }}
+                            ref={provided.innerRef}
+                            isDraggingOver={snapshot.isDraggingOver}
+                        >
+                            <div style={{ textAlign: 'center' }}>
+                                <h3>Statements category 1</h3>
+                            </div>    
                             {this.state.cat1statements.map((item, index) => (
                                 <Draggable
                                     key={item.id}

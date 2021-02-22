@@ -84,13 +84,11 @@ export default class CreateSurvey_Step1 extends React.Component {
         return (
             <div>
                 <div className='grid-container'>
-                    <div className="item1 sub-header-container">
-                        <h1 className="sub-heading">
+                    <div className="item1 sub-header-container-white">
+                        <h1 className="sub-heading-blue-2">
                             Create Survey
                         </h1>
-                        {/* <h2 className="sub-heading">
-                            Step One
-                        </h2> */}
+                        <p className="sub-sub-heading-blue-2">Step 1 of 4</p>
                     </div>
                     <div className=' item6 navbar-container'>
                     <Navbar/>
@@ -98,12 +96,12 @@ export default class CreateSurvey_Step1 extends React.Component {
                 </div>
                 
            
-                <div className='survey-content-container'>
-                    <div className='survey-form-container'>
+                <div className='content-container'>
+                    <div className='form-container'>
                         <form> 
                             
                         <div className='label-container'>
-                            <label className='label'>Survey Name</label>
+                            <label className='label2'>Survey Name</label>
                         </div>
                         <input
                             className='form-input'
@@ -114,7 +112,7 @@ export default class CreateSurvey_Step1 extends React.Component {
                             />
 
                         <div className='label-container'>
-                            <label className='label'>Description</label>
+                            <label className='label2'>Description</label>
                         </div>
                         <textarea
                             className='form-input'
@@ -125,7 +123,7 @@ export default class CreateSurvey_Step1 extends React.Component {
                             />
                             
                         <div className='label-container'>
-                            <label className='label'>Category 1</label>
+                            <label className='label2'>Category 1</label>
                         </div>
                             <input
                                 className='form-input'
@@ -136,7 +134,7 @@ export default class CreateSurvey_Step1 extends React.Component {
                             />
 
                         <div className='label-container'>
-                            <label className='label'>Category 2</label>
+                            <label className='label2'>Category 2</label>
                         </div>
                             <input
                                 className='form-input'
@@ -146,7 +144,7 @@ export default class CreateSurvey_Step1 extends React.Component {
                                 onChange={this.handleChange}
                             />
                             <div className='label-container'>
-                            <label className='label'>Category 3</label>
+                            <label className='label2'>Category 3</label>
                         </div>
                             <input
                                 className='form-input'
@@ -157,7 +155,7 @@ export default class CreateSurvey_Step1 extends React.Component {
                             />
 
                         <div className='label-container'>
-                            <label className='label'>Privacy and Consent</label>
+                            <label className='label2'>Privacy and Consent</label>
                         </div>
                             <textarea
                                 className='form-input'
@@ -167,14 +165,19 @@ export default class CreateSurvey_Step1 extends React.Component {
                                 onChange={this.handleChange}
                             />
                         
-                        <div>
-                            <button
+                            <div className='center-btn-row'>    
+                                <button
+                                    onClick={this.postSurvey}
+                                    className="next-btn">
+                                    Save and Quit
+                                </button> 
+                                <button
                                 onClick={this.postSurvey}
-                                className="register-btn">
+                                className="next-btn">
                                     Next
-                                    </button>
-                            
-                        </div>
+                            </button> 
+                                
+                            </div>
                                 
                         </form>
                     </div>

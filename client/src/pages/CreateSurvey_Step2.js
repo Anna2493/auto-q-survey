@@ -10,7 +10,7 @@ export default class CreateSurvey_Step2 extends React.Component {
             positiveBoard: [],
             neutralBoard: [
                 {
-                    neutral: 0,
+                    neutral:0,
                     slot: [{}],
                 }
             ],
@@ -244,39 +244,34 @@ export default class CreateSurvey_Step2 extends React.Component {
         return (
             <div>
                 <div className='grid-container'>
-                    <div className="item1 sub-header-container">
-                        <h1 className="sub-heading">
-                            Create Survey
+                    <div className="item1 sub-header-container-white">
+                         <h1 className="sub-heading-blue-2">
+                            Design Q-Board
                         </h1>
-                        {/* <h2 className="sub-heading">
-                            Step One
-                        </h2> */}
+                        <p className="sub-sub-heading-blue-2">Step 2 of 4</p>
                     </div>
                     <div className=' item6 navbar-container'>
                     <Navbar/>
                     </div>
                 </div>
 
+            <div className='survey-content-container-2'>
                 <div className='center'>                                        
                         <button 
-                            className='add_anchor-btn'
+                            className='add-anchor-btn'
                             onClick={(e) => this.addAnchor(e)}>
-                            ADD ANCHOR
+                            ADD ANCHOR + 
                         </button>                    
                 </div>
 
-                
-           
-                <div className='survey-content-container-2'>
+                <div className='center'>
                     {this.state.reversedBoard.map((item, x) => {
                         return (
                             <div>
-                                <div className='center'>
-                                    <div className='slot-index'>
-                                        {item.negative}    
-                                    </div>
+                                
+                                <div className='slot-index'>
+                                    {item.negative}    
                                 </div>
-
                                 <div className='center'>
                                     <button
                                         className='add-slot-btn'
@@ -284,7 +279,7 @@ export default class CreateSurvey_Step2 extends React.Component {
                                         +
                                     </button>
                                 </div>
-
+                                
                                 <div>
                                     {item.slot.map((c, i) =>
                                         <div
@@ -300,10 +295,11 @@ export default class CreateSurvey_Step2 extends React.Component {
                             </div>
                         )
                     })}
+                        
                      {this.state.neutralBoard.map((item, n) => {
                             return(
                                 <div>
-                                    <div className='center'>
+                                    <div >
                                         <div className='slot-index'>
                                             {n}
                                         </div>
@@ -335,7 +331,7 @@ export default class CreateSurvey_Step2 extends React.Component {
 
                         {this.state.positiveBoard.map((item, index)=>{
                             return(
-                                <div>
+                                <div >
                                     
                                     <div className='center'>
                                         <div className='slot-index'>
@@ -367,16 +363,24 @@ export default class CreateSurvey_Step2 extends React.Component {
                             )
                         })}
                         
-                    </div>
-                        
-                        <div>
-                            <button
+                    
+                    </div>    
+                    
+                    <div className='center-btn-row'>    
+                                <button
+                                    // onClick={this.postSurvey}
+                                    className="next-btn">
+                                    Save and Quit
+                                </button> 
+                                <button
                                 onClick={this.postNewBoard}
-                                className="register-btn">
+                                className="next-btn">
                                     Next
-                            </button>
-                        </div>
-        
+                            </button> 
+                                
+                            </div>
+                        
+                </div>
                 </div>
             
            

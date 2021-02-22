@@ -113,8 +113,8 @@ export default class Registration extends React.Component {
         return (
             <div>
                 <div className='grid-container'>
-                    <div className="item1 sub-header-container">
-                        <h1 className="sub-heading">
+                    <div className="item1 sub-header-container-white">
+                        <h1 className="sub-heading-blue">
                             Create an Account
                         </h1>
                     </div>
@@ -129,7 +129,7 @@ export default class Registration extends React.Component {
                         <form> 
                             
                         <div className='label-container'>
-                            <label className='label'>Name</label>
+                            <label className='label2'>Name</label>
                         </div>
                         <input
                             className='form-input'
@@ -140,7 +140,7 @@ export default class Registration extends React.Component {
                             />
 
                         <div className='label-container'>
-                            <label className='label'>Surname</label>
+                            <label className='label2'>Surname</label>
                         </div>
                         <input
                             className='form-input'
@@ -151,7 +151,7 @@ export default class Registration extends React.Component {
                             />
                             
                         <div className='label-container'>
-                            <label className='label'>Email</label>
+                            <label className='label2'>Email</label>
                         </div>
                             <input
                                 className='form-input'
@@ -162,7 +162,7 @@ export default class Registration extends React.Component {
                             />
 
                         <div className='label-container'>
-                            <label className='label'>Password</label>
+                            <label className='label2'>Password</label>
                         </div>
                             <input
                                 className='form-input'
@@ -173,7 +173,7 @@ export default class Registration extends React.Component {
                             />
                             
                         <div className='label-container'>
-                            <label className='label'>Confirm Password</label>
+                            <label className='label2'>Confirm Password</label>
                         </div>
                             <input
                                 className='form-input'
@@ -182,11 +182,13 @@ export default class Registration extends React.Component {
                                 value={this.state.confirmPassword}
                                 onChange={this.handleChange}
                             />
-
-                        <button className='register-btn'
+                        <div className='center-btn'>
+                            <button className='register-btn'
                             onClick={this.validateUser}>
-                            REGISTER
-                        </button>
+                            Register
+                            </button>
+                        </div>
+                        
                                 
 
                         </form>
