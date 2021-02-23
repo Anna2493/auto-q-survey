@@ -15,6 +15,7 @@ export default class CreateSurvey_Step1 extends React.Component {
             privacyStatement: '',
             adminID: '',
             surveyCode: '',
+            date: '',
         }
         this.handleChange = this.handleChange.bind(this);
         this.postSurvey = this.postSurvey.bind(this);
@@ -23,6 +24,9 @@ export default class CreateSurvey_Step1 extends React.Component {
     componentDidMount() {
         const id = localStorage.getItem('ADMIN_ID');
         this.setState({ adminID: id });
+
+        let today = new Date().toLocaleDateString()
+        this.setState({ date : today})
     };
 
     handleChange = event => {
@@ -59,7 +63,9 @@ export default class CreateSurvey_Step1 extends React.Component {
             category2: this.state.category2,
             category3: this.state.category3,
             privacyStatement: this.state.privacyStatement,
-            surveyCode: randomString
+            surveyCode: randomString,
+            date: this.state.date
+            
         };
         
             createSurvey(newSurvey)

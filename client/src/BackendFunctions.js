@@ -58,7 +58,16 @@ export const getSurveys = requestSurveys => {
             adminID: requestSurveys.adminID,
         })
     })
+        .then(res => {
+            return res.json()
+        })
+        .then((data) => {
+            console.log(data)
+        })
+        .catch(error => console.log(error));
 }
+    
+
 
 export const createStatement = newStatement => {
     return fetch("https://auto-q-survey-web.herokuapp.com/api/statement", {

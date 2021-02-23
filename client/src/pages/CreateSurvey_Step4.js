@@ -29,7 +29,10 @@ export default class CreateSurvey_Step4 extends React.Component {
 
     addQuestion = () => {
         this.state.questions.push({ question: this.state.question, surveyID: localStorage.getItem('SURVEY_ID') });
-        this.setState({ questions : this.state.questions})
+        this.setState({
+            questions: this.state.questions,
+            question: ''
+        });
         console.log(this.state.questions)
     }
 
@@ -58,8 +61,12 @@ export default class CreateSurvey_Step4 extends React.Component {
 
     };
 
-
-
+    deleteQuestion = (index) => {
+        var copyQuestionsArr = this.state.questions;
+        copyQuestionsArr.splice(index, 1)
+        console.log(copyQuestionsArr)
+        this.setState({ questions: copyQuestionsArr })
+    };
 
     render() {
          if (this.state.Redirect) {
@@ -74,6 +81,13 @@ export default class CreateSurvey_Step4 extends React.Component {
             return (
                 <tr key={index}>
                     <td>{question.question}</td>
+                    <td className='remove-btn-align'>
+                        <button
+                            onClick={this.deleteQuestion.bind(this, index)}
+                            className = 'delete-question-btn'>
+                            X
+                        </button>
+                    </td>
                 </tr>
             )
         }
@@ -81,10 +95,11 @@ export default class CreateSurvey_Step4 extends React.Component {
         return (
             <div>
                 <div className='grid-container'>
-                    <div className="item1 sub-header-container">
-                        <h1 className="sub-heading">
-                            Create Survey
+                   <div className="item1 sub-header-container-white">
+                         <h1 className="sub-heading-blue-2">
+                            Add Questions
                         </h1>
+                        <p className="sub-sub-heading-blue-2">Step 3 of 4</p>
                     </div>
                     <div className=' item6 navbar-container'>
                     <Navbar/>
@@ -93,18 +108,28 @@ export default class CreateSurvey_Step4 extends React.Component {
 
                 <div className='column-center'>
                     <div className='total-text-container'>
-                        <h1 className='total-cards-text'>Ask Questions</h1>
+                        <h1 className='total-cards-text'>Ask Participant</h1>
+                        <p className="paragraph">
+                            By adding questions to your survey you can find out
+                             more about the participant, which could assist in 
+                            data analysis. This step is optional.
+                        </p>
+
                     </div>
 
                     <div className='question-cards-container'>
-                        <div className='questions-column-center'> 
+                        <div className='questions-column-center'>
+                            <p className="paragraph">
+                            Type in your question below
+                            </p>
                             <div className='space'>
                                 <textarea
                                     className='input-question-field'       
                                     type='text'
                                     name='question'
-                                    // value={this.state.question}
+                                    value={this.state.question}
                                     onChange={this.handleChange}
+                                    placeholder='Your question...'
                                 />
                             </div>
                             
@@ -112,26 +137,39 @@ export default class CreateSurvey_Step4 extends React.Component {
                                 className="add-question-btn"
                                 onClick={this.addQuestion}
                                 >
-                                Add
+                                Add +
                             </button>
 
-                            <div>
-                                <table>
+                            <div className='questions-container'>
+                                <table className='table'>
+                                     <thead >
+                                        <tr>
+                                        <th className='question-column'>Question</th>
+                                        <th className='delete-column'>Remove</th>
+                                        </tr>
+                                    </thead>
                                     <tbody>
                                         {this.state.questions.map(renderQuestion)}
                                     </tbody>
-                                    </table>
+                                </table>
                             </div>
                         
                         </div>     
                         
                     </div>
 
-                    <button
-                        className="register-btn"
-                        onClick={(e) => this.next(e)}>
-                        Next
-                    </button>
+                     <div className='center-btn-row'>    
+                        <button
+                            // onClick={this.postSurvey}
+                            className="next2-btn">
+                            Save and Quit
+                        </button> 
+                        <button
+                            onClick={(e) => this.next(e)}
+                            className="next2-btn">
+                            Finish
+                        </button> 
+                    </div>
                 </div>
                 
 

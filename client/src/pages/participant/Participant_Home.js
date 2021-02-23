@@ -20,38 +20,38 @@ export default class Participant_Home extends React.Component {
     }
 
   getSurvey = (e) => {
-      e.preventDefault()
+    e.preventDefault()
 
-      fetch("https://auto-q-survey-web.herokuapp.com/api/getSurveyDetails", {
+    fetch("https://auto-q-survey-web.herokuapp.com/api/getSurveyDetails", {
 
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          surveyCode: this.state.surveyCode,
-        })
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        surveyCode: this.state.surveyCode,
       })
-        .then(res => {
-          return res.json()
-        })
-        .then((data) => {
-          console.log(data)
-          this.setState({ surveyID: data.survey_id });
-          // //console.log(this.state.adminToken);
-          if (this.state.surveyID != null) {
-            localStorage.setItem('SURVEY_ID', this.state.surveyID);
-            localStorage.setItem('SURVEY_NAME', data.survey_name);
-            localStorage.setItem('SURVEY_DESCRIPTION', data.survey_description);
-            localStorage.setItem('CATEGORY1', data.category1);
-            localStorage.setItem('CATEGORY2', data.category2);
-            localStorage.setItem('CATEGORY3', data.category3);
-            localStorage.setItem('PRIVACY_NOTICE', data.privacy_statement);
-            this.setState({ Redirect: true });
-          };
-        })
-        .catch(error => console.log(error));
-    }
+    })
+      .then(res => {
+        return res.json()
+      })
+      .then((data) => {
+        console.log(data)
+        this.setState({ surveyID: data.survey_id });
+        // //console.log(this.state.adminToken);
+        if (this.state.surveyID != null) {
+          localStorage.setItem('SURVEY_ID', this.state.surveyID);
+          localStorage.setItem('SURVEY_NAME', data.survey_name);
+          localStorage.setItem('SURVEY_DESCRIPTION', data.survey_description);
+          localStorage.setItem('CATEGORY1', data.category1);
+          localStorage.setItem('CATEGORY2', data.category2);
+          localStorage.setItem('CATEGORY3', data.category3);
+          localStorage.setItem('PRIVACY_NOTICE', data.privacy_statement);
+          this.setState({ Redirect: true });
+        };
+      })
+      .catch(error => console.log(error));
+  };
 
   render() {
 

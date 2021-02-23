@@ -36,9 +36,9 @@ export default class CreateSurvey_Finish extends React.Component {
         return (
             <div>
                 <div className='grid-container'>
-                    <div className="item1 sub-header-container">
-                        <h1 className="sub-heading">
-                            Create Survey
+                    <div className="item1 sub-header-container-white">
+                         <h1 className="sub-heading-blue-2">
+                            Survey Completed!
                         </h1>
                     </div>
                     <div className=' item6 navbar-container'>
@@ -48,17 +48,28 @@ export default class CreateSurvey_Finish extends React.Component {
 
                 <div className='column-center'>
                     <div className='total-text-container'>
-                        <h1 className='total-cards-text'>Finish Survey</h1>
+                        <h1 className='total-cards-text'>Your survey is ready</h1>
                     </div>
 
-                    <div>
-                        <h2>Survey Code</h2>
-                        <p>{this.state.surveyCode}</p>
-                    </div>
+                    
+                        <h2 className='total-cards-text'>Survey Code</h2>
+                        <p className="paragraph">
+                        Distribute this code among your participants
+                        to allow them access your survey.
+                        </p>
+                        
+                        <div className='code-container'>
+                            <p className='code'>{this.state.surveyCode}</p>
+                        </div>
+                        <p className="paragraph">
+                            You can also find this code on your profile.
+                        </p>
+                       
+                    
                 
                     <Link to={"/Profile"}>
                         <button
-                            className="register-btn"
+                            className="next-btn"
                             onClick={this.clearLocalStorage}>
                                 Finish
                         </button>

@@ -604,11 +604,6 @@
 
 .add-anchor-btn {
     background: #fff;
-    /* background: linear-gradient(
-    to right bottom,
-    rgba(255, 255, 255, 0.7),
-    rgba(255, 255, 255, 0.3)
-    ); */
     z-index: 2;
     backdrop-filter: blur(2rem);
     border: none;
@@ -683,9 +678,6 @@
     
 }
 
-
-
-
 /*--------------CREATE SURVEY STEP 3 PAGE--------------*/
 
 .big-btn{
@@ -722,7 +714,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #fff;
+    background: linear-gradient(to right top, #005675, #6fc7b0, #fff);
     width: 100%;
     height: 100vh;
 }
@@ -734,24 +726,31 @@
 .total-cards-text{
     font-family: 'Raleway', sans-serif;
     font-size: 30px;
-    /* color: #fff; */
     text-align: center;
+    color: #005675;
 }
 .total-number-text{
     font-family: 'Raleway', sans-serif;
     font-size: 50px;
-    /* color: #fff; */
+    color: #005675;
     text-align: center;
     margin-top: 5px;
 }
 .cards-container{
     width: 400px;
     height: 450px;
-    background-color: #121636;
-    box-shadow: 0 0 15px #37224d;
+    box-shadow: 0 0 20px #6fc7b0;
     margin-top: 2px;
     overflow-y:auto;
-    border: 20px solid #121636;
+    background: #fff;
+    background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.3)
+    );
+    z-index: 2;
+    backdrop-filter: blur(2rem);
+    border-radius: 4px;
 }
 .space{
     padding: 15px;
@@ -760,23 +759,63 @@
     width: 300px;
     height: 150px;
     border: none;
-    box-shadow: 5px 5px #434557;
-    padding: 20px;
+    box-shadow: 0 0 20px #6fc7b0;
+    padding: 10px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 30px;
+    font-size: 20px;
     text-align: center;
+    color: #005675;
+}
+
+.next2-btn{
+    margin-top: 30px;
+    margin-left: 100px;
+    margin-right: 100px;
+    background: linear-gradient(
+    to right bottom, #fff, #f0f0f0
+    );
+    position: relative;
+    background-clip: padding-box;
+    border-radius: 4px;
+    padding: 15px;
+    border: none;
+    color: #005675;
+    padding: 5px 10px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 15px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.next2-btn:hover{
+    background: #005675;
+    color: #fff;
+    transition: all 0.2s ease-in-out;
 }
 
 /*--------------CREATE SURVEY STEP 4 PAGE--------------*/
+.paragraph {
+    text-align: left;
+    /* margin-top: 60px; */
+    color: #005675;
+    font-size: 18px;
+    font-family: 'Raleway', sans-serif;
+}
 
 .question-cards-container{
-    width: 400px;
-    height: 550px;
-    background-color: #fff;
-    box-shadow: 0 0 15px #37224d;
+    height: 500px;
+    width: 470px;
+    box-shadow: 0 0 20px #6fc7b0;
     margin-top: 2px;
-    border: 20px solid #fff;
-    
+    background: #fff;
+    background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.3)
+    );
+    z-index: 2;
+    backdrop-filter: blur(2rem);
+    border-radius: 4px;
 }
 
 .questions-column-center{
@@ -787,32 +826,105 @@
 
 .input-question-field{
     width: 400px;
-    padding: 10PX;
-    border: 2px solid #37224d;
-    font-family: 'Raleway', sans-serif;
-    font-size: 25px;
+    border: none;
+    box-shadow: 0 0 20px #6fc7b0;
+    padding: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    text-align: left;
+    color: #005675;
 }
-
-
 .add-question-btn{
     margin-top: 30px;
-    background-color: #fd681d;
-    border: 2px solid #fd681d;
-    color: #fff;
+    background: #fff;
+    border: none;
+    color: #7c99a3;
     padding: 5px 10px;
     text-align: center;
     cursor: pointer;
     font-size: 25px;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     width: 100px;
+    border-radius: 4px;
+}
+.add-question-btn:hover{
+    background: #005675;
+    color: #fff;
 }
 
-.add-question-btn:hover{
-    background-color:  #37224d;
-    border: 2px solid #37224d;
-    color: #fff;
-   
+.questions-container{
+    border: none;
+    width: 400px;
+    height: 150px;
+    min-height: 100px;
+    box-shadow: 0 0 20px #6fc7b0;
+    padding: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    color: #005675;
+    margin-top: 50px;
+    overflow-y:auto;
 }
+
+.delete-question-btn{
+    background: #fff;
+    border: none;
+    color: #005675;
+    padding: 5px 10px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 4px;
+}
+
+.delete-question-btn:hover{
+    background: #005675;
+    color: #fff;
+}
+
+.question-column{
+    width: 300px;
+    text-align: left;
+    font-family: 'Raleway', sans-serif;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.delete-column{
+    width: 100px;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.remove-btn-align{
+    text-align: center;
+}
+
+/*--------------FINISH SURVEY PAGE--------------*/
+
+.code-container{
+    height: 100px;
+    width: 200px;
+    box-shadow: 0 0 20px #6fc7b0;
+    background: #fff;
+    background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.3)
+    );
+    z-index: 2;
+    backdrop-filter: blur(2rem);
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-family: 'Montserrat', sans-serif;
+    color: #005675;
+}
+
+
 /*--------------PARTICIPANT HOME PAGE--------------*/
 
 .center-3 {

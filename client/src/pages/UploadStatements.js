@@ -85,10 +85,11 @@ export default class UploadStatements extends React.Component {
         return (
             <div>
                 <div className='grid-container'>
-                    <div className="item1 sub-header-container">
-                        <h1 className="sub-heading">
-                            Create Survey
+                    <div className="item1 sub-header-container-white">
+                         <h1 className="sub-heading-blue-2">
+                            Upload Statements
                         </h1>
+                        <p className="sub-sub-heading-blue-2">Step 3 of 4</p>
                     </div>
                     <div className=' item6 navbar-container'>
                     <Navbar/>
@@ -116,11 +117,18 @@ export default class UploadStatements extends React.Component {
                         </div>
                     </div>
 
-                    <button
-                        className="register-btn"
-                        onClick={(e) => this.next(e)}>
-                        Next
-                    </button>
+                    <div className='center-btn-row'>    
+                        <button
+                            // onClick={this.postSurvey}
+                            className="next2-btn">
+                            Save and Quit
+                        </button> 
+                        <button
+                            onClick={(e) => this.next(e)}
+                            className="next2-btn">
+                            Next
+                        </button> 
+                    </div>
                 </div>
                 
 

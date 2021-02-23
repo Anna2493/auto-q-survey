@@ -367,18 +367,17 @@ export default class CreateSurvey_Step2 extends React.Component {
                     </div>    
                     
                     <div className='center-btn-row'>    
-                                <button
-                                    // onClick={this.postSurvey}
-                                    className="next-btn">
-                                    Save and Quit
-                                </button> 
-                                <button
-                                onClick={this.postNewBoard}
-                                className="next-btn">
-                                    Next
-                            </button> 
-                                
-                            </div>
+                        <button
+                            // onClick={this.postSurvey}
+                            className="next-btn">
+                            Save and Quit
+                        </button> 
+                        <button
+                            onClick={this.postNewBoard}
+                            className="next-btn">
+                            Next
+                        </button> 
+                    </div>
                         
                 </div>
                 </div>

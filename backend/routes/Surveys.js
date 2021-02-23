@@ -20,7 +20,8 @@ surveys.post('/api/survey', (req, res) => {
         category2: req.body.category2,
         category3: req.body.category3,
         privacy_statement: req.body.privacyStatement,
-        survey_code: req.body.surveyCode,    
+        survey_code: req.body.surveyCode,
+        date: req.body.date,
     }
 
     //console.log(surveyData)

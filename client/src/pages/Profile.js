@@ -11,7 +11,9 @@ export default class Profile extends React.Component {
         this.state = {
             firstName: '',
             email: '',
-            adminID: '',
+          adminID: '',
+            
+          surveysData: []
         }
     }
 
@@ -26,19 +28,19 @@ export default class Profile extends React.Component {
     });
 
     localStorage.setItem('ADMIN_ID', decoded.id)
-    this.get();
+    this.getSurveys();
 
   };
 
-  get() {
+  getSurveys() {
     const requestSurveys = {
       adminID: localStorage.getItem('ADMIN_ID')
-    }
-    getSurveys(requestSurveys)
-      .then(res => {
-        console.log(res)
-      })
+    };
+    
+    getSurveys(requestSurveys);
+    
   };
+
 
     render() {
         return (
@@ -77,12 +79,14 @@ export default class Profile extends React.Component {
                 <div className='item10 profile-content-container'>
                   <div className='all-surveys-container'>
                     <div className='survey-container'>
+
                       <div className='survey-details'>
                       <p className='survey-title'>
                         Survey Title
                         <span className='survey-date'> 21/02/2021 </span>
                       </p>
                       </div>
+
                       <div className='buttons-row'> 
                         <button className='survey-btn'>Download Results</button>
                         <button className='survey-btn'>Preview</button>

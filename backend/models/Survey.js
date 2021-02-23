@@ -33,6 +33,9 @@ module.exports = db.sequelize.define( //relfect database fileds
     survey_code: {
       type: Sequelize.STRING
     },
+    date: {
+      type: Sequelize.STRING
+    }
   },
   {
     timestamps: false
