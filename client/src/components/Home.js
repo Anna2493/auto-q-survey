@@ -5,6 +5,8 @@ import { Input } from '@material-ui/core';
 import { login } from '../BackendFunctions';
 import Navbar from './Navbar/Navbar';
 import Cookies from 'js-cookie';
+import { getSurveys } from '../BackendFunctions';
+import jwt_decode from "jwt-decode";
 
 
 class Home extends React.Component {

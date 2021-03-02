@@ -33,11 +33,12 @@ export default class Participant_Step1 extends React.Component {
 
             <div>
             <div className='grid-container'>
-              <div className="item1 sub-header-container">
-                <h1 className="sub-heading">
-                  Survey Details
-                </h1>
-              </div>
+               <div className="item1 sub-header-container-white">
+                        <h1 className="sub-heading-blue-2">
+                            Survey Details
+                        </h1>
+                        <p className="sub-sub-heading-blue-2">Step 1 of 4</p>
+                    </div>
               <div className=' item6 navbar-container'>
                 <Navbar/>
               </div>
@@ -46,7 +47,7 @@ export default class Participant_Step1 extends React.Component {
             
 
             <div className='center-2'>
-                <p className='headings'>Survey Name</p>
+                 <p className='headings'>Survey Title</p>
                 
                 <p className='survey-name'>{this.state.surveyName}</p>
                 
@@ -60,7 +61,7 @@ export default class Participant_Step1 extends React.Component {
                 <p className='admin-name'>{this.state.adminName} {this.state.adminEmail}</p>
                 
                 <Link to='/Participant_Step2'>
-                    <button>Next</button>
+                    <button className='next-btn'>Next</button>
                 </Link>
 
             </div>

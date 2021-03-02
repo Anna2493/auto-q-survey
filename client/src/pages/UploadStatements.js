@@ -43,7 +43,7 @@ export default class UploadStatements extends React.Component {
         var statementsArray = [];
         for(var i = 0; i < rawStatements.length; i++) {
             var data = rawStatements[i].split(',');
-            this.state.statements.push({ statement: data.toString(), surveyID: localStorage.getItem('SURVEY_ID') });
+            this.state.statements.push({ statement: data.toString(), surveyID: localStorage.getItem('CURRENT_ID') });
         };
         
         //this.setState({ statements: statementsArray });

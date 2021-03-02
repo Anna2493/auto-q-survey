@@ -80,12 +80,12 @@ export default class Participant_Home extends React.Component {
         
         <div className='center-3'>
 
-          <div className="sub-container">
+          <div className="sub-container-participant">
             <h2 className="heading-two">Participant</h2>
 
             <div className="center">
               <input
-                className="inputBox"
+                className="input-box-admin"
                 placeholder="Code"
                 type="text"
                 name="surveyCode"

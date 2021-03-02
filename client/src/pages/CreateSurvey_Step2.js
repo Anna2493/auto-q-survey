@@ -32,35 +32,20 @@ export default class CreateSurvey_Step2 extends React.Component {
         }
 
         this.postNewBoard = this.postNewBoard.bind(this);
+        this.getSurveyId = this.getSurveyId.bind(this);
         
     }
 
     componentDidMount() {
+        
         this.getSurveyId();
     }
 
-    getSurveyId() {
-
-        //This part of the code was inspired by pilot application
+    getSurveyId() {       
         const requestSurveys = {
             adminID: localStorage.getItem('ADMIN_ID')
-        };
-        getSurveys(requestSurveys)
-            .then((res) => {
-                return res.json();
-            })
-            .then((data) => {
-                console.log(data);
-                var listOfIds = data.map(({ survey_id }) => survey_id);
-                var listOfCodes = data.map(({ survey_code }) => survey_code);
-                this.setState({
-                    surveyID: listOfIds.slice(-1)[0],
-                    surveyCode: listOfCodes.slice(-1)[0]
-                })
-                console.log(this.state.surveyID);
-                localStorage.setItem('SURVEY_ID', this.state.surveyID);
-                localStorage.setItem('SURVEY_CODE', this.state.surveyCode);
-            })
+        };   
+        getSurveys(requestSurveys);
     };
 
 
@@ -172,13 +157,17 @@ export default class CreateSurvey_Step2 extends React.Component {
     }
 
     createAnchorsList() {
+
+        var currentId = localStorage.getItem('CURRENT_ID');
+        var currentCode = localStorage.getItem('CURRENT_CODE');
+
         //*---POSITIVE ANCHORS---
         var positiveBoardCopy = this.state.positiveBoard;
         var i;
         for (i = 0; i < positiveBoardCopy.length; i++){
             var anchorNumber = positiveBoardCopy[i].positive;
             var numberOfSlots = positiveBoardCopy[i].slot.length;
-            const anchorsObject = { anchor: anchorNumber, slots: numberOfSlots, surveyID: this.state.surveyID };
+            const anchorsObject = { anchor: anchorNumber, slots: numberOfSlots, surveyID: currentId };
             this.state.anchorsList.push(anchorsObject);
         };
         //*---NEGATIVE ANCHORS---
@@ -187,7 +176,7 @@ export default class CreateSurvey_Step2 extends React.Component {
         for (i = 0; i < negativeBoardCopy.length; i++){
             var anchorNumber = negativeBoardCopy[i].negative;
             var numberOfSlots = negativeBoardCopy[i].slot.length;
-            const anchorsObject = { anchor: anchorNumber, slots: numberOfSlots, surveyID: this.state.surveyID };
+            const anchorsObject = { anchor: anchorNumber, slots: numberOfSlots, surveyID: currentId };
             this.state.anchorsList.push(anchorsObject);
         };
         //*---NEUTRAL ANCHORS---
@@ -196,7 +185,7 @@ export default class CreateSurvey_Step2 extends React.Component {
         for (i = 0; i < neutralBoardCopy.length; i++){
             var anchorNumber = neutralBoardCopy[i].neutral;
             var numberOfSlots = neutralBoardCopy[i].slot.length;
-            const anchorsObject = { anchor: anchorNumber, slots: numberOfSlots, surveyID: this.state.surveyID };
+            const anchorsObject = { anchor: anchorNumber, slots: numberOfSlots, surveyID: currentId };
             this.state.anchorsList.push(anchorsObject);
         };
     }
@@ -230,8 +219,6 @@ export default class CreateSurvey_Step2 extends React.Component {
         
               
     }
-
-
 
     render() {
          if (this.state.Redirect) {
@@ -267,7 +254,7 @@ export default class CreateSurvey_Step2 extends React.Component {
                 <div className='center'>
                     {this.state.reversedBoard.map((item, x) => {
                         return (
-                            <div>
+                            <div key={x}>
                                 
                                 <div className='slot-index'>
                                     {item.negative}    

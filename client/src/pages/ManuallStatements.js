@@ -18,7 +18,7 @@ export default class ManuallStatements extends React.Component {
 
     componentDidMount() {
         this.generateStatementCards();
-        this.setState({ surveyID: localStorage.getItem('SURVEY_ID') });
+        this.setState({ surveyID: localStorage.getItem('CURRENT_ID') });
     };
 
     generateStatementCards() {

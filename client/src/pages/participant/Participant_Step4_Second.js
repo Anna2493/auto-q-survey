@@ -43,7 +43,7 @@ export default class Participant_Step4_Second extends React.Component {
       category2: '',
       category3: '',
 
-      anchors: [],
+      
 
       category1List: [],
       category2List: [],
@@ -56,9 +56,7 @@ export default class Participant_Step4_Second extends React.Component {
         'column-3': { id: 'column-3', title: localStorage.getItem('CATEGORY3'), statementIds: [] },
       },
 
-      cat1Statements: {},
-      cat2Statements: {},
-      cat3Statements: {},
+      
 
       anchors2: [
             { id: '0', anchorNumber: -3, slots: [{ id: '0', statement: [] }] },
@@ -129,6 +127,11 @@ export default class Participant_Step4_Second extends React.Component {
         { id: '9', content: 'Statement 10' },
         { id: '10', content: 'Statement 11' },
       ],
+
+      anchors: [],
+      cat1Statements: [],
+      cat2Statements: [],
+      cat3Statements: [],
       
     }
   };
@@ -143,16 +146,6 @@ export default class Participant_Step4_Second extends React.Component {
     });
 
     this.getAnchors();  
-
-    const i = this.state.anchors4.map((item, i) => {
-      {
-        item.anchors.map((anchor, j) => {
-          {
-            anchor.slots.map((slot, k) => {
-              console.log(slot.id)
-          })}
-      })}
-    })
 
   };
 
@@ -191,41 +184,32 @@ export default class Participant_Step4_Second extends React.Component {
             //the number of objects is specified in the data[i].slots 
             //push it to
             for (var array = [], j = 0; j < numberOfSlots; j++) {
-              array.push({ id: j.toString() });
+              array.push({ id: uuid().toString(), statement: [] });
             }
             anchorsArr3.push({ id: i.toString(), anchorNumber: data[i].anchor, slots: array });
             
           };
-           //Get statements for category 1
-            var statements = localStorage.getItem('CATEGORY1_STATEMENTS')
-            var statementsCat1 = JSON.parse(statements)
-            //console.log(statementsCat1)
-            //this.setState({ category1List : statementsCat1 })
-            
-            
-            for (var i = 0; i < statementsCat1.length; i++){
-              cat1Items.push({ id: i.toString(), content: statementsCat1[i].content });
-
-              this.setState(prevState => ({
-                cat1Statements: { ...prevState.cat1Statements, ...cat1Items }
-              }));
-
-              var keys = Object.keys(this.state.cat1Statements);
-              for (var j = 0; j < keys.length; j++){
-                if (!(keys[j] in this.state.columns['column-1'].statementIds)) {
-                  this.state.columns['column-1'].statementIds.push(keys[j])
-                }
-              };
-          };  
-          
-          //console.log(this.state.cat1Statements)
-
+          //GET STATEMENTS CATEGORY 1
+          var statements1 = localStorage.getItem('CATEGORY1_STATEMENTS')
+          var statementsCat1 = JSON.parse(statements1)
+          for (var i = 0; i < statementsCat1.length; i++){
+            this.state.cat1Statements.push({ id: uuid().toString(), content: statementsCat1[i].content, category: 1 })
+          };
+          //GET STATEMENTS CATEGORY 2
+          var statements2 = localStorage.getItem('CATEGORY2_STATEMENTS')
+          var statementsCat2 = JSON.parse(statements2) 
+          for (var i = 0; i < statementsCat2.length; i++){
+            this.state.cat2Statements.push({ id: uuid().toString(), content: statementsCat2[i].content, category: 2 })
+          };
+          //GET STATEMENTS CATEGORY 3
+          var statements3 = localStorage.getItem('CATEGORY3_STATEMENTS')
+          var statementsCat3 = JSON.parse(statements3)
+          for (var i = 0; i < statementsCat3.length; i++){
+            this.state.cat3Statements.push({ id: uuid().toString(), content: statementsCat3[i].content, category: 3 })
+          };
           this.sort('anchorNumber', anchorsArr3)
-          this.setState({ anchors: anchorsArr3 });
-          //this.state.anchors.push({category1: categories})
-          console.log(this.state.cat1Statements);
-          //console.log(this.state.columns)
-          console.log(this.state.anchors2)
+          this.setState({ anchors: anchorsArr3});
+          console.log(this.state.anchors);
           
         })
       .catch(error => console.log(error));
@@ -257,151 +241,23 @@ export default class Participant_Step4_Second extends React.Component {
     return arr;
   };
 
-  // onDragEnd = (result) => {
-
-  //   const { destination, source, draggableId } = result
-  //     console.log(this.state.anchors2)
-  //     console.log(this.state.columns)
-
-  //   //If card is dropped outside any column then return the card to the previous column
-  //   if (!destination) { return };
-
-  //   if ( destination.droppableId === source.droppableId &&
-  //         destination.index === source.index) {
-  //     return
-  //   }
-
-  //   const start = this.state.columns[source.droppableId]
-  //   const finish = this.state.columns[destination.droppableId]
-
-  //   if (start === finish) {
-  //     const newStatementIds = Array.from(start.statementIds)
-  //     newStatementIds.splice(source.index, 1)
-  //     newStatementIds.splice(destination.index, 0, draggableId)
-
-  //     const newColumn = {
-  //       ...start,
-  //       statementIds: newStatementIds
-  //     }
-
-  //     const newState = {
-  //       ...this.state,
-  //       columns: {
-  //         ...this.state.columns,
-  //         [newColumn.id]: newColumn
-  //       }
-  //     }
-
-  //     this.setState(newState)
-  //     return
-  //   }
-
-  //   // Moving from one list to another
-  //   const startStatementIds = Array.from(start.statementIds)
-  //   startStatementIds.splice(source.index, 1)
-  //   const newStart = {
-  //     ...start,
-  //     statementIds: startStatementIds
-  //   }
-
-  //   const finishStatementIds = Array.from(finish.statementIds)
-  //   finishStatementIds.splice(destination.index, 0, draggableId)
-  //   const newFinish = {
-  //     ...finish,
-  //     statementIds: finishStatementIds
-  //   }
-
-  //   const newState = {
-  //     ...this.state,
-  //     columns: {
-  //       ...this.state.columns,
-  //       [newStart.id]: newStart,
-  //       [newFinish.id]: newFinish
-  //     }
-  //   }
-
-    
-  //   this.setState(newState)
-  // };
-
-  //   onDragEnd(result) {
-  //   // dropped outside the list
-  //   console.log(result);
-  //   console.log("innner drag");
-  //   if (!result.destination) {
-  //     return;
-  //   }
-  //   const sourceIndex = result.source.index;
-  //   const destIndex = result.destination.index;
-  //   if (result.type === "droppableItem") {
-  //     const items = reorder(this.state.items, sourceIndex, destIndex);
-
-  //     this.setState({
-  //       items
-  //     });
-  //   } else if (result.type === "droppableSubItem") {
-  //     const itemSubItemMap = this.state.items.reduce((acc, item) => {
-  //       acc[item.id] = item.subItems;
-  //       return acc;
-  //     }, {});
-
-  //     const sourceParentId = parseInt(result.source.droppableId);
-  //     const destParentId = parseInt(result.destination.droppableId);
-
-  //     const sourceSubItems = itemSubItemMap[sourceParentId];
-  //     const destSubItems = itemSubItemMap[destParentId];
-
-  //     let newItems = [...this.state.items];
-
-  //     /** In this case subItems are reOrdered inside same Parent */
-  //     if (sourceParentId === destParentId) {
-  //       const reorderedSubItems = reorder(
-  //         sourceSubItems,
-  //         sourceIndex,
-  //         destIndex
-  //       );
-  //       newItems = newItems.map(item => {
-  //         if (item.id === sourceParentId) {
-  //           item.subItems = reorderedSubItems;
-  //         }
-  //         return item;
-  //       });
-  //       this.setState({
-  //         items: newItems
-  //       });
-  //     } else {
-  //       let newSourceSubItems = [...sourceSubItems];
-  //       const [draggedItem] = newSourceSubItems.splice(sourceIndex, 1);
-
-  //       let newDestSubItems = [...destSubItems];
-  //       newDestSubItems.splice(destIndex, 0, draggedItem);
-  //       newItems = newItems.map(item => {
-  //         if (item.id === sourceParentId) {
-  //           item.subItems = newSourceSubItems;
-  //         } else if (item.id === destParentId) {
-  //           item.subItems = newDestSubItems;
-  //         }
-  //         return item;
-  //       });
-  //       this.setState({
-  //         items: newItems
-  //       });
-  //     }
-  //   }
-  // }
-
   onDragEnd = (result) => {
     const { source, destination } = result;
-    console.log(source, destination)
+    //console.log(source, destination)
     // dropped outside the list
     if (!destination) {
       return;
     };
 
-    //Find the index of anchors5 object and slots given the destinarion only
+     if ( destination.droppableId === source.droppableId &&
+          destination.index === source.index) {
+      return
+    }
+
+    //Find the index of anchors object and slots given the destinarion only
     var slotPosition;
     var destinationSlot;
-    this.state.anchors5.map((anchor, index) => {
+    this.state.anchors.map((anchor, index) => {
       anchor.slots.map((slot, i) => {
         if (slot.id == destination.droppableId) {
           slotPosition = i;
@@ -412,46 +268,268 @@ export default class Participant_Step4_Second extends React.Component {
 
     var sourceSlotPostion;
     var sourceSlot;
-    this.state.anchors5.map((anchor, index) => {
+    this.state.anchors.map((anchor, index) => {
       anchor.slots.map((slot, i) => {
         if (slot.id == source.droppableId) {
           sourceSlotPostion = i;
           sourceSlot = slot.statement
-        }
-      })
-    })
-    
-    //console.log(sourceSlot)
+        };
+      });
+    });
     
     switch (source.droppableId) {
-      case 'ITEMS':
-        const copied = copy(
-          this.state.cat1statements2,
-          destinationSlot.statement,
-          source,
-          destination
-        );
-        //Remove selected statement from the array
-        var copyCat1 = this.state.cat1statements2;
-        copyCat1.splice(source.index, 1);
-        this.setState({ cat1statements2: copyCat1 });
-        //push selected statement onto the selected slot
-        destinationSlot.statement.push({ id:copied[0].id, content: copied[0].content });
       
+      case 'ITEMS1':
+          const copied = copy(
+            this.state.cat1Statements,
+            destinationSlot.statement,
+            source,
+            destination
+          );
+          //console.log(copied)
+          //Remove selected statement from the array
+          var copyCat1 = this.state.cat1Statements;
+          copyCat1.splice(source.index, 1);
+          this.setState({ cat1Statements: copyCat1 });
+          //push selected statement onto the selected slot
+          destinationSlot.statement.push({ id:copied[0].id, content: copied[0].content, category: 1 });
+        //remove already existing statement within the array
+        if (destinationSlot.statement.length == 2) {
+          var removed = destinationSlot.statement.splice(0, 1)
+          //push removed back to cat1Statements
+          //console.log(removed[0].category)
+          if (removed[0].category == 1) {
+            var copyCat1 = this.state.cat1Statements;
+            copyCat1.push(removed[0])
+            this.setState({ cat1Statements: copyCat1 });
+            console.log('category is 1')
+          };
+          if (removed[0].category == 2) {
+            var copyCat2 = this.state.cat2Statements;
+            copyCat2.push(removed[0])
+            this.setState({ cat2Statements: copyCat2 });
+            console.log('category is 2')
+          };
+          if (removed[0].category == 3) {
+            var copyCat3 = this.state.cat3Statements;
+            copyCat3.push(removed[0])
+            this.setState({ cat3Statements: copyCat3 });
+           };
+        };
+          
         break;
-      default:
-        const moved = move(
-          sourceSlot,
-          destinationSlot.statement,
-          source,
-          destination
-        );
-        console.log(sourceSlot)
-        console.log(destinationSlot.statement)
-        console.log(source)
-        console.log(destination)
+      case 'ITEMS2':
+          const copied2 = copy(
+            this.state.cat2Statements,
+            destinationSlot.statement,
+            source,
+            destination
+          );
+          //console.log(copied)
+          //Remove selected statement from the array
+          var copyCat2 = this.state.cat2Statements;
+          copyCat2.splice(source.index, 1);
+          this.setState({ cat2Statements: copyCat2 });
+          //push selected statement onto the selected slot
+          destinationSlot.statement.push({ id:copied2[0].id, content: copied2[0].content, category: 2 });
         
+          //remove already existing statement within the array
+         if (destinationSlot.statement.length == 2) {
+         var removed = destinationSlot.statement.splice(0, 1)
+          //push removed back to cat1Statements
+           console.log(removed)
+            if (removed[0].category == 1) {
+            var copyCat1 = this.state.cat1Statements;
+            copyCat1.push(removed[0])
+            this.setState({ cat1Statements: copyCat1 });
+           };
+            if (removed[0].category == 2) {
+              var copyCat2 = this.state.cat2Statements;
+              copyCat2.push(removed[0])
+              this.setState({ cat2Statements: copyCat2 });
+           };
+           if (removed[0].category == 3) {
+            var copyCat3 = this.state.cat3Statements;
+            copyCat3.push(removed[0])
+            this.setState({ cat3Statements: copyCat3 });
+           };
+       }
+          
+        break;
+      case 'ITEMS3':
+        //Move statements between categories
+        // if (destination.droppableId == 'ITEMS2') {
+        //   const copied4 = copy(
+        //     this.state.cat3Statements,
+        //     this.state.cat2Statements,
+        //     source,
+        //     destination
+        //   );
+        //   //remove moved statement from the original array
+        //   var copyCat3 = this.state.cat3Statements;
+        //   copyCat3.splice(source.index, 1);
+        //   this.setState({ cat3Statements: copyCat3 });
+        //   //update new state
+        //   this.state.cat2Statements.push({ id: copied4[0].id, content: copied4[0].content, category: 2})
+          
+        // }
+        // else if (destination.droppableId == 'ITEMS1') {
+        //   const copied5 = copy(
+        //     this.state.cat3Statements,
+        //     this.state.cat1Statements,
+        //     source,
+        //     destination
+        //   );
+        //   console.log(copied5)
+        //   //remove moved statement from the original array
+        //   var copyCat4 = this.state.cat3Statements;
+        //   copyCat4.splice(source.index, 1);
+          
+        //   //this.setState({ cat3Statements: copyCat4 });
+        //   // //update new state
+        //   this.state.cat1Statements.push({ id: copied5[0].id, content: copied5[0].content, category: 1})
+          
+        // }
+        // else {
+          const copied3 = copy(
+            this.state.cat3Statements,
+            destinationSlot.statement,
+            source,
+            destination
+          );
+          //console.log(copied)
+          //Remove selected statement from the array
+          var copyCat3 = this.state.cat3Statements;
+          copyCat3.splice(source.index, 1);
+          this.setState({ cat3Statements: copyCat3 });
+          //push selected statement onto the selected slot
+          destinationSlot.statement.push({ id: copied3[0].id, content: copied3[0].content, category: 3 });
+          //remove already existing statement within the array
+          if (destinationSlot.statement.length == 2) {
+            var removed = destinationSlot.statement.splice(0, 1)
+            //push removed back to cat1Statements
+            if (removed[0].category == 1) {
+              var copyCat1 = this.state.cat1Statements;
+              copyCat1.push(removed[0])
+              this.setState({ cat1Statements: copyCat1 });
+            };
+            if (removed[0].category == 2) {
+              var copyCat2 = this.state.cat2Statements;
+              copyCat2.push(removed[0])
+              this.setState({ cat2Statements: copyCat2 });
+            };
+            if (removed[0].category == 23) {
+              var copyCat3 = this.state.cat3Statements;
+              copyCat3.push(removed[0])
+              this.setState({ cat3Statements: copyCat3 });
+            };
+          }
+        //}
+        break;
+      
+      default:
+        //console.log(destinationSlot)
+        //RETURN ITEM
+        if (destination.droppableId == 'ITEMS1') { 
+          //push selected statement to cat1Statements
+          var copyCat1 = this.state.cat1Statements;
+          copyCat1.push(sourceSlot[0])
+          this.setState({ cat1Statements: copyCat1 });
+          //Remove selected statement from source
+          this.state.anchors.map((anchor, index) => {
+            anchor.slots.map((slot, i) => {
+              if (slot.id == source.droppableId) {
+                slot.statement.splice(0, 1)
+              }
+            })
+          })
+        }
+        //RETURN ITEM
+        else if (destination.droppableId == 'ITEMS2') { 
+          //push selected statement to cat1Statements
+          var copyCat2 = this.state.cat2Statements;
+          copyCat2.push(sourceSlot[0])
+          this.setState({ cat2Statements: copyCat2 });
+          //Remove selected statement from source
+          this.state.anchors.map((anchor, index) => {
+            anchor.slots.map((slot, i) => {
+              if (slot.id == source.droppableId) {
+                slot.statement.splice(0, 1)
+              }
+            })
+          })
+        }
+        //RETURN ITEM
+        else if (destination.droppableId == 'ITEMS3') { 
+          //push selected statement to cat1Statements
+          var copyCat3 = this.state.cat3Statements;
+          copyCat3.push(sourceSlot[0])
+          this.setState({ cat3Statements: copyCat3 });
+          //Remove selected statement from source
+          this.state.anchors.map((anchor, index) => {
+            anchor.slots.map((slot, i) => {
+              if (slot.id == source.droppableId) {
+                slot.statement.splice(0, 1)
+              }
+            })
+          })
+        }
+        
+        //MOVE ITEMS BETWEEN SLOTS
+        else {
+          const moved = move(
+            sourceSlot,
+            destinationSlot.statement,
+            source,
+            destination
+          );
+          //Remove moved statement from its previous location
+          var sourceKey = Object.keys(moved)[0];
+          this.state.anchors.map((anchor, index) => {
+            anchor.slots.map((slot, i) => {
+              if (slot.id == sourceKey) {
+                slot.statement.splice(0, 1)
+              }
+            })
+          })
+          //move statement from one slot to another
+          var destinationKey = Object.keys(moved)[1]
+          var statementToMove = Object.values(moved)[1]
+          this.state.anchors.map((anchor, index) => {
+            anchor.slots.map((slot, i) => {
+              if (slot.id == destinationKey) {
+                slot.statement.push(statementToMove[0])
+              }
+            })
+          });
+
+          //SWAP ITEMS
+          if (destinationSlot.statement.length == 2) {
+            console.log('slot taken')
+            var removed = destinationSlot.statement.splice(0, 1)
+            //push removed back to cat1Statements
+            console.log(removed)
+            if (removed[0].category == 1) {
+              var copyCat1 = this.state.cat1Statements;
+              copyCat1.push(removed[0])
+              this.setState({ cat1Statements: copyCat1 });
+            };
+            if (removed[0].category == 2) {
+              var copyCat2 = this.state.cat2Statements;
+              copyCat2.push(removed[0])
+              this.setState({ cat2Statements: copyCat2 });
+            };
+            if (removed[0].category == 3) {
+              var copyCat3 = this.state.cat3Statements;
+              copyCat3.push(removed[0])
+              this.setState({ cat3Statements: copyCat3 });
+            };
+            
+          }
+        }
+        break;
     }
+
   };
 
   render() {
@@ -459,10 +537,11 @@ export default class Participant_Step4_Second extends React.Component {
 
             <div>
             <div className='grid-container'>
-              <div className="item1 sub-header-container">
-                <h1 className="sub-heading">
-                  Q-Sort - Step 2
+              <div className="item1 sub-header-container-white">
+                <h1 className="sub-heading-blue-2">
+                  Q-Sort
                 </h1>
+                <p className="sub-sub-heading-blue-2">Step 4 of 4</p>
               </div>
               <div className=' item6 navbar-container'>
                 <Navbar/>
@@ -472,50 +551,28 @@ export default class Participant_Step4_Second extends React.Component {
             
 
             <div className='center-2'>
-              <p className='headings'>Survey Name</p>  
+              <p className='headings'>Survey Title</p>  
               <p className='survey-name'>{this.state.surveyName}</p>
-
+              <div className='instructions-container'>
+                <p className='survey-description'>
+                  Grab a statement from one of the category
+                   and drop it into chosen anchor point.
+                  You can move statements around the Q-Board as many times as you wish
+                  unitl you are satisfied with your sort.
+                </p>
+              </div>
               <div style={{ display: 'flex', justifyContent: "center" }}> 
                 <div>  
                   <DragDropContext onDragEnd={this.onDragEnd}>    
-                    <div
-                      style={{
-                        border: '1px solid black',
-                        padding: 10,
-                        display: 'flex',
-                        textAlign: 'center',
-                        flexDirection: 'row',
-                      }}
-                    >
-                        {this.state.anchors5.map((list, i) => (
+                    <div className='board-container'>
+                        {this.state.anchors.map((list, i) => (
                           <div
                             key={list.id}
                             index={i}
                           >
-                            <div
-                              style={{
-                                border: '1px solid black',
-                                borderRadius: 2,
-                                display: 'flex',
-                                justifyContent: "center",
-                                alignItems: 'center',
-                                padding: 10,
-                                textAlign: 'center',
-                                margin: "0 0 8px 0",
-                                padding: 10
-                              }}
-                            >        
-                              <div
-                                style={{
-                                  background: 'lightGrey',
-                                  display: 'flex',
-                                  flexDirection: 'column',
-                                  justifyContent: "center",
-                                  alignItems: 'center',
-                                  padding: 10
-                                }}
-                              >
-                                {list.anchorNumber}
+                            <div className='anchors-container'>        
+                              <div className='columns-anchors'>
+                                <p className='anchor-number'>{list.anchorNumber}</p>
                                 {list.slots.map((slot, j) => (
                                   <Droppable
                                     key={slot.id}
@@ -523,15 +580,11 @@ export default class Participant_Step4_Second extends React.Component {
                                     index={j}
                                   >
                                     {(provided, snapshot) => (
-                                      <div
+                                      <div className='slot'
                                         style={{
-                                          border: '1px solid black',
-                                          height: 80,
-                                          width: 100,
                                           background: snapshot.isDraggingOver
-                                          ? "lightCoral"
-                                          : "lightgreen",
-                                          margin: "0 0 8px 0",
+                                          ? "#51E2C2"
+                                          : "#fff",
                                         }}
                                       >
                                         <div
@@ -546,75 +599,54 @@ export default class Participant_Step4_Second extends React.Component {
                                             >
                                               {(provided, snapshot) => ( 
                                                 <div
+                                                  className='dropped-statement'
                                                   ref={provided.innerRef}
                                                   {...provided.draggableProps}
                                                   {...provided.dragHandleProps}
                                                   isDragging={snapshot.isDragging}
-                                                  style={{
-                                                    userSelect: "none",
-                                                    padding: 8,
-                                                    margin: "0 0 0 8px",
-                                                    height: 60,
-                                                    width: 100,
-                                                    backgroundColor: 'lightsalmon',
-                                                    color: "white",
-                                                    textAlign:'center',
-                                                    ...provided.draggableProps.style,
-                                                  }}
+                                                  
                                                 >
                                                   {item.content}
                                                 </div>  
                                               )}
                                             </Draggable>
-                                            // <div key={k}>
-                                            //   {item.content}
-                                            // </div>
                                           ))}
-
+                                          {provided.placeholder}
                                         </div>
                                       </div>
                                     )}    
                                   </Droppable>
-                                ))}     
+                                ))} 
+                                
                               </div>
                               </div>
                           </div>    
                         ))}
+                      
                     </div>
                     
-                    <div style={{display:'flex', justifyContent: "center", flexDirection: 'column'}}>
+                    <div style={{display:'flex', justifyContent: "center", flexDirection: 'column', alignItems: 'center'}}>
                       <Droppable
-                        droppableId="ITEMS"
+                        droppableId="ITEMS1"
                         // isDropDisabled={true}
                         direction={"horizontal"}
                       >
                         {(provided, snapshot) => (
                           <div
-                            style={{
-                              border: '1px solid lightGrey',
-                              padding: 10,
-                              width: 1000,
-                              display: 'flex',
-                              flexDirection: 'row',
-                            }}
+                            className='statements-container'
                             ref={provided.innerRef}
                             isDraggingOver={snapshot.isDraggingOver}
+                            style={{
+                                          background: snapshot.isDraggingOver
+                                          ? "#51E2C2"
+                                          : "#fff",
+                                        }}
                           >
-                            <div style={{ textAlign: 'center' }}>
-                              <h3>Statements category 1</h3>
+                            <div className='title-container'>
+                              <h3 className='category-title'>Statements category 1</h3>
                             </div>
-                            <div
-                              style={{
-                                border: '1px solid black',
-                                padding: 10,
-                                display: 'flex',
-                                flexDirection: 'row',
-                                width: 1010,
-                                overflowX: 'auto',
-                                margin: "0 0 0 20px",
-                              }}
-                            >
-                              {this.state.cat1statements2.map((statement2, index) => (
+                            <div className='statements-holder'>
+                              {this.state.cat1Statements.map((statement2, index) => (
                                 <Draggable
                                   key={statement2.id}
                                   draggableId={statement2.id}
@@ -622,19 +654,13 @@ export default class Participant_Step4_Second extends React.Component {
                                 >
                                   {(provided, snapshot) => ( 
                                     <div
+                                      className='statement-card'
                                       ref={provided.innerRef}
                                       {...provided.draggableProps}
                                       {...provided.dragHandleProps}
                                       isDragging={snapshot.isDragging}
                                       style={{
-                                        userSelect: "none",
-                                        padding: 8,
-                                        margin: "0 0 0 8px",
-                                        height: 60,
-                                        width: 100,
-                                        backgroundColor: 'lightsalmon',
-                                        color: "white",
-                                        textAlign:'center',
+                                        
                                         ...provided.draggableProps.style,
                                       }}
                                     >
@@ -643,6 +669,109 @@ export default class Participant_Step4_Second extends React.Component {
                                   )}
                                 </Draggable>
                               ))}
+                              {provided.placeholder}
+                            </div>
+                          </div>
+                        )}
+                      </Droppable>
+                    </div>
+
+                    <div style={{display:'flex', justifyContent: "center", flexDirection: 'column', alignItems: 'center'}}>
+                      <Droppable
+                        droppableId="ITEMS2"
+                        // isDropDisabled={true}
+                        direction={"horizontal"}
+                      >
+                        {(provided, snapshot) => (
+                          <div
+                            className='statements-container'
+                            ref={provided.innerRef}
+                            isDraggingOver={snapshot.isDraggingOver}
+                            style={{
+                                          background: snapshot.isDraggingOver
+                                          ? "#51E2C2"
+                                          : "#fff",
+                                        }}
+                          >
+                            <div className='title-container'>
+                              <h3 className='category-title'>Statements category 1</h3>
+                            </div>
+                            <div className='statements-holder'>
+                              {this.state.cat2Statements.map((statement2, index) => (
+                                <Draggable
+                                  key={statement2.id}
+                                  draggableId={statement2.id}
+                                  index={index}
+                                >
+                                  {(provided, snapshot) => ( 
+                                    <div
+                                      className='statement-card'
+                                      ref={provided.innerRef}
+                                      {...provided.draggableProps}
+                                      {...provided.dragHandleProps}
+                                      isDragging={snapshot.isDragging}
+                                      style={{
+                                        
+                                        ...provided.draggableProps.style,
+                                      }}
+                                    >
+                                      {statement2.content}
+                                    </div>  
+                                  )}
+                                </Draggable>
+                              ))}
+                              {provided.placeholder}
+                            </div>
+                          </div>
+                        )}
+                      </Droppable>
+                    </div>
+
+                    <div style={{display:'flex', justifyContent: "center", flexDirection: 'column', alignItems: 'center'}}>
+                      <Droppable
+                        droppableId="ITEMS3"
+                        // isDropDisabled={true}
+                        direction={"horizontal"}
+                      >
+                        {(provided, snapshot) => (
+                          <div
+                            className='statements-container'
+                            ref={provided.innerRef}
+                            isDraggingOver={snapshot.isDraggingOver}
+                            style={{
+                                          background: snapshot.isDraggingOver
+                                          ? "#51E2C2"
+                                          : "#fff",
+                                        }}
+                          >
+                            <div className='title-container'>
+                              <h3 className='category-title'>Statements category 1</h3>
+                            </div>
+                            <div className='statements-holder'>
+                              {this.state.cat3Statements.map((statement2, index) => (
+                                <Draggable
+                                  key={statement2.id}
+                                  draggableId={statement2.id}
+                                  index={index}
+                                >
+                                  {(provided, snapshot) => ( 
+                                    <div
+                                      className='statement-card'
+                                      ref={provided.innerRef}
+                                      {...provided.draggableProps}
+                                      {...provided.dragHandleProps}
+                                      isDragging={snapshot.isDragging}
+                                      style={{
+                                        
+                                        ...provided.draggableProps.style,
+                                      }}
+                                    >
+                                      {statement2.content}
+                                    </div>  
+                                  )}
+                                </Draggable>
+                              ))}
+                              {provided.placeholder}
                             </div>
                           </div>
                         )}
@@ -655,7 +784,9 @@ export default class Participant_Step4_Second extends React.Component {
                 </div>
               </div>
               <div>
-                <button onClick={this.next}>
+                <button
+                  className='next-btn'
+                  onClick={this.next}>
                   Next
                 </button>
               </div>

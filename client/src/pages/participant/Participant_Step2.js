@@ -47,18 +47,19 @@ export default class Participant_Step2 extends React.Component {
 
             <div>
             <div className='grid-container'>
-              <div className="item1 sub-header-container">
-                <h1 className="sub-heading">
-                  Privacy Notice
-                </h1>
-              </div>
+              <div className="item1 sub-header-container-white">
+                        <h1 className="sub-heading-blue-2">
+                            Privacy Notice
+                        </h1>
+                        <p className="sub-sub-heading-blue-2">Step 2 of 4</p>
+                    </div>
               <div className=' item6 navbar-container'>
                 <Navbar/>
               </div>
             </div>
 
             <div className='center-2'>
-                <p className='headings'>Survey Name</p>
+                <p className='headings'>Survey Title</p>
                 
                 <p className='survey-name'>{this.state.surveyName}</p>
                 
@@ -77,10 +78,12 @@ export default class Participant_Step2 extends React.Component {
                     value={this.state.agreed}
                     onChange={this.handleCheckboxChange}
                     />
-                </p>
+              </p>
+              
+              <div className='center-btn-row'> 
                 <Link to={'/Participant_Home'}>
                   <button
-                  className='space button button3'
+                  className='next2-btn'
                   onClick={this.clearLocalStorage}>
                       Disagree
                   </button>
@@ -95,7 +98,7 @@ export default class Participant_Step2 extends React.Component {
                       Agree
                   </button>
                 </Link>
-
+              </div>
             </div>
 
         </div>

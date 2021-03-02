@@ -55,6 +55,7 @@ export default class CreateSurvey_Step1 extends React.Component {
 
         e.preventDefault();
 
+
         const newSurvey = {
             adminID: this.state.adminID,
             surveyName: this.state.surveyName,
@@ -64,8 +65,7 @@ export default class CreateSurvey_Step1 extends React.Component {
             category3: this.state.category3,
             privacyStatement: this.state.privacyStatement,
             surveyCode: randomString,
-            date: this.state.date
-            
+            date: this.state.date 
         };
         
             createSurvey(newSurvey)
@@ -97,12 +97,14 @@ export default class CreateSurvey_Step1 extends React.Component {
                         <p className="sub-sub-heading-blue-2">Step 1 of 4</p>
                     </div>
                     <div className=' item6 navbar-container'>
-                    <Navbar/>
+                    {/* <Navbar/> */}
                     </div>
                 </div>
                 
            
                 <div className='content-container'>
+                    <Navbar />
+                    <div className='content-container-center'>
                     <div className='form-container'>
                         <form> 
                             
@@ -187,7 +189,8 @@ export default class CreateSurvey_Step1 extends React.Component {
                                 
                         </form>
                     </div>
-                </div>
+                    </div>
+                    </div>
             </div>
         )
     }

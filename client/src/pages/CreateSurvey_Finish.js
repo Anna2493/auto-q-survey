@@ -16,14 +16,14 @@ export default class CreateSurvey_Finish extends React.Component {
 
     componentDidMount() {
         this.setState({
-            surveyID: localStorage.getItem('SURVEY_ID'),
-            surveyCode: localStorage.getItem('SURVEY_CODE'),
+            surveyID: localStorage.getItem('CURRENT_ID'),
+            surveyCode: localStorage.getItem('CURRENT_CODE'),
         });
     };
 
     clearLocalStorage = () => {
         localStorage.removeItem('SURVEY_ID');
-        localStorage.removeItem('SURVEY_CODE');
+        localStorage.removeItem('CURRENT_SURVEY_CODEE');
         localStorage.removeItem('STATEMENTS');
         localStorage.removeItem('TOTAL_CARDS');
     }

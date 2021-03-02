@@ -13,13 +13,11 @@ export default class CreateSurvey_Step4 extends React.Component {
             question: '',
             questions: []
         }
-
-    }
-
-    componentDidMount() {
-        this.setState({ surveyID: localStorage.getItem('SURVEY_ID') });
     };
 
+    componentDidMount() {
+        this.setState({ surveyID: localStorage.getItem('CURRENT_ID') });
+    };
 
     handleChange = (event) => {
        this.setState({
@@ -28,7 +26,7 @@ export default class CreateSurvey_Step4 extends React.Component {
     };
 
     addQuestion = () => {
-        this.state.questions.push({ question: this.state.question, surveyID: localStorage.getItem('SURVEY_ID') });
+        this.state.questions.push({ question: this.state.question, surveyID: localStorage.getItem('CURRENT_ID') });
         this.setState({
             questions: this.state.questions,
             question: ''

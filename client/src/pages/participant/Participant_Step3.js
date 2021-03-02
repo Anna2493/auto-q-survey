@@ -326,8 +326,8 @@ export default class Participant_Step3 extends React.Component {
     if (this.state.columns['column-1'].statementIds.length === 0) {
       console.log(this.state.columns['column-1'])
       localStorage.setItem('CATEGORY1_STATEMENTS', JSON.stringify(this.state.category1List));
-      localStorage.setItem('CATEGORY2_STATEMENTS', this.state.category2List.toString());
-      localStorage.setItem('CATEGORY3_STATEMENTS', this.state.category3List.toString());
+      localStorage.setItem('CATEGORY2_STATEMENTS', JSON.stringify(this.state.category2List));
+      localStorage.setItem('CATEGORY3_STATEMENTS', JSON.stringify(this.state.category3List));
       this.setState({ Redirect: true });
     }
     else {
@@ -351,10 +351,11 @@ export default class Participant_Step3 extends React.Component {
 
             <div>
             <div className='grid-container'>
-              <div className="item1 sub-header-container">
-                <h1 className="sub-heading">
-                  Q-Sort - Step 1
+              <div className="item1 sub-header-container-white">
+                <h1 className="sub-heading-blue-2">
+                  Pre-Sort
                 </h1>
+                <p className="sub-sub-heading-blue-2">Step 3 of 4</p>
               </div>
               <div className=' item6 navbar-container'>
                 <Navbar/>
@@ -376,25 +377,15 @@ export default class Participant_Step3 extends React.Component {
                     )
 
                     return (
-                      <div style={{
-                        margin: 8,
-                        border: '1px solid lightgrey',
-                        borderRadius: 2,
-                        width: 220,
-                        display: 'flex',
-                        flexDirection: 'column'
-                      }}>
-                        <h2>{column.title}</h2>
+                      <div className='column'>
+                        <h2 className='column-name'>{column.title}</h2>
                         <Droppable droppableId={column.id} type="TASK">
                           {(provided, snapshot) => (
-                            <div 
+                            <div className='statements-holder1'
                               style={{
-                                padding: 8,
-                                transition: 'background-color 0.2s ease',
-                                backgroundColor: 'skyblue',
-                                flexGrow: 1,
-                                minHeight: 100,
-
+                                 background: snapshot.isDraggingOver
+                                  ? "#fff"
+                                  : "transparent",
                               }}
                               ref={provided.innerRef}
                               {...provided.droppableProps}
@@ -412,15 +403,11 @@ export default class Participant_Step3 extends React.Component {
                                         ref={provided.innerRef}
                                         {...provided.draggableProps}
                                         {...provided.dragHandleProps}
-                                        style={{
-                                          userSelect: "none",
-                                          padding: 16,
-                                          margin: "0 0 8px 0",
-                                          minHeight: "50px",
+                                      className='statement-card1'  
+                                      style={{
                                           backgroundColor: snapshot.isDragging
-                                            ? "#263B4A"
-                                            : "#456C86",
-                                            color: "white",
+                                            ? "#51E2C2"
+                                            : "#fff",
                                             ...provided.draggableProps.style
                                         }}
                                       >
@@ -528,7 +515,7 @@ export default class Participant_Step3 extends React.Component {
             </div>    */}
 
               <div>
-                <button onClick={this.next}>
+                <button className='next-btn' onClick={this.next}>
                   Next
                 </button>
               </div>
