@@ -89,7 +89,7 @@ export default class Participant_Step2 extends React.Component {
                   </button>
                   </Link>
                 
-                <Link to={'/Participant_Step3'}>
+                <Link to={'/Participant_Step3_questions'}>
                   <button
                     type="submit" 
                     className = {agreeBtnStyle}

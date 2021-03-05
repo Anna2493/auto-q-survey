@@ -418,7 +418,7 @@ export default class CreateSurvey_Step2 extends React.Component {
          if (this.state.Redirect) {
             return (
                 <Redirect to={{
-                pathname: '/CreateSurvey_Step3_questions',
+                pathname: '/CreateSurvey_Step3',
                 }}/>
             )
         };

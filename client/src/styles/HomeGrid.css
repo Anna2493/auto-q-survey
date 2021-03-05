@@ -1226,6 +1226,46 @@
     font-size: 15px;
     font-family: 'Raleway', sans-serif;
 }
+/*--------------PARTICIPANT STEP 3 PAGE QUESTIONS--------------*/
+.question-cards-container2{
+    height: 500px;
+    width: 470px;
+    box-shadow: 0 0 20px #6fc7b0;
+    margin-top: 2px;
+    background: #fff;
+    background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.3)
+    );
+    z-index: 2;
+    backdrop-filter: blur(2rem);
+    border-radius: 4px;
+    overflow-y: auto;
+}
+
+.question-container{
+    display:block;
+	float: left;
+    margin-left: 20px;
+}
+
+.question{
+    font-size: 15px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.answer-input{
+    background-color: transparent;
+    width: 400px;
+    padding: 10PX;
+    border: none;
+    border-bottom: 1px solid #f0f0f0;
+    font-family: 'Raleway', sans-serif;
+    color: #005675;
+    font-size: 20px;
+    margin-left: 20px;
+}
 
 /*--------------PARTICIPANT STEP 3 PAGE--------------*/
 .cards-container-parent{
