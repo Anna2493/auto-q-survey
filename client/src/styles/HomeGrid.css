@@ -2,21 +2,15 @@
 .nav-bar-container{
     height: 80px;
     display: flex;
-    justify-content: left;
+    justify-content: space-evenly;
     align-items: center;
     font-size: 1.2rem;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: 'Lato', sans-serif;
-    background: #fff;
-    background: linear-gradient(
-    to right bottom,
-    rgba(255, 255, 255, 0.7),
-    rgba(255, 255, 255, 0.3)
-    );
+    background: #6fc7b0;
     backdrop-filter: blur(2rem);
-    /* box-shadow: 0 0 20px #6fc7b0; */
 }
 
 .navbar-title{
@@ -25,6 +19,26 @@
     margin: 0;
     margin-left: 50px;
     cursor: pointer;  
+}
+/* .nav-bar-btn-container{
+    display: grid;
+    justify-content: end;
+} */
+.nav-bar-btn{
+    color: #005675;
+    border: none;
+    font-size: 20px;
+    font-family: 'Raleway', sans-serif;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.nav-bar-btn:hover{
+    background: #005675;
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+
 }
 
 .item1 { grid-area: sub-heading; }
@@ -287,9 +301,9 @@
 .content-container {
     background: linear-gradient(to right top, #005675, #6fc7b0, #fff);
     min-height: 100vh;
-    /* display: flex;
+    display: flex;
     align-items: center;
-    justify-content: center;   */
+    justify-content: center;  
 }
 
 .form-container {
@@ -551,6 +565,42 @@
     color: #fff;
     transition: all 0.2s ease-in-out;
 }
+.logout-btn{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+     margin-top: 30px;
+    background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.3)
+    );
+    color: #7c99a3;
+    padding: 5px 10px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: 'Raleway', sans-serif;
+    width: 250px;
+    height: 50px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 0 20px #6fc7b0;
+}
+.button-with-img{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    
+}
+.logout-icon{
+    width: 25px;
+    height: 27px;
+    margin-right: 50px;
+    border: 2px solid black;
+}
 
 /*--------------CREATE SURVEY STEP 1 PAGE--------------*/
 
@@ -637,7 +687,8 @@
     
     background: linear-gradient(to right top, #005675, #6fc7b0, #fff);
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    min-height: 1000px;
     /* display: flex;      
     justify-content: center; */
 }
@@ -645,6 +696,12 @@
 .center{
     display: flex;      
     justify-content: center;
+}
+
+.row1{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
 }
 
 .center-column{
@@ -670,6 +727,29 @@
 }
 
 .add-anchor-btn:hover {
+    background: #005675;
+    color: #fff;
+}
+
+.reset-btn {
+    background: #fff;
+    z-index: 2;
+    backdrop-filter: blur(2rem);
+    border: none;
+    color: #7c99a3;
+    padding: 5px 10px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 4px;
+    margin-top: 30px;
+    height: 25px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.reset-btn:hover {
     background: #005675;
     color: #fff;
 }
@@ -712,7 +792,7 @@
 .slot-container{
     margin-top: 10px;
 }
-.slot {
+.slot1 {
     width: 50px;
     height: 50px;
     margin: 10px;
@@ -727,6 +807,33 @@
     border: none;
     cursor: pointer;
     
+}
+
+.remove-slot-btn {
+    background: #fff;
+    background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.3)
+    );
+    z-index: 2;
+    backdrop-filter: blur(2rem);
+    border: none;
+    color: #005675;
+    padding: 5px 10px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;    
+    margin-top: 10px;
+    font-size: 20px;
+}
+.remove-slot-btn:hover{
+    color: #7c99a3;
+    background-color: #fc8397; 
 }
 
 /*--------------CREATE SURVEY STEP 3 PAGE--------------*/

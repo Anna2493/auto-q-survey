@@ -45,93 +45,95 @@ export default class Participant_Step4_Second extends React.Component {
 
       
 
-      category1List: [],
-      category2List: [],
-      category3List: [],
+      // category1List: [],
+      // category2List: [],
+      // category3List: [],
 
-      columnOrder: ['column-1', 'column-2', 'column-3'],
-      columns: {
-        'column-1': { id: 'column-1', title: localStorage.getItem('CATEGORY1'), statementIds: [] },
-        'column-2': { id: 'column-2', title: localStorage.getItem('CATEGORY2'), statementIds: [] },
-        'column-3': { id: 'column-3', title: localStorage.getItem('CATEGORY3'), statementIds: [] },
-      },
+      // columnOrder: ['column-1', 'column-2', 'column-3'],
+      // columns: {
+      //   'column-1': { id: 'column-1', title: localStorage.getItem('CATEGORY1'), statementIds: [] },
+      //   'column-2': { id: 'column-2', title: localStorage.getItem('CATEGORY2'), statementIds: [] },
+      //   'column-3': { id: 'column-3', title: localStorage.getItem('CATEGORY3'), statementIds: [] },
+      // },
 
       
 
-      anchors2: [
-            { id: '0', anchorNumber: -3, slots: [{ id: '0', statement: [] }] },
-            { id: '1', anchorNumber: -2, slots: [{ id: '0', statement: [] }, { id: '1', statement: [] }] },
-            { id: '2', anchorNumber: -1, slots: [{ id: '0', statement: [] }, { id: '1', statement: [] }, { id: '2', statement: [] }] },
-            { id: '3', anchorNumber: 0, slots: [{ id: '0', statement: [] }, { id: '1', statement: [] }, { id: '2', statement: [] }, { id: '3', statement: [] }] },
-            { id: '4', anchorNumber: 1, slots: [{ id: '0', statement: [] }, { id: '1', statement: [] }, { id: '2', statement: [] }] },
-            { id: '5', anchorNumber: 2, slots: [{ id: '0', statement: [] }, { id: '1', statement: [] }] },
-            { id: '6', anchorNumber: 3, slots: [{ id: '0', statement: [] }] },
-          ],
+      // anchors2: [
+      //       { id: '0', anchorNumber: -3, slots: [{ id: '0', statement: [] }] },
+      //       { id: '1', anchorNumber: -2, slots: [{ id: '0', statement: [] }, { id: '1', statement: [] }] },
+      //       { id: '2', anchorNumber: -1, slots: [{ id: '0', statement: [] }, { id: '1', statement: [] }, { id: '2', statement: [] }] },
+      //       { id: '3', anchorNumber: 0, slots: [{ id: '0', statement: [] }, { id: '1', statement: [] }, { id: '2', statement: [] }, { id: '3', statement: [] }] },
+      //       { id: '4', anchorNumber: 1, slots: [{ id: '0', statement: [] }, { id: '1', statement: [] }, { id: '2', statement: [] }] },
+      //       { id: '5', anchorNumber: 2, slots: [{ id: '0', statement: [] }, { id: '1', statement: [] }] },
+      //       { id: '6', anchorNumber: 3, slots: [{ id: '0', statement: [] }] },
+      //     ],
 
-      statements1: {},
+      // statements1: {},
 
-      anchors3: {
-        ['anchor-1']: [],
-        ['anchor-2']: [],
-        ['anchor-3']: [],
-      },
+      // anchors3: {
+      //   ['anchor-1']: [],
+      //   ['anchor-2']: [],
+      //   ['anchor-3']: [],
+      // },
       
 
-       anchors4: [
-        {
-          anchors: [
-            { id: '0', anchorNumber: -3, slots: [{ id: '0', statement: [] }] },
-            { id: '1', anchorNumber: -2, slots: [{ id: '1', statement: [] }, { id: '2', statement: [] }] },
-            { id: '2', anchorNumber: -1, slots: [{ id: '3', statement: [] }, { id: '4', statement: [] }, { id: '5', statement: [] }] },
-            { id: '3', anchorNumber: 0, slots: [{ id: '6', statement: [] }, { id: '7', statement: [] }, { id: '8', statement: [] }, { id: '9', statement: [] }] },
-            { id: '4', anchorNumber: 1, slots: [{ id: '10', statement: [] }, { id: '11', statement: [] }, { id: '12', statement: [] }] },
-            { id: '5', anchorNumber: 2, slots: [{ id: '13', statement: [] }, { id: '14', statement: [] }] },
-            { id: '6', anchorNumber: 3, slots: [{ id: '15', statement: [] }] },
-          ],
+      //  anchors4: [
+      //   {
+      //     anchors: [
+      //       { id: '0', anchorNumber: -3, slots: [{ id: '0', statement: [] }] },
+      //       { id: '1', anchorNumber: -2, slots: [{ id: '1', statement: [] }, { id: '2', statement: [] }] },
+      //       { id: '2', anchorNumber: -1, slots: [{ id: '3', statement: [] }, { id: '4', statement: [] }, { id: '5', statement: [] }] },
+      //       { id: '3', anchorNumber: 0, slots: [{ id: '6', statement: [] }, { id: '7', statement: [] }, { id: '8', statement: [] }, { id: '9', statement: [] }] },
+      //       { id: '4', anchorNumber: 1, slots: [{ id: '10', statement: [] }, { id: '11', statement: [] }, { id: '12', statement: [] }] },
+      //       { id: '5', anchorNumber: 2, slots: [{ id: '13', statement: [] }, { id: '14', statement: [] }] },
+      //       { id: '6', anchorNumber: 3, slots: [{ id: '15', statement: [] }] },
+      //     ],
           
-          cat1: [
-            { id: '16', content: 'Statement 1' },
-            { id: '17', content: 'Statement 2' },
-          ], 
-          cat2: [
-            { id: '18', content: 'Statement 3' },
-            { id: '19', content: 'Statement 4' },
-          ],
-          cat3: [
-            { id: '20', content: 'Statement 5' },
-            { id: '21', content: 'Statement 6' },
-          ]
+      //     cat1: [
+      //       { id: '16', content: 'Statement 1' },
+      //       { id: '17', content: 'Statement 2' },
+      //     ], 
+      //     cat2: [
+      //       { id: '18', content: 'Statement 3' },
+      //       { id: '19', content: 'Statement 4' },
+      //     ],
+      //     cat3: [
+      //       { id: '20', content: 'Statement 5' },
+      //       { id: '21', content: 'Statement 6' },
+      //     ]
 
-        },
-      ],
+      //   },
+      // ],
        
-      anchors5: [
-            { id: '0', anchorNumber: -3, slots: [{ id: '0', statement: [] }] },
-            { id: '1', anchorNumber: -2, slots: [{ id: '1', statement: [] }, { id: '2', statement: [] }] },
-            { id: '2', anchorNumber: -1, slots: [{ id: '3', statement: [] }, { id: '4', statement: [] }, { id: '5', statement: [] }] },
-            { id: '3', anchorNumber: 0, slots: [{ id: '6', statement: [] }, { id: '7', statement: [] }, { id: '8', statement: [] }, { id: '9', statement: [] }] },
-            { id: '4', anchorNumber: 1, slots: [{ id: '10', statement: [] }, { id: '11', statement: [] }, { id: '12', statement: [] }] },
-            { id: '5', anchorNumber: 2, slots: [{ id: '13', statement: [] }, { id: '14', statement: [] }] },
-            { id: '6', anchorNumber: 3, slots: [{ id: '15', statement: [] }] },  
-      ],
-      cat1statements2: [
-        { id: '0', content: 'Statement 1' },
-        { id: '1', content: 'Statement 2' },
-        { id: '2', content: 'Statement 3' },
-        { id: '3', content: 'Statement 4' },
-        { id: '4', content: 'Statement 5' },
-        { id: '5', content: 'Statement 6' },
-        { id: '6', content: 'Statement 7' },
-        { id: '7', content: 'Statement 8' },
-        { id: '8', content: 'Statement 9' },
-        { id: '9', content: 'Statement 10' },
-        { id: '10', content: 'Statement 11' },
-      ],
+      // anchors5: [
+      //       { id: '0', anchorNumber: -3, slots: [{ id: '0', statement: [] }] },
+      //       { id: '1', anchorNumber: -2, slots: [{ id: '1', statement: [] }, { id: '2', statement: [] }] },
+      //       { id: '2', anchorNumber: -1, slots: [{ id: '3', statement: [] }, { id: '4', statement: [] }, { id: '5', statement: [] }] },
+      //       { id: '3', anchorNumber: 0, slots: [{ id: '6', statement: [] }, { id: '7', statement: [] }, { id: '8', statement: [] }, { id: '9', statement: [] }] },
+      //       { id: '4', anchorNumber: 1, slots: [{ id: '10', statement: [] }, { id: '11', statement: [] }, { id: '12', statement: [] }] },
+      //       { id: '5', anchorNumber: 2, slots: [{ id: '13', statement: [] }, { id: '14', statement: [] }] },
+      //       { id: '6', anchorNumber: 3, slots: [{ id: '15', statement: [] }] },  
+      // ],
+      // cat1statements2: [
+      //   { id: '0', content: 'Statement 1' },
+      //   { id: '1', content: 'Statement 2' },
+      //   { id: '2', content: 'Statement 3' },
+      //   { id: '3', content: 'Statement 4' },
+      //   { id: '4', content: 'Statement 5' },
+      //   { id: '5', content: 'Statement 6' },
+      //   { id: '6', content: 'Statement 7' },
+      //   { id: '7', content: 'Statement 8' },
+      //   { id: '8', content: 'Statement 9' },
+      //   { id: '9', content: 'Statement 10' },
+      //   { id: '10', content: 'Statement 11' },
+      // ],
 
       anchors: [],
       cat1Statements: [],
       cat2Statements: [],
       cat3Statements: [],
+
+      sortResults : [],
       
     }
   };
@@ -192,24 +194,31 @@ export default class Participant_Step4_Second extends React.Component {
           //GET STATEMENTS CATEGORY 1
           var statements1 = localStorage.getItem('CATEGORY1_STATEMENTS')
           var statementsCat1 = JSON.parse(statements1)
+          var number = 0;
           for (var i = 0; i < statementsCat1.length; i++){
-            this.state.cat1Statements.push({ id: uuid().toString(), content: statementsCat1[i].content, category: 1 })
+            number++;
+            this.state.cat1Statements.push({ id: uuid().toString(), content: statementsCat1[i].content, category: 1, statementNumber: number })
           };
           //GET STATEMENTS CATEGORY 2
           var statements2 = localStorage.getItem('CATEGORY2_STATEMENTS')
           var statementsCat2 = JSON.parse(statements2) 
           for (var i = 0; i < statementsCat2.length; i++){
-            this.state.cat2Statements.push({ id: uuid().toString(), content: statementsCat2[i].content, category: 2 })
+            number++;
+            this.state.cat2Statements.push({ id: uuid().toString(), content: statementsCat2[i].content, category: 2, statementNumber: number })
           };
           //GET STATEMENTS CATEGORY 3
           var statements3 = localStorage.getItem('CATEGORY3_STATEMENTS')
           var statementsCat3 = JSON.parse(statements3)
           for (var i = 0; i < statementsCat3.length; i++){
-            this.state.cat3Statements.push({ id: uuid().toString(), content: statementsCat3[i].content, category: 3 })
+            number++;
+            this.state.cat3Statements.push({ id: uuid().toString(), content: statementsCat3[i].content, category: 3, statementNumber: number })
           };
           this.sort('anchorNumber', anchorsArr3)
           this.setState({ anchors: anchorsArr3});
           console.log(this.state.anchors);
+          console.log(this.state.cat1Statements)
+          console.log(this.state.cat2Statements)
+          console.log(this.state.cat3Statements)
           
         })
       .catch(error => console.log(error));
@@ -292,7 +301,7 @@ export default class Participant_Step4_Second extends React.Component {
           copyCat1.splice(source.index, 1);
           this.setState({ cat1Statements: copyCat1 });
           //push selected statement onto the selected slot
-          destinationSlot.statement.push({ id:copied[0].id, content: copied[0].content, category: 1 });
+          destinationSlot.statement.push({ id:copied[0].id, content: copied[0].content, category: 1, statementNumber: copied[0].statementNumber });
         //remove already existing statement within the array
         if (destinationSlot.statement.length == 2) {
           var removed = destinationSlot.statement.splice(0, 1)
@@ -331,7 +340,7 @@ export default class Participant_Step4_Second extends React.Component {
           copyCat2.splice(source.index, 1);
           this.setState({ cat2Statements: copyCat2 });
           //push selected statement onto the selected slot
-          destinationSlot.statement.push({ id:copied2[0].id, content: copied2[0].content, category: 2 });
+          destinationSlot.statement.push({ id:copied2[0].id, content: copied2[0].content, category: 2, statementNumber: copied2[0].statementNumber });
         
           //remove already existing statement within the array
          if (destinationSlot.statement.length == 2) {
@@ -357,40 +366,6 @@ export default class Participant_Step4_Second extends React.Component {
           
         break;
       case 'ITEMS3':
-        //Move statements between categories
-        // if (destination.droppableId == 'ITEMS2') {
-        //   const copied4 = copy(
-        //     this.state.cat3Statements,
-        //     this.state.cat2Statements,
-        //     source,
-        //     destination
-        //   );
-        //   //remove moved statement from the original array
-        //   var copyCat3 = this.state.cat3Statements;
-        //   copyCat3.splice(source.index, 1);
-        //   this.setState({ cat3Statements: copyCat3 });
-        //   //update new state
-        //   this.state.cat2Statements.push({ id: copied4[0].id, content: copied4[0].content, category: 2})
-          
-        // }
-        // else if (destination.droppableId == 'ITEMS1') {
-        //   const copied5 = copy(
-        //     this.state.cat3Statements,
-        //     this.state.cat1Statements,
-        //     source,
-        //     destination
-        //   );
-        //   console.log(copied5)
-        //   //remove moved statement from the original array
-        //   var copyCat4 = this.state.cat3Statements;
-        //   copyCat4.splice(source.index, 1);
-          
-        //   //this.setState({ cat3Statements: copyCat4 });
-        //   // //update new state
-        //   this.state.cat1Statements.push({ id: copied5[0].id, content: copied5[0].content, category: 1})
-          
-        // }
-        // else {
           const copied3 = copy(
             this.state.cat3Statements,
             destinationSlot.statement,
@@ -403,7 +378,7 @@ export default class Participant_Step4_Second extends React.Component {
           copyCat3.splice(source.index, 1);
           this.setState({ cat3Statements: copyCat3 });
           //push selected statement onto the selected slot
-          destinationSlot.statement.push({ id: copied3[0].id, content: copied3[0].content, category: 3 });
+          destinationSlot.statement.push({ id: copied3[0].id, content: copied3[0].content, category: 3, statementNumber: copied3[0].statementNumber });
           //remove already existing statement within the array
           if (destinationSlot.statement.length == 2) {
             var removed = destinationSlot.statement.splice(0, 1)
@@ -424,7 +399,6 @@ export default class Participant_Step4_Second extends React.Component {
               this.setState({ cat3Statements: copyCat3 });
             };
           }
-        //}
         break;
       
       default:
@@ -532,6 +506,24 @@ export default class Participant_Step4_Second extends React.Component {
 
   };
 
+  getSortResults = () => {
+    console.log(this.state.anchors);
+
+    var results = [];
+
+    this.state.anchors.map((anchor, index) => {
+      anchor.slots.map((slot, i) => {
+        slot.statement.map((s, j) => {
+          results.push({anchorNumber: anchor.anchorNumber, statement:s.content, statementNumber:s.statementNumber})
+        })
+      })
+    })
+
+    console.log(results)
+    this.setState({ sortResults: results });
+    
+  }
+
   render() {
         return (
 
@@ -578,6 +570,7 @@ export default class Participant_Step4_Second extends React.Component {
                                     key={slot.id}
                                     droppableId={slot.id}
                                     index={j}
+                                    // direction={"horizontal"} 
                                   >
                                     {(provided, snapshot) => (
                                       <div className='slot'
@@ -589,6 +582,8 @@ export default class Participant_Step4_Second extends React.Component {
                                       >
                                         <div
                                           ref={provided.innerRef}
+                                          {...provided.draggableProps}
+                                          {...provided.dragHandleProps}
                                           isDraggingOver={snapshot.isDraggingOver}
                                         >
                                           {slot.statement.map((item, k) => (
@@ -786,7 +781,7 @@ export default class Participant_Step4_Second extends React.Component {
               <div>
                 <button
                   className='next-btn'
-                  onClick={this.next}>
+                  onClick={this.getSortResults}>
                   Next
                 </button>
               </div>

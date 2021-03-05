@@ -17,11 +17,19 @@ class Navbar extends Component {
                 <h1 className='navbar-title'>
                     autoQsurvey
                 </h1>
+                <div className='nav-bar-btn-container'>
+                <button className='nav-bar-btn'>
+                    How to
+                </button>
+                </div>
                 {/* <div className='menu-icon' onClick={this.handleClick}>
                     <i className={this.state.clicked ? 
                         'fas fa-times' : 'fas fa-bars'}>
                         </i>
-                </div> */}
+                </div>  */}
+                {/* <ul> */}
+                    
+                {/* </ul> */}
                 {/* <ul className={this.state.clicked ? 
                         'nav-menu active' : 'nav-menu'}>
                     {MenuItems.map((item, index) => {

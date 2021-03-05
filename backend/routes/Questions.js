@@ -19,6 +19,21 @@ questions.post('/api/question', (req, res) => {
         .catch(err => {
             res.send('error ' + err)
         })
-})   
+});
+
+//GET QUESTIONS
+questions.post('/api/getQuestions', (req, res) => {
+    Question.findAll({
+        where: {
+            survey_id: req.body.surveyID
+        }
+    })
+        .then(question => {
+            res.json(question); 
+        })
+        .catch(err => {
+        res.status(400).json({ error: err })
+    })
+})
     
 module.exports = questions

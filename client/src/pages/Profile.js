@@ -4,6 +4,8 @@ import { Link, Redirect } from 'react-router-dom';
 import Navbar from '../components/Navbar/Navbar';
 import { getSurveys } from '../BackendFunctions';
 import { withConverter } from "js-cookie";
+import Icon from '../icons/logout.png';
+import Cookies from 'js-cookie';
 
 //TODO change token expiration
 export default class Profile extends React.Component {
@@ -84,23 +86,25 @@ export default class Profile extends React.Component {
     
   };
 
+  logout = () => {
+    // Cookies.set('user', 'true');
+    Cookies.remove('user', 'true');
+    this.setState({ Redirect: true });
+    
+  }
+
 
   render() {
-      console.log(this.state.surveysData)
+    if (this.state.Redirect) {
+      return (
+        <Redirect to={{
+          pathname: '/',
+        }}/>
+      )
+    }
+      
         return (
           <div>
-
-            {/* <div className='grid-container'>
-              <div className="item1 sub-header-container">
-                <h1 className="sub-heading">
-                  Dashboard
-                </h1>
-              </div>
-              <div className=' item6 navbar-container'> */}
-                {/* <Navbar/> */}
-              {/* </div>
-            </div> */}
-
             <div className='profile-bg'>
               <Navbar/>
             <div className='content-container-center'> 
@@ -117,7 +121,9 @@ export default class Profile extends React.Component {
                   </div>   
                 <div><button className='profile-btn'>Change Password</button></div> 
                 <div><button className='profile-btn'>Edit Avatar</button></div> 
-                <div><button className='profile-btn'>Delete Account</button></div> 
+                      <div><button className='profile-btn'>Delete Account</button></div>
+                <div><button className='profile-btn' onClick={this.logout}>Logout</button></div>       
+                {/* <div className='button-with-img'><button className='logout-btn'> <img className='logout-icon' src={Icon} /> Logout</button></div>  */}
                 </div>
               </div>
 
@@ -147,7 +153,7 @@ export default class Profile extends React.Component {
                           <button className='survey-btn'>Preview</button>
                           <button className='survey-btn'>Edit</button>
                           <button className='survey-btn'>Delete</button>
-                          <button className='survey-btn'>Copy</button>
+                            <button className='survey-btn'>Copy</button>
                         </div>
                       </div>
                       ))

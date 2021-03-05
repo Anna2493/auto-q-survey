@@ -21,9 +21,9 @@ import CreateSurvey_Finish from './pages/CreateSurvey_Finish';
 import Participant_Home from './pages/participant/Participant_Home';
 import Participant_Step1 from './pages/participant/Participant_Step1';
 import Participant_Step2 from './pages/participant/Participant_Step2';
+import Participant_Step3_questions from './pages/participant/Participant_Step3_questions';
 import Participant_Step3 from './pages/participant/Participant_Step3';
 import Participant_Step4 from './pages/participant/Participant_Step4';
-import Participant_Step4_test from './pages/participant/Participant_Step4_test';
 import Participant_Step4_Second from './pages/participant/Participant_Step4_Second';
 
 function App() {
@@ -59,7 +59,7 @@ const Routes = () => {
       <Route path="/" exact component={HomePage} />
       <Route path="/Admin_Home" exact component={Admin_Home} />
       <Route path="/register" component={Registration} />
-      <ProtectedProfile path="/profile" auth={Auth.auth} component={Profile} />
+      <Route path="/profile" component={Profile} />
       <Route path="/CreateSurvey_Step1" component={CreateSurvey_Step1} />
       <Route path="/CreateSurvey_Step2" component={CreateSurvey_Step2} />
       <Route path="/CreateSurvey_Step3" component={CreateSurvey_Step3} />
@@ -70,9 +70,9 @@ const Routes = () => {
       <Route path="/Participant_Home" component={Participant_Home} />
       <Route path="/Participant_Step1" component={Participant_Step1} />
       <Route path="/Participant_Step2" component={Participant_Step2} />
+      <Route path="/Participant_Step3_questions" component={Participant_Step3_questions} />
       <Route path="/Participant_Step3" component={Participant_Step3} />
       <Route path="/Participant_Step4" component={Participant_Step4} />
-      <Route path="/Participant_Step4_test" component={Participant_Step4_test} />
       <Route path="/Participant_Step4_Second" component={Participant_Step4_Second} />
     </Switch>
   )
