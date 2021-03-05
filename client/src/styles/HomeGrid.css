@@ -1340,7 +1340,7 @@
     padding: 8px;
     transition: background-color 0.2s ease;
     flex-grow: 1;
-    min-height: 100px;
+    min-height: 300px;
 }
 
 .statement-card1{

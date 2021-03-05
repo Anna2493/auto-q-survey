@@ -395,8 +395,7 @@ export default class Participant_Step3 extends React.Component {
                                 <Draggable
                                   key={statement.id}
                                   draggableId={statement.id}
-                                  index={index}
-                                  
+                                  index={index}                                 
                                   >
                                     {(provided, snapshot) => (
                                       <div

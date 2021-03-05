@@ -4,6 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import uuid from 'react-uuid';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { createResult } from '../../BackendFunctions';
 
 //TODO store admin name and email when creating survey
 //TODO add questions before this page 
@@ -42,91 +43,6 @@ export default class Participant_Step4_Second extends React.Component {
       category1: '',
       category2: '',
       category3: '',
-
-      
-
-      // category1List: [],
-      // category2List: [],
-      // category3List: [],
-
-      // columnOrder: ['column-1', 'column-2', 'column-3'],
-      // columns: {
-      //   'column-1': { id: 'column-1', title: localStorage.getItem('CATEGORY1'), statementIds: [] },
-      //   'column-2': { id: 'column-2', title: localStorage.getItem('CATEGORY2'), statementIds: [] },
-      //   'column-3': { id: 'column-3', title: localStorage.getItem('CATEGORY3'), statementIds: [] },
-      // },
-
-      
-
-      // anchors2: [
-      //       { id: '0', anchorNumber: -3, slots: [{ id: '0', statement: [] }] },
-      //       { id: '1', anchorNumber: -2, slots: [{ id: '0', statement: [] }, { id: '1', statement: [] }] },
-      //       { id: '2', anchorNumber: -1, slots: [{ id: '0', statement: [] }, { id: '1', statement: [] }, { id: '2', statement: [] }] },
-      //       { id: '3', anchorNumber: 0, slots: [{ id: '0', statement: [] }, { id: '1', statement: [] }, { id: '2', statement: [] }, { id: '3', statement: [] }] },
-      //       { id: '4', anchorNumber: 1, slots: [{ id: '0', statement: [] }, { id: '1', statement: [] }, { id: '2', statement: [] }] },
-      //       { id: '5', anchorNumber: 2, slots: [{ id: '0', statement: [] }, { id: '1', statement: [] }] },
-      //       { id: '6', anchorNumber: 3, slots: [{ id: '0', statement: [] }] },
-      //     ],
-
-      // statements1: {},
-
-      // anchors3: {
-      //   ['anchor-1']: [],
-      //   ['anchor-2']: [],
-      //   ['anchor-3']: [],
-      // },
-      
-
-      //  anchors4: [
-      //   {
-      //     anchors: [
-      //       { id: '0', anchorNumber: -3, slots: [{ id: '0', statement: [] }] },
-      //       { id: '1', anchorNumber: -2, slots: [{ id: '1', statement: [] }, { id: '2', statement: [] }] },
-      //       { id: '2', anchorNumber: -1, slots: [{ id: '3', statement: [] }, { id: '4', statement: [] }, { id: '5', statement: [] }] },
-      //       { id: '3', anchorNumber: 0, slots: [{ id: '6', statement: [] }, { id: '7', statement: [] }, { id: '8', statement: [] }, { id: '9', statement: [] }] },
-      //       { id: '4', anchorNumber: 1, slots: [{ id: '10', statement: [] }, { id: '11', statement: [] }, { id: '12', statement: [] }] },
-      //       { id: '5', anchorNumber: 2, slots: [{ id: '13', statement: [] }, { id: '14', statement: [] }] },
-      //       { id: '6', anchorNumber: 3, slots: [{ id: '15', statement: [] }] },
-      //     ],
-          
-      //     cat1: [
-      //       { id: '16', content: 'Statement 1' },
-      //       { id: '17', content: 'Statement 2' },
-      //     ], 
-      //     cat2: [
-      //       { id: '18', content: 'Statement 3' },
-      //       { id: '19', content: 'Statement 4' },
-      //     ],
-      //     cat3: [
-      //       { id: '20', content: 'Statement 5' },
-      //       { id: '21', content: 'Statement 6' },
-      //     ]
-
-      //   },
-      // ],
-       
-      // anchors5: [
-      //       { id: '0', anchorNumber: -3, slots: [{ id: '0', statement: [] }] },
-      //       { id: '1', anchorNumber: -2, slots: [{ id: '1', statement: [] }, { id: '2', statement: [] }] },
-      //       { id: '2', anchorNumber: -1, slots: [{ id: '3', statement: [] }, { id: '4', statement: [] }, { id: '5', statement: [] }] },
-      //       { id: '3', anchorNumber: 0, slots: [{ id: '6', statement: [] }, { id: '7', statement: [] }, { id: '8', statement: [] }, { id: '9', statement: [] }] },
-      //       { id: '4', anchorNumber: 1, slots: [{ id: '10', statement: [] }, { id: '11', statement: [] }, { id: '12', statement: [] }] },
-      //       { id: '5', anchorNumber: 2, slots: [{ id: '13', statement: [] }, { id: '14', statement: [] }] },
-      //       { id: '6', anchorNumber: 3, slots: [{ id: '15', statement: [] }] },  
-      // ],
-      // cat1statements2: [
-      //   { id: '0', content: 'Statement 1' },
-      //   { id: '1', content: 'Statement 2' },
-      //   { id: '2', content: 'Statement 3' },
-      //   { id: '3', content: 'Statement 4' },
-      //   { id: '4', content: 'Statement 5' },
-      //   { id: '5', content: 'Statement 6' },
-      //   { id: '6', content: 'Statement 7' },
-      //   { id: '7', content: 'Statement 8' },
-      //   { id: '8', content: 'Statement 9' },
-      //   { id: '9', content: 'Statement 10' },
-      //   { id: '10', content: 'Statement 11' },
-      // ],
 
       anchors: [],
       cat1Statements: [],
@@ -514,7 +430,12 @@ export default class Participant_Step4_Second extends React.Component {
     this.state.anchors.map((anchor, index) => {
       anchor.slots.map((slot, i) => {
         slot.statement.map((s, j) => {
-          results.push({anchorNumber: anchor.anchorNumber, statement:s.content, statementNumber:s.statementNumber})
+          results.push({
+            anchorNumber: anchor.anchorNumber,
+            statement: s.content,
+            statementNumber: s.statementNumber,
+            surveyId: this.state.surveyID
+          })
         })
       })
     })
@@ -522,9 +443,39 @@ export default class Participant_Step4_Second extends React.Component {
     console.log(results)
     this.setState({ sortResults: results });
     
+  };
+
+  next = (e) => {
+    this.getSortResults();
+    e.preventDefault();
+
+    const result = this.state.sortResults;
+    var newResult = {};
+    var success = [];
+    for (var i = 0; i < result.length; i++){
+      newResult = result[i];
+      createResult(newResult)
+        .then(response => {
+        success.push(response.ok)
+        })
+      .catch(err => { console.log(err) })
+    }
+    var check = success.every( function (value, _, array) { return array[0] === value; });
+        if (check === true) {
+            //this.getTotal();
+            { this.setState({ Redirect: true }); }; 
+            console.log("Questions successfully added to the database");
+        }
   }
 
   render() {
+     if (this.state.Redirect) {
+            return (
+                <Redirect to={{
+                pathname: '/Participant_Finish',
+                }}/>
+            )
+        };
         return (
 
             <div>
@@ -781,8 +732,8 @@ export default class Participant_Step4_Second extends React.Component {
               <div>
                 <button
                   className='next-btn'
-                  onClick={this.getSortResults}>
-                  Next
+                  onClick={this.next}>
+                  Submit your sort
                 </button>
               </div>
             </div>
