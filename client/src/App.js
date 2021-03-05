@@ -25,6 +25,7 @@ import Participant_Step3_questions from './pages/participant/Participant_Step3_q
 import Participant_Step3 from './pages/participant/Participant_Step3';
 import Participant_Step4 from './pages/participant/Participant_Step4';
 import Participant_Step4_Second from './pages/participant/Participant_Step4_Second';
+import Participant_Finish from './pages/participant/Participant_Finish';
 
 function App() {
   const [auth, setAuth] = React.useState(false);
@@ -74,6 +75,7 @@ const Routes = () => {
       <Route path="/Participant_Step3" component={Participant_Step3} />
       <Route path="/Participant_Step4" component={Participant_Step4} />
       <Route path="/Participant_Step4_Second" component={Participant_Step4_Second} />
+      <Route path="/Participant_Finish" component={Participant_Finish} />
     </Switch>
   )
 }

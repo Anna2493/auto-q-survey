@@ -131,10 +131,10 @@ export default class Participant_Step4_Second extends React.Component {
           };
           this.sort('anchorNumber', anchorsArr3)
           this.setState({ anchors: anchorsArr3});
-          console.log(this.state.anchors);
-          console.log(this.state.cat1Statements)
-          console.log(this.state.cat2Statements)
-          console.log(this.state.cat3Statements)
+         // console.log(this.state.anchors);
+          //console.log(this.state.cat1Statements)
+         // console.log(this.state.cat2Statements)
+         // console.log(this.state.cat3Statements)
           
         })
       .catch(error => console.log(error));
@@ -227,13 +227,13 @@ export default class Participant_Step4_Second extends React.Component {
             var copyCat1 = this.state.cat1Statements;
             copyCat1.push(removed[0])
             this.setState({ cat1Statements: copyCat1 });
-            console.log('category is 1')
+            //console.log('category is 1')
           };
           if (removed[0].category == 2) {
             var copyCat2 = this.state.cat2Statements;
             copyCat2.push(removed[0])
             this.setState({ cat2Statements: copyCat2 });
-            console.log('category is 2')
+            //console.log('category is 2')
           };
           if (removed[0].category == 3) {
             var copyCat3 = this.state.cat3Statements;
@@ -262,7 +262,7 @@ export default class Participant_Step4_Second extends React.Component {
          if (destinationSlot.statement.length == 2) {
          var removed = destinationSlot.statement.splice(0, 1)
           //push removed back to cat1Statements
-           console.log(removed)
+           //console.log(removed)
             if (removed[0].category == 1) {
             var copyCat1 = this.state.cat1Statements;
             copyCat1.push(removed[0])
@@ -395,10 +395,10 @@ export default class Participant_Step4_Second extends React.Component {
 
           //SWAP ITEMS
           if (destinationSlot.statement.length == 2) {
-            console.log('slot taken')
+            //console.log('slot taken')
             var removed = destinationSlot.statement.splice(0, 1)
             //push removed back to cat1Statements
-            console.log(removed)
+           // console.log(removed)
             if (removed[0].category == 1) {
               var copyCat1 = this.state.cat1Statements;
               copyCat1.push(removed[0])
@@ -423,7 +423,7 @@ export default class Participant_Step4_Second extends React.Component {
   };
 
   getSortResults = () => {
-    console.log(this.state.anchors);
+    //console.log(this.state.anchors);
 
     var results = [];
 
@@ -434,22 +434,38 @@ export default class Participant_Step4_Second extends React.Component {
             anchorNumber: anchor.anchorNumber,
             statement: s.content,
             statementNumber: s.statementNumber,
-            surveyId: this.state.surveyID
+            surveyID: this.state.surveyID
           })
         })
       })
     })
 
-    console.log(results)
+    //console.log(results)
     this.setState({ sortResults: results });
     
   };
 
   next = (e) => {
     this.getSortResults();
-    e.preventDefault();
+    //e.preventDefault();
 
-    const result = this.state.sortResults;
+    var results = [];
+
+    this.state.anchors.map((anchor, index) => {
+      anchor.slots.map((slot, i) => {
+        slot.statement.map((s, j) => {
+          results.push({
+            anchorNumber: anchor.anchorNumber,
+            statement: s.content,
+            statementNumber: s.statementNumber,
+            surveyID: this.state.surveyID
+          })
+        })
+      })
+    })
+
+    const result = results;
+    console.log(result)
     var newResult = {};
     var success = [];
     for (var i = 0; i < result.length; i++){

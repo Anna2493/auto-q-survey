@@ -136,7 +136,7 @@ export const createResult = newResult => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            anchorNumber: newResult.questionNumber,
+            anchorNumber: newResult.anchorNumber,
             statement: newResult.statement,
             statementNumber: newResult.statementNumber,
             surveyID: newResult.surveyID
